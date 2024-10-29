@@ -1,12 +1,123 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Gestión de Banco</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function showAlert(option) {
+            alert("Seleccionaste: " + option);
+        }
+        
+        function redirectToHome() {
+            window.location.href = 'tu_url_de_inicio_aqui'; //url
+        }
+    </script>
 </head>
 <body>
 
+<div class="container mt-5">
+    <h1>Menú de Gestión de Banco</h1>
+    
+    <button class="btn btn-primary mb-3" onclick="redirectToHome()">Inicio</button> <!-- Botón para ir a Inicio -->
+    
+    <div class="accordion" id="menuAccordion">
+        <!-- Menú Administrador -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingAdmin">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
+                    Menú Administrador
+                </button>
+            </h2>
+            <div id="collapseAdmin" class="accordion-collapse collapse show" aria-labelledby="headingAdmin" data-bs-parent="#menuAccordion">
+                <div class="accordion-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Gestión de Clientes
+                            <ul>
+                                <li><a href="#" onclick="showAlert('Agregar Cliente')" class="text-decoration-none">Agregar Cliente</a></li>
+                                <li><a href="#" onclick="showAlert('Listar Clientes')" class="text-decoration-none">Listar Clientes</a></li>
+                                <li><a href="#" onclick="showAlert('Modificar Cliente')" class="text-decoration-none">Modificar Cliente</a></li>
+                                <li><a href="#" onclick="showAlert('Eliminar Cliente')" class="text-decoration-none">Eliminar Cliente</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">Gestión de Usuarios
+                            <ul>
+                                <li><a href="#" onclick="showAlert('Listar Usuarios')" class="text-decoration-none">Listar Usuarios</a></li>
+                                <li><a href="#" onclick="showAlert('Asignar Usuario a Cliente')" class="text-decoration-none">Asignar Usuario a Cliente</a></li>
+                                <li><a href="#" onclick="showAlert('Eliminar Usuario')" class="text-decoration-none">Eliminar Usuario</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">Gestión de Cuentas
+                            <ul>
+                                <li><a href="#" onclick="showAlert('Agregar Cuenta')" class="text-decoration-none">Agregar Cuenta</a></li>
+                                <li><a href="#" onclick="showAlert('Listar Cuentas')" class="text-decoration-none">Listar Cuentas</a></li>
+                                <li><a href="#" onclick="showAlert('Modificar Cuenta')" class="text-decoration-none">Modificar Cuenta</a></li>
+                                <li><a href="#" onclick="showAlert('Eliminar Cuenta')" class="text-decoration-none">Eliminar Cuenta</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">Préstamos
+                            <ul>
+                                <li><a href="#" onclick="showAlert('Autorizar Préstamo')" class="text-decoration-none">Autorizar Préstamo</a></li>
+                                <li><a href="#" onclick="showAlert('Rechazar Préstamo')" class="text-decoration-none">Rechazar Préstamo</a></li>
+                                <li><a href="#" onclick="showAlert('Listar Préstamos')" class="text-decoration-none">Listar Préstamos</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">Informes
+                            <ul>
+                                <li><a href="#" onclick="showAlert('Generar Informe de Ingresos y Egresos')" class="text-decoration-none">Generar Informe de Ingresos y Egresos</a></li>
+                                <li><a href="#" onclick="showAlert('Generar Informe de Clientes Activos')" class="text-decoration-none">Generar Informe de Clientes Activos</a></li>
+                                <li><a href="#" onclick="showAlert('Otros Reportes Estadísticos')" class="text-decoration-none">Otros Reportes Estadísticos</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item"><button class="btn btn-danger" onclick="showAlert('Cerrar Sesión')">Cerrar Sesión</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Cliente -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingCliente">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCliente" aria-expanded="false" aria-controls="collapseCliente">
+                    Menú Cliente
+                </button>
+            </h2>
+            <div id="collapseCliente" class="accordion-collapse collapse" aria-labelledby="headingCliente" data-bs-parent="#menuAccordion">
+                <div class="accordion-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Consultar Información Personal
+                            <ul>
+                                <li><a href="#" onclick="showAlert('Ver Datos Personales')" class="text-decoration-none">Ver Datos Personales</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">Gestión de Cuentas
+                            <ul>
+                                <li><a href="#" onclick="showAlert('Ver Cuentas Asociadas')" class="text-decoration-none">Ver Cuentas Asociadas</a></li>
+                                <li><a href="#" onclick="showAlert('Consultar Historial de Movimientos')" class="text-decoration-none">Consultar Historial de Movimientos</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">Transferencias
+                            <ul>
+                                <li><a href="#" onclick="showAlert('Transferir Dinero Entre Cuentas Propias')" class="text-decoration-none">Transferir Dinero Entre Cuentas Propias</a></li>
+                                <li><a href="#" onclick="showAlert('Transferir Dinero a Otro Cliente')" class="text-decoration-none">Transferir Dinero a Otro Cliente</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">Préstamos
+                            <ul>
+                                <li><a href="#" onclick="showAlert('Solicitar Préstamo')" class="text-decoration-none">Solicitar Préstamo</a></li>
+                                <li><a href="#" onclick="showAlert('Ver Estado de Solicitud de Préstamo')" class="text-decoration-none">Ver Estado de Solicitud de Préstamo</a></li>
+                                <li><a href="#" onclick="showAlert('Pagar Cuotas de Préstamo')" class="text-decoration-none">Pagar Cuotas de Préstamo</a></li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item"><button class="btn btn-danger" onclick="showAlert('Cerrar Sesión')">Cerrar Sesión</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
