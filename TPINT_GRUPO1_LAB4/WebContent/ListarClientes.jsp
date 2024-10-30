@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="entidad.Cliente" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -42,37 +44,45 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="cliente" items="${clientes}">
-                    <tr>
-                        <td>${cliente.id}</td>
-                        <td>${cliente.dni}</td>
-                        <td>${cliente.nombre}</td>
-                        <td>${cliente.apellido}</td>
-                        <td>${cliente.cuil}</td>
-                        <td>${cliente.sexo}</td>
-                        <td>${cliente.nacionalidad}</td>
-                        <td>${cliente.fechaNacimiento}</td>
-                        <td>${cliente.direccion}</td>
-                        <td>${cliente.localidad}</td>
-                        <td>${cliente.provincia}</td>
-                        <td>${cliente.correoElectronico}</td>
-                        <td>${cliente.telefono}</td>
-                        <td>${cliente.usuario}</td>
-                        <td>
-                            <a href="editarCliente?id=${cliente.id}" class="btn btn-warning btn-sm" title="Editar">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="eliminarCliente?id=${cliente.id}" class="btn btn-danger btn-sm" title="Eliminar">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </c:forEach>
+                <%
+                    // Recuperar la lista de clientes sin verificar el tipo
+                    List<?> clientes = (List<?>) request.getAttribute("clientes");
+                    if (clientes != null) {
+                        for (Object obj : clientes) {
+                            Cliente cliente = (Cliente) obj;
+                %>
+                            <tr>
+                                <td><%= cliente.getId() %></td>
+                                <td><%= cliente.getDni() %></td>
+                                <td><%= cliente.getNombre() %></td>
+                                <td><%= cliente.getApellido() %></td>
+                                <td><%= cliente.getCuil() %></td>
+                                <td><%= cliente.getSexo() %></td>
+                                <td><%= cliente.getNacionalidad() %></td>
+                                <td><%= cliente.getFechaNacimiento() %></td>
+                                <td><%= cliente.getDireccion() %></td>
+                                <td><%= cliente.getLocalidad() %></td>
+                                <td><%= cliente.getProvincia() %></td>
+                                <td><%= cliente.getCorreoElectronico() %></td>
+                                <td><%= cliente.getTelefono() %></td>
+                                <td><%= cliente.getUsuario() %></td>
+                                <td>
+                                    <a href="editarCliente?id=<%= cliente.getId() %>" class="btn btn-warning btn-sm" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="eliminarCliente?id=<%= cliente.getId() %>" class="btn btn-danger btn-sm" title="Eliminar">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                <%
+                        }
+                    }
+                %>
             </tbody>
         </table>
     </div>
 
-  
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
