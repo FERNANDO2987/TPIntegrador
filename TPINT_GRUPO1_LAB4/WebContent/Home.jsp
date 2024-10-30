@@ -35,8 +35,8 @@
                     <ul class="list-group">
                         <li class="list-group-item">Gestión de Clientes
                             <ul>
-                                <li><a href="#" onclick="showAlert('Agregar Cliente')" class="text-decoration-none">Agregar Cliente</a></li>
-                                <li><a href="#" onclick="showAlert('Listar Clientes')" class="text-decoration-none">Listar Clientes</a></li>
+                                <li><a href="<%= request.getContextPath() %>/AgregarCliente.jsp" class="text-decoration-none">Agregar Cliente</a></li>
+                                <li><a href="<%= request.getContextPath() %>/ListarClientes.jsp" class="text-decoration-none">Listar Clientes</a></li>
                                 <li><a href="#" onclick="showAlert('Modificar Cliente')" class="text-decoration-none">Modificar Cliente</a></li>
                                 <li><a href="#" onclick="showAlert('Eliminar Cliente')" class="text-decoration-none">Eliminar Cliente</a></li>
                             </ul>
