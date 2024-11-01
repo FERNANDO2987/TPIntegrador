@@ -88,7 +88,7 @@
                     <ul class="list-group">
                         <li class="list-group-item">Consultar Información Personal
                             <ul>
-                                <li><a href="#" onclick="showAlert('Ver Datos Personales')" class="text-decoration-none">Ver Datos Personales</a></li>
+                                <li><a href="<%= request.getContextPath() %>/VerDatosPersonales.jsp"  class="text-decoration-none">Ver Datos Personales</a></li>
                             </ul>
                         </li>
                         <li class="list-group-item">Gestión de Cuentas
