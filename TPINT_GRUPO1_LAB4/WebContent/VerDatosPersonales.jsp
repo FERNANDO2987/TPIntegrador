@@ -33,10 +33,10 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <p><strong>Sexo:</strong> Masculino</p>
+                        <p><strong>Correo:</strong> juancarlo@gmail.com </p>
                     </div>
                     <div class="col-md-6">
-                        <p><strong>País de Nacimiento:</strong> Argentina</p>
+                        <p><strong>Nacionalidad:</strong> Argentina</p>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -44,7 +44,7 @@
                         <p><strong>Fecha de Nacimiento:</strong> 15/08/1990</p>
                     </div>
                     <div class="col-md-6">
-                        <p><strong>Localidad:</strong> Buenos Aires</p>
+                        <p><strong>Localidad:</strong> Don Torcuato</p>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -52,7 +52,7 @@
                         <p><strong>Dirección:</strong> riobamba 232</p>
                     </div>
                     <div class="col-md-6">
-                        <p><strong>Correo:</strong> juancarlo@gmail.com</p>
+                        <p><strong>Provincia</strong> Buenos Aires </p>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -60,12 +60,12 @@
                         <p><strong>Teléfono:</strong>11 12845678</p>
                     </div>
                     <div class="col-md-6">
-                        <p><strong>Usuario:</strong> juancarlo</p>
+                        <p><strong>Sexo:</strong> Masculino</p>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <p><strong>Estado:</strong> </p>
+                        <p><strong>Usuario:</strong> juancarlo </p>
                     </div>
                 </div>
             </div>
