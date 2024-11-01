@@ -29,7 +29,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	    cn = new Conexion();
 	    cn.Open();
 
-	    String query = "INSERT INTO clientes (dni, cuil, nombre, apellido, sexo, nacionalidad, fechaNacimiento, direccion, localidad, provincia, correoElectronico, telefono, usuario, contraseña) VALUES ('"
+	    String query = "INSERT INTO clientes (dni, cuil, nombre, apellido, sexo, nacionalidad, fechaNacimiento, direccion, localidad, provincia, correoElectronico, telefono, usuario, contraseÃ±a) VALUES ('"
 	            + cliente.getDni() + "', '"
 	            + cliente.getCuil() + "', '"
 	            + cliente.getNombre() + "', '"
@@ -43,7 +43,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	            + cliente.getCorreoElectronico() + "', '"
 	            + cliente.getTelefono() + "', '"
 	            + cliente.getUsuario() + "', '"
-	            + cliente.getContraseña() + "')";
+	            + cliente.getContraseÃ±a() + "')";
 
 	    System.out.println(query);
 
@@ -63,8 +63,8 @@ public class ClienteDaoImpl implements ClienteDao{
 	   public List<Cliente> obtenerClientes() {
 	        List<Cliente> clientes = new ArrayList<>();
 	        String query = "SELECT idCliente, dni, cuil, nombre, apellido, sexo, nacionalidad, fechaNacimiento, " +
-	                       "direccion, localidad, provincia, correoElectronico, telefono, usuario, contraseña " +
-	                       "FROM clientes";
+	                       "direccion, localidad, provincia, correoElectronico, telefono, usuario, contraseÃ±a " +
+	                       "FROM clientes WHERE Deleted = FALSE";
 
 	        try {
 	            // Open connection
@@ -90,7 +90,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	                        rs.getString("correoElectronico"),
 	                        rs.getString("telefono"),
 	                        rs.getString("usuario"),
-	                        rs.getString("contraseña")
+	                        rs.getString("contraseÃ±a")
 	                );
 	                clientes.add(cliente);
 	            }
@@ -128,7 +128,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	            + "correoElectronico = '" + cliente.getCorreoElectronico() + "', "
 	            + "telefono = '" + cliente.getTelefono() + "', "
 	            + "usuario = '" + cliente.getUsuario() + "', "
-	            + "contraseña = '" + cliente.getContraseña() + "' "
+	            + "contraseÃ±a = '" + cliente.getContraseÃ±a() + "' "
 	            + "WHERE idCliente = " + cliente.getId();
 
 	    System.out.println(query);
@@ -144,7 +144,29 @@ public class ClienteDaoImpl implements ClienteDao{
 
 	    return estado;
 	}
+	
+	@Override
+	public boolean darDeBajaCliente(int idCliente) {
+	    boolean estado = true;
+	    cn = new Conexion();
+	    cn.Open();
 
+	    // Consulta para actualizar el estado del cliente a inactivo
+	    String query = "UPDATE clientes SET Deleted = TRUE, DeleteDate = NOW() WHERE idCliente = " + idCliente;
+
+	    System.out.println(query);
+
+	    try {
+	        estado = cn.execute(query);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        estado = false;
+	    } finally {
+	        cn.close();
+	    }
+
+	    return estado;
+	}
 
 	
 }

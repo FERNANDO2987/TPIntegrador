@@ -48,7 +48,7 @@ public class servletCliente extends HttpServlet {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Ajuste de formato de fecha
             fechaNacimiento = LocalDate.parse(fechaNacimientoStr, formatter);
         } catch (DateTimeParseException e) {
-            response.getWriter().write("Error: Formato de fecha inválido.");
+            response.getWriter().write("Error: Formato de fecha invï¿½lido.");
             return; // Detiene el procesamiento si hay un error en el formato de fecha
         }
 
@@ -58,9 +58,9 @@ public class servletCliente extends HttpServlet {
         String correoElectronico = request.getParameter("correoElectronico");
         String telefono = request.getParameter("telefono");
         String usuario = request.getParameter("usuario");
-        String contraseña = request.getParameter("contraseña");
+        String contraseÃ±a = request.getParameter("contraseÃ±a");
 
-        Cliente cliente = new Cliente(0, dni, cuil, nombre, apellido, sexo, nacionalidad, fechaNacimiento, direccion, localidad, provincia, correoElectronico, telefono, usuario, contraseña);
+        Cliente cliente = new Cliente(0, dni, cuil, nombre, apellido, sexo, nacionalidad, fechaNacimiento, direccion, localidad, provincia, correoElectronico, telefono, usuario, contraseÃ±a);
 
         ClienteDaoImpl clienteDao = new ClienteDaoImpl();
         boolean estado = clienteDao.agregarCliente(cliente);

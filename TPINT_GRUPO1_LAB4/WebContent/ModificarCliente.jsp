@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="entidad.Cliente" %>
 <%@ page import="datos.ClienteDao" %>
@@ -63,7 +64,7 @@
                     <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" value="<%= cliente.getFechaNacimiento() != null ? cliente.getFechaNacimiento().toString() : "" %>" required>
                 </div>
                 <div class="form-group">
-                    <label for="direccion">Dirección:</label>
+                    <label for="direccion">Direccion:</label>
                     <input type="text" class="form-control" id="direccion" name="direccion" value="<%= cliente.getDireccion() %>" required>
                 </div>
                 <div class="form-group">
@@ -75,11 +76,11 @@
                     <input type="text" class="form-control" id="provincia" name="provincia" value="<%= cliente.getProvincia() %>" required>
                 </div>
                 <div class="form-group">
-                    <label for="correoElectronico">Correo Electrónico:</label>
+                    <label for="correoElectronico">Correo Electronico:</label>
                     <input type="email" class="form-control" id="correoElectronico" name="correoElectronico" value="<%= cliente.getCorreoElectronico() %>" required>
                 </div>
                 <div class="form-group">
-                    <label for="telefono">Teléfono:</label>
+                    <label for="telefono">Telefono:</label>
                     <input type="tel" class="form-control" id="telefono" name="telefono" value="<%= cliente.getTelefono() %>" required>
                 </div>
                 <div class="form-group">
@@ -88,7 +89,7 @@
                 </div>
                 <div class="form-group">
                     <label for="contraseña">Contraseña:</label>
-                    <input type="password" class="form-control" id="contraseña" name="contraseña" value="<%= cliente.getContraseña() %>"> <!-- Este campo puede ser opcional -->
+                    <input type="password" class="form-control" id="contraseña" name="contraseña" value="<%= cliente.getContraseña() %>">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">Modificar Cliente</button>
@@ -97,7 +98,7 @@
             <% 
             } else { 
             %>
-                <p>No se encontró el cliente.</p>
+                <p>No se encontro el cliente.</p>
             <% 
             } 
 

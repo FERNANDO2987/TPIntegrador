@@ -36,10 +36,10 @@ public class servletListarCliente extends HttpServlet {
         ClienteDaoImpl clienteDao = new ClienteDaoImpl();
         List<Cliente> clientes = clienteDao.obtenerClientes();
 
-        // Obtener el criterio de búsqueda del parámetro de solicitud
+        // Obtener el criterio de bÃºsqueda del parÃ¡metro de solicitud
         String criterio = request.getParameter("criterio");
         
-        // Filtrar los clientes por nombre o apellido si el criterio no es nulo ni vacío
+        // Filtrar los clientes por nombre o apellido si el criterio no es nulo ni vacÃ­o
         if (criterio != null && !criterio.trim().isEmpty()) {
             clientes = clientes.stream()
                     .filter(cliente -> cliente.getNombre().toLowerCase().contains(criterio.toLowerCase()) ||
@@ -49,10 +49,9 @@ public class servletListarCliente extends HttpServlet {
 
         // Configurar la lista filtrada como atributo de la solicitud y reenviar a la vista
         request.setAttribute("clientes", clientes);
-        request.setAttribute("criterio", criterio);  // para mantener el valor en el campo de búsqueda
+        request.setAttribute("criterio", criterio);  // para mantener el valor en el campo de bÃºsqueda
         request.getRequestDispatcher("ListarClientes.jsp").forward(request, response);
     }
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
