@@ -17,10 +17,9 @@
         <h2 class="text-center mb-4">Listado de Clientes</h2>
         
         <!-- Formulario de búsqueda -->
-        <form action="servletListarCliente" method="get" class="form-inline mb-4">
+        <form action="listarClientes" method="get" class="form-inline mb-4">
             <input type="text" name="criterio" class="form-control mr-2" placeholder="Buscar cliente..." value="${criterio}">
-            <button type="submit" class="btn btn-primary mr-2">Buscar</button>
-            <a href="servletListarCliente" class="btn btn-secondary">Limpiar</a> <!-- Botón de limpiar -->
+            <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
         
         <!-- Tabla de clientes -->
@@ -46,47 +45,38 @@
             </thead>
             <tbody>
                 <%
-                    // Retrieve the list of clients from the request and check its type
-                    Object clientesObj = request.getAttribute("clientes");
-                    if (clientesObj instanceof List<?>) {
-                        List<?> clientesList = (List<?>) clientesObj;
-                        for (Object obj : clientesList) {
-                            if (obj instanceof Cliente) {
-                                Cliente cliente = (Cliente) obj;
+                    // Recuperar la lista de clientes sin verificar el tipo
+                    List<?> clientes = (List<?>) request.getAttribute("clientes");
+                    if (clientes != null) {
+                        for (Object obj : clientes) {
+                            Cliente cliente = (Cliente) obj;
                 %>
-                                <tr>
-                                    <td><%= cliente.getId() %></td>
-                                    <td><%= cliente.getDni() %></td>
-                                    <td><%= cliente.getNombre() %></td>
-                                    <td><%= cliente.getApellido() %></td>
-                                    <td><%= cliente.getCuil() %></td>
-                                    <td><%= cliente.getSexo() %></td>
-                                    <td><%= cliente.getNacionalidad() %></td>
-                                    <td><%= cliente.getFechaNacimiento() %></td>
-                                    <td><%= cliente.getDireccion() %></td>
-                                    <td><%= cliente.getLocalidad() %></td>
-                                    <td><%= cliente.getProvincia() %></td>
-                                    <td><%= cliente.getCorreoElectronico() %></td>
-                                    <td><%= cliente.getTelefono() %></td>
-                                    <td><%= cliente.getUsuario() %></td>
-                                    <td>
-                                        <a href="ModificarCliente.jsp?id=<%= cliente.getId() %>" class="btn btn-warning btn-sm" title="Editar">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="eliminarCliente?id=<%= cliente.getId() %>" class="btn btn-danger btn-sm" title="Eliminar">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><%= cliente.getId() %></td>
+                                <td><%= cliente.getDni() %></td>
+                                <td><%= cliente.getNombre() %></td>
+                                <td><%= cliente.getApellido() %></td>
+                                <td><%= cliente.getCuil() %></td>
+                                <td><%= cliente.getSexo() %></td>
+                                <td><%= cliente.getNacionalidad() %></td>
+                                <td><%= cliente.getFechaNacimiento() %></td>
+                                <td><%= cliente.getDireccion() %></td>
+                                <td><%= cliente.getLocalidad() %></td>
+                                <td><%= cliente.getProvincia() %></td>
+                                <td><%= cliente.getCorreoElectronico() %></td>
+                                <td><%= cliente.getTelefono() %></td>
+                                <td><%= cliente.getUsuario() %></td>
+                                <td>
+                                    <a href="editarCliente?id=<%= cliente.getId() %>" class="btn btn-warning btn-sm" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="eliminarCliente?id=<%= cliente.getId() %>" class="btn btn-danger btn-sm" title="Eliminar">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
                 <%
-                            }
                         }
-                    } else {
-                %>
-                    <tr>
-                        <td colspan="15" class="text-center">No se encontraron clientes.</td>
-                    </tr>
-                <%
                     }
                 %>
             </tbody>
