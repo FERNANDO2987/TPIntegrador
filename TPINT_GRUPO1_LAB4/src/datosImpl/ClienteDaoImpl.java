@@ -64,7 +64,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	        List<Cliente> clientes = new ArrayList<>();
 	        String query = "SELECT idCliente, dni, cuil, nombre, apellido, sexo, nacionalidad, fechaNacimiento, " +
 	                       "direccion, localidad, provincia, correoElectronico, telefono, usuario, contraseña " +
-	                       "FROM clientes";
+	                       "FROM clientes WHERE Deleted = FALSE";
 
 	        try {
 	            // Open connection
@@ -128,7 +128,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	            + "correoElectronico = '" + cliente.getCorreoElectronico() + "', "
 	            + "telefono = '" + cliente.getTelefono() + "', "
 	            + "usuario = '" + cliente.getUsuario() + "', "
-	            + "contrase�a = '" + cliente.getContraseña() + "' "
+	            + "contraseña = '" + cliente.getContraseña() + "' "
 	            + "WHERE idCliente = " + cliente.getId();
 
 	    System.out.println(query);
@@ -144,5 +144,29 @@ public class ClienteDaoImpl implements ClienteDao{
 
 	    return estado;
 	}
+	
+	@Override
+	public boolean darDeBajaCliente(int idCliente) {
+	    boolean estado = true;
+	    cn = new Conexion();
+	    cn.Open();
+
+	    // Consulta para actualizar el estado del cliente a inactivo
+	    String query = "UPDATE clientes SET Deleted = TRUE, DeleteDate = NOW() WHERE idCliente = " + idCliente;
+
+	    System.out.println(query);
+
+	    try {
+	        estado = cn.execute(query);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        estado = false;
+	    } finally {
+	        cn.close();
+	    }
+
+	    return estado;
+	}
+
 	
 }

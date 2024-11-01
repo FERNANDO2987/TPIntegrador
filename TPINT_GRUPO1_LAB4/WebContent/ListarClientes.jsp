@@ -71,7 +71,7 @@
                                     <a href="ModificarCliente.jsp?id=<%= cliente.getId() %>" class="btn btn-warning btn-sm" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="eliminarCliente?id=<%= cliente.getId() %>" class="btn btn-danger btn-sm" title="Eliminar">
+                                    <a href="servletEliminarCliente?id=<%= cliente.getId() %>" class="btn btn-danger btn-sm" title="Eliminar" onclick="return confirm('¿Estas seguro de que deseas eliminar este cliente?');">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </td>
