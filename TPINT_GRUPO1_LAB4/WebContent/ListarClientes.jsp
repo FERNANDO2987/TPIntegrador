@@ -68,7 +68,7 @@
                                 <td><%= cliente.getTelefono() %></td>
                                 <td><%= cliente.getUsuario() %></td>
                                 <td>
-                                    <a href="editarCliente?id=<%= cliente.getId() %>" class="btn btn-warning btn-sm" title="Editar">
+                                    <a href="ModificarCliente.jsp?id=<%= cliente.getId() %>" class="btn btn-warning btn-sm" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a href="eliminarCliente?id=<%= cliente.getId() %>" class="btn btn-danger btn-sm" title="Eliminar">
