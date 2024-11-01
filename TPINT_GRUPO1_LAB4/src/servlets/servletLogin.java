@@ -31,28 +31,28 @@ public class servletLogin extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String usuario = request.getParameter("usuario");
-        String contraseña = request.getParameter("contraseña");
+        String contraseÃ±a = request.getParameter("contraseï¿½a");
 
         System.out.println("Usuario ingresado: " + usuario);
-        System.out.println("Contraseña ingresada: " + contraseña);
+        System.out.println("Contraseï¿½a ingresada: " + contraseÃ±a);
 
-        // Verificar si ambos campos están vacíos
+        // Verificar si ambos campos estï¿½n vacï¿½os
         if (usuario == null || usuario.isEmpty()) {
             // Permitir acceso sin credenciales
             HttpSession session = request.getSession();
             session.setAttribute("usuario", "Guest"); 
             System.out.println("Acceso exitoso sin credenciales");
             response.sendRedirect("Home.jsp");
-        } else if (!contraseña.isEmpty()) {
+        } else if (!contraseÃ±a.isEmpty()) {
            
-            //validación es exitosa:
+            //validaciï¿½n es exitosa:
             HttpSession session = request.getSession();
             session.setAttribute("usuario", usuario);
-            System.out.println("Inicio de sesión exitoso para: " + usuario);
+            System.out.println("Inicio de sesion exitoso para: " + usuario);
             response.sendRedirect("Home.jsp");
         } else {
             // Redirigir al login 
-            System.out.println("Error en inicio de sesión para: " + usuario);
+            System.out.println("Error en inicio de sesiï¿½n para: " + usuario);
             response.sendRedirect("Login.jsp?error=true");
         }
     }

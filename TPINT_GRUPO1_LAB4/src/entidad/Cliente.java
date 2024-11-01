@@ -17,12 +17,12 @@ public class Cliente {
     private String correoElectronico;
     private String telefono;
     private String usuario;
-    private String contraseña;
+    private String contraseÃ±a;
 
     // Constructor
     public Cliente(int id, String dni, String cuil, String nombre, String apellido, String sexo, String nacionalidad,
     		LocalDate fechaNacimiento, String direccion, String localidad, String provincia,
-                   String correoElectronico, String telefono, String usuario, String contraseña) {
+                   String correoElectronico, String telefono, String usuario, String contraseÃ±a) {
         this.id = id;
         this.dni = dni;
         this.cuil = cuil;
@@ -37,7 +37,7 @@ public class Cliente {
         this.correoElectronico = correoElectronico;
         this.telefono = telefono;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contraseÃ±a = contraseÃ±a;
     }
 
     // Getters y Setters
@@ -83,10 +83,10 @@ public class Cliente {
     public String getUsuario() { return usuario; }
     public void setUsuario(String usuario) { this.usuario = usuario; }
 
-    public String getContraseña() { return contraseña; }
-    public void setContraseña(String contraseña) { this.contraseña = contraseña; }
+    public String getContraseÃ±a() { return contraseÃ±a; }
+    public void setContraseÃ±a(String contraseÃ±a) { this.contraseÃ±a = contraseÃ±a; }
 
-    // Método para mostrar información del cliente
+    // Mï¿½todo para mostrar informaciï¿½n del cliente
     @Override
     public String toString() {
         return "Cliente{" +
@@ -98,11 +98,11 @@ public class Cliente {
                 ", Sexo='" + sexo + '\'' +
                 ", Nacionalidad='" + nacionalidad + '\'' +
                 ", Fecha de Nacimiento='" + fechaNacimiento + '\'' +
-                ", Dirección='" + direccion + '\'' +
+                ", Direcciï¿½n='" + direccion + '\'' +
                 ", Localidad='" + localidad + '\'' +
                 ", Provincia='" + provincia + '\'' +
-                ", Correo Electrónico='" + correoElectronico + '\'' +
-                ", Teléfono='" + telefono + '\'' +
+                ", Correo Electrï¿½nico='" + correoElectronico + '\'' +
+                ", Telï¿½fono='" + telefono + '\'' +
                 ", Usuario='" + usuario + '\'' +
                 '}';
     }

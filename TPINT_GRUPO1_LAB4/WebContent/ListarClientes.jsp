@@ -16,10 +16,11 @@
     <div class="container mt-5">
         <h2 class="text-center mb-4">Listado de Clientes</h2>
         
-        <!-- Formulario de búsqueda -->
-        <form action="listarClientes" method="get" class="form-inline mb-4">
-            <input type="text" name="criterio" class="form-control mr-2" placeholder="Buscar cliente..." value="${criterio}">
-            <button type="submit" class="btn btn-primary">Buscar</button>
+        <!-- Formulario de bï¿½squeda -->
+       <form action="servletListarCliente" method="get" class="form-inline mb-4" id="formBusqueda">
+            <input type="text" name="criterio" class="form-control mr-2" placeholder="Buscar cliente..." id="criterio">
+            <button type="submit" class="btn btn-primary mr-2">Buscar</button>
+            <a href="servletListarCliente" class="btn btn-secondary">Limpiar</a>
         </form>
         
         <!-- Tabla de clientes -->
@@ -34,18 +35,18 @@
                     <th>Sexo</th>
                     <th>Nacionalidad</th>
                     <th>Fecha de Nacimiento</th>
-                    <th>Dirección</th>
+                    <th>Direccion</th>
                     <th>Localidad</th>
                     <th>Provincia</th>
-                    <th>Correo Electrónico</th>
-                    <th>Teléfono</th>
+                    <th>Correo Electronico</th>
+                    <th>Telefono</th>
                     <th>Usuario</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <%
-                    // Recuperar la lista de clientes sin verificar el tipo
+                    // Recuperar la lista de clientes
                     List<?> clientes = (List<?>) request.getAttribute("clientes");
                     if (clientes != null) {
                         for (Object obj : clientes) {
