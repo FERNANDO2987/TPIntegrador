@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,61 +13,53 @@
         <h3>Cuentas Asociadas</h3>
     </div>
 
-    <div class="row">
+    <div class="row pt-5">
+
         <div class="col-md-4">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Cuenta N°1</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <hr>
+                    <p class="card-text">
+                        <strong>Cuenta corriente</strong><hr>
+                        <strong>CBU:</strong> 15648945648651 <hr>
+                        <strong>Fecha de creacion:</strong> 18/04/2022
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item" style="font-size: 23px;"><strong> $423.588,58 </strong></li>
                 </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                <div class="card-body pt-1 pb-1">
+                    <a href="" style="font-size:13px;">Historial de movimientos</a>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Cuenta N°3</h5>
+                    <hr>
+                    <p class="card-text">
+                        <strong>Caja de Ahorro</strong><hr>
+                        <strong>CBU:</strong> 18797894565641 <hr>
+                        <strong>Fecha de creacion:</strong> 11/09/2021
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item" style="font-size: 23px;"><strong> $37.255,99 </strong></li>
                 </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+                <div class="card-body pt-1 pb-1">
+                    <a href="" style="font-size:13px;">Historial de movimientos</a>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-4">
+            <a href="" class="card d-flex align-items-center justify-content-center text-decoration-none" style="width: 18rem; height: 100%;">
+                <div class="text-center">
+                    <h1 style="font-size: 50px; margin: 0;">+</h1>
+                    <p><strong>Agregar nueva cuenta</strong></p>
+                </div>
+            </a>
         </div>
     </div>
 </div>
