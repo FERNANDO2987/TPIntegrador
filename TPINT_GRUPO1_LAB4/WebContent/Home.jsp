@@ -50,7 +50,7 @@
                         </li>
                         <li class="list-group-item">Gestión de Cuentas
                             <ul>
-                                <li><a href="#" onclick="showAlert('Agregar Cuenta')" class="text-decoration-none">Agregar Cuenta</a></li>
+                                <li><a href="AgregarCuenta.jsp" class="text-decoration-none">Agregar Cuenta</a></li>
                                 <li><a href="#" onclick="showAlert('Listar Cuentas')" class="text-decoration-none">Listar Cuentas</a></li>
                                 <li><a href="#" onclick="showAlert('Modificar Cuenta')" class="text-decoration-none">Modificar Cuenta</a></li>
                                 <li><a href="#" onclick="showAlert('Eliminar Cuenta')" class="text-decoration-none">Eliminar Cuenta</a></li>
