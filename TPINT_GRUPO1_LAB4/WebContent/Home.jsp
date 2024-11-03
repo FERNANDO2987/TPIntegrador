@@ -43,7 +43,7 @@
                         </li>
                         <li class="list-group-item">Gestión de Usuarios
                             <ul>
-                                <li><a href="#" onclick="showAlert('Listar Usuarios')" class="text-decoration-none">Listar Usuarios</a></li>
+                                <li><a href="ListarUsuarios.jsp" class="text-decoration-none">Listar Usuarios</a></li>
                                 <li><a href="#" onclick="showAlert('Asignar Usuario a Cliente')" class="text-decoration-none">Asignar Usuario a Cliente</a></li>
                                 <li><a href="#" onclick="showAlert('Eliminar Usuario')" class="text-decoration-none">Eliminar Usuario</a></li>
                             </ul>
