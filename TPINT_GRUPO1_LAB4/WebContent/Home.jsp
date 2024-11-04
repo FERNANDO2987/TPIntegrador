@@ -37,22 +37,20 @@
                             <ul>
                                 <li><a href="<%= request.getContextPath() %>/AgregarCliente.jsp" class="text-decoration-none">Agregar Cliente</a></li>
                                 <li><a href="<%= request.getContextPath() %>/ListarClientes.jsp" class="text-decoration-none">Listar Clientes</a></li>
-                                <li><a href="#" onclick="showAlert('Eliminar Cliente')" class="text-decoration-none">Eliminar Cliente</a></li>
+                               
                             </ul>
                         </li>
                         <li class="list-group-item">Gestión de Usuarios
                             <ul>
+                               <li><a href="#" onclick="showAlert('Asignar Usuario a Cliente')" class="text-decoration-none">Agregar Usuario</a></li>
                                 <li><a href="ListarUsuarios.jsp" class="text-decoration-none">Listar Usuarios</a></li>
-                                <li><a href="#" onclick="showAlert('Asignar Usuario a Cliente')" class="text-decoration-none">Asignar Usuario a Cliente</a></li>
-                                <li><a href="#" onclick="showAlert('Eliminar Usuario')" class="text-decoration-none">Eliminar Usuario</a></li>
+                               
                             </ul>
                         </li>
                         <li class="list-group-item">Gestión de Cuentas
                             <ul>
                                 <li><a href="AgregarCuenta.jsp" class="text-decoration-none">Agregar Cuenta</a></li>
                                 <li><a href="#" onclick="showAlert('Listar Cuentas')" class="text-decoration-none">Listar Cuentas</a></li>
-                                <li><a href="#" onclick="showAlert('Modificar Cuenta')" class="text-decoration-none">Modificar Cuenta</a></li>
-                                <li><a href="#" onclick="showAlert('Eliminar Cuenta')" class="text-decoration-none">Eliminar Cuenta</a></li>
                             </ul>
                         </li>
                         <li class="list-group-item">Préstamos

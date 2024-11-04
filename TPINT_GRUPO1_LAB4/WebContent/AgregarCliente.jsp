@@ -1,8 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="entidad.Pais" %>
+<%@ page import="datosImpl.PaisDaoImpl" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrar Cliente</title>
     <!-- Bootstrap CSS -->
@@ -14,11 +17,11 @@
         <form action="servletCliente" method="POST">
             <div class="form-group">
                 <label for="dni">DNI:</label>
-                <input type="text" class="form-control" id="dni" name="dni" required>
+                <input type="text" class="form-control" id="dni" name="dni" pattern="\d{7,8}" title="Ingrese 7 u 8 dÃ­gitos" required>
             </div>
             <div class="form-group">
                 <label for="cuil">CUIL:</label>
-                <input type="text" class="form-control" id="cuil" name="cuil" required>
+                <input type="text" class="form-control" id="cuil" name="cuil" pattern="\d{11}" title="Ingrese 11 dÃ­gitos" required>
             </div>
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
@@ -38,40 +41,41 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="nacionalidad">Nacionalidad:</label>
-                <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" required>
+                <label for="pais">PaÃ­s:</label>
+                <select class="form-control" id="pais" name="pais" required>
+                    <option value="">Seleccionar</option>
+                    <%
+                        // Obtener la lista de paÃ­ses desde la base de datos
+                        PaisDaoImpl paisDao = new PaisDaoImpl();
+                        List<Pais> paises = paisDao.obtenerPaises();
+                        // Iterar sobre los paÃ­ses y generar las opciones
+                        for (Pais pais : paises) {
+                    %>
+                        <option value="<%= pais.getId() %>"><%= pais.getNombre() %></option>
+                    <%
+                        }
+                    %>
+                </select>
             </div>
             <div class="form-group">
                 <label for="fechaNacimiento">Fecha de Nacimiento:</label>
                 <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
             </div>
             <div class="form-group">
-                <label for="direccion">Dirección:</label>
-                <input type="text" class="form-control" id="direccion" name="direccion" required>
-            </div>
-            <div class="form-group">
-                <label for="localidad">Localidad:</label>
-                <input type="text" class="form-control" id="localidad" name="localidad" required>
-            </div>
-            <div class="form-group">
-                <label for="provincia">Provincia:</label>
-                <input type="text" class="form-control" id="provincia" name="provincia" required>
-            </div>
-            <div class="form-group">
-                <label for="correoElectronico">Correo Electrónico:</label>
+                <label for="correoElectronico">Correo ElectrÃ³nico:</label>
                 <input type="email" class="form-control" id="correoElectronico" name="correoElectronico" required>
             </div>
             <div class="form-group">
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" class="form-control" id="telefono" name="telefono" required>
+                <label for="telefono">TelÃ©fono:</label>
+                <input type="tel" class="form-control" id="telefono" name="telefono" pattern="\d{10,15}" title="Ingrese entre 10 y 15 dÃ­gitos" required>
             </div>
             <div class="form-group">
                 <label for="usuario">Usuario:</label>
                 <input type="text" class="form-control" id="usuario" name="usuario" required>
             </div>
             <div class="form-group">
-                <label for="contraseña">Contraseña:</label>
-                <input type="password" class="form-control" id="contraseña" name="contraseña" required>
+                <label for="contraseÃ±a">ContraseÃ±a:</label>
+                <input type="password" class="form-control" id="contraseÃ±a" name="contraseÃ±a" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Registrar Cliente</button>
         </form>

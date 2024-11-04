@@ -1,6 +1,6 @@
 package datosImpl;
 
-import java.sql.PreparedStatement;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -22,41 +22,39 @@ public class ClienteDaoImpl implements ClienteDao{
 	}
 	
 	
-	
 	@Override
 	public boolean agregarCliente(Cliente cliente) {
-		
-	
-	    
 	    boolean estado = true;
-
 	    cn = new Conexion();
 	    cn.Open();
 
-	    String query = "INSERT INTO Clientes (dni, cuil, nombre, apellido, sexo, id_pais_nacimiento, fecha_nacimiento, id_usuario) VALUES ("
-	            + cliente.getDni() + ", "
-	            + cliente.getCuil() + ", '"
-	            + cliente.getNombre() + "', '"
-	            + cliente.getApellido() + "', '"
-	            + cliente.getSexo() + "', "
-	            + (cliente.getPaisNacimiento() != null ? cliente.getPaisNacimiento().getId() : "NULL") + ", '"
-	            + cliente.getFechaNacimiento() + "', "
-	            + (cliente.getUsuario() != null ? cliente.getUsuario().getId() : "NULL") + ")";
+	    String query = "{CALL AgregarCliente(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
-	    System.out.println(query);
+	    try (CallableStatement stmt = cn.connection.prepareCall(query)) {
+	        // Establecer los parámetros
+	        stmt.setObject(1, cliente.getId()); // p_id
+	        stmt.setInt(2, cliente.getDni()); // p_dni
+	        stmt.setInt(3, cliente.getCuil()); // p_cuil
+	        stmt.setString(4, cliente.getNombre()); // p_nombre
+	        stmt.setString(5, cliente.getApellido()); // p_apellido
+	        stmt.setString(6, cliente.getSexo()); // p_sexo
+	        stmt.setObject(7, (cliente.getPaisNacimiento() != null ? cliente.getPaisNacimiento().getId() : null)); // p_id_pais_nacimiento
+	        stmt.setDate(8, cliente.getFechaNacimiento() != null ? java.sql.Date.valueOf(cliente.getFechaNacimiento()) : null); // p_fecha_nacimiento
+	        stmt.setObject(9, (cliente.getUsuario() != null ? cliente.getUsuario().getId() : null)); // p_id_usuario
 
-	    try {
-	        estado = cn.execute(query);
-	    } catch (Exception e) {
-	        e.printStackTrace();
+	        // Ejecutar el procedimiento
+	        stmt.executeUpdate();
+	        
+	    } catch (SQLException e) {
 	        estado = false;
+	        e.printStackTrace();
 	    } finally {
 	        cn.close();
 	    }
 
 	    return estado;
 	}
-	
+
 	
 	
 	@Override
@@ -208,6 +206,14 @@ public class ClienteDaoImpl implements ClienteDao{
 	    }
 
 	    return estado;
+	}
+
+
+
+	@Override
+	public boolean modificarCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	
