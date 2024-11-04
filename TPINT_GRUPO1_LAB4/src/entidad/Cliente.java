@@ -3,108 +3,116 @@ package entidad;
 import java.time.LocalDate;
 
 public class Cliente {
-    private int id;
-    private String dni;
-    private String cuil;
-    private String nombre;
-    private String apellido;
-    private String sexo;
-    private String nacionalidad;
-    private LocalDate fechaNacimiento;
-    private String direccion;
-    private String localidad;
-    private String provincia;
-    private String correoElectronico;
-    private String telefono;
-    private String usuario;
-    private String contraseña;
+	 private long id;
+	    private int dni;
+	    private int cuil;
+	    private String nombre;
+	    private String apellido;
+	    private String sexo;
+	    private Pais paisNacimiento;
+	    private LocalDate fechaNacimiento;
+	    private Usuario usuario;
 
     // Constructor
-    public Cliente(int id, String dni, String cuil, String nombre, String apellido, String sexo, String nacionalidad,
-    		LocalDate fechaNacimiento, String direccion, String localidad, String provincia,
-                   String correoElectronico, String telefono, String usuario, String contraseña) {
-        this.id = id;
-        this.dni = dni;
-        this.cuil = cuil;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.sexo = sexo;
-        this.nacionalidad = nacionalidad;
-        this.fechaNacimiento = fechaNacimiento;
-        this.direccion = direccion;
-        this.localidad = localidad;
-        this.provincia = provincia;
-        this.correoElectronico = correoElectronico;
-        this.telefono = telefono;
-        this.usuario = usuario;
-        this.contraseña = contraseña;
-    }
+	  
+	    public Cliente() {}
 
-    // Getters y Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+	    // Constructor con parámetros
+	    public Cliente(long id, int dni, int cuil, String nombre, String apellido, String sexo, 
+	                   Pais paisNacimiento, LocalDate fechaNacimiento, Usuario usuario) {
+	        this.id = id;
+	        this.dni = dni;
+	        this.cuil = cuil;
+	        this.nombre = nombre;
+	        this.apellido = apellido;
+	        this.sexo = sexo;
+	        this.paisNacimiento = paisNacimiento;
+	        this.fechaNacimiento = fechaNacimiento;
+	        this.usuario = usuario;
+	    }
 
-    public String getDni() { return dni; }
-    public void setDni(String dni) { this.dni = dni; }
+	    
+	    // Getters y Setters
+	    public long getId() {
+	        return id;
+	    }
 
-    public String getCuil() { return cuil; }
-    public void setCuil(String cuil) { this.cuil = cuil; }
+	    public void setId(long id) {
+	        this.id = id;
+	    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+	    public int getDni() {
+	        return dni;
+	    }
 
-    public String getApellido() { return apellido; }
-    public void setApellido(String apellido) { this.apellido = apellido; }
+	    public void setDni(int dni) {
+	        this.dni = dni;
+	    }
 
-    public String getSexo() { return sexo; }
-    public void setSexo(String sexo) { this.sexo = sexo; }
+	    public int getCuil() {
+	        return cuil;
+	    }
 
-    public String getNacionalidad() { return nacionalidad; }
-    public void setNacionalidad(String nacionalidad) { this.nacionalidad = nacionalidad; }
+	    public void setCuil(int cuil) {
+	        this.cuil = cuil;
+	    }
 
-    public LocalDate getFechaNacimiento() { return fechaNacimiento; }
-    public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
+	    public String getNombre() {
+	        return nombre;
+	    }
 
-    public String getDireccion() { return direccion; }
-    public void setDireccion(String direccion) { this.direccion = direccion; }
+	    public void setNombre(String nombre) {
+	        this.nombre = nombre;
+	    }
 
-    public String getLocalidad() { return localidad; }
-    public void setLocalidad(String localidad) { this.localidad = localidad; }
+	    public String getApellido() {
+	        return apellido;
+	    }
 
-    public String getProvincia() { return provincia; }
-    public void setProvincia(String provincia) { this.provincia = provincia; }
+	    public void setApellido(String apellido) {
+	        this.apellido = apellido;
+	    }
 
-    public String getCorreoElectronico() { return correoElectronico; }
-    public void setCorreoElectronico(String correoElectronico) { this.correoElectronico = correoElectronico; }
+	    public String getSexo() {
+	        return sexo;
+	    }
 
-    public String getTelefono() { return telefono; }
-    public void setTelefono(String telefono) { this.telefono = telefono; }
+	    public void setSexo(String sexo) {
+	        this.sexo = sexo;
+	    }
 
-    public String getUsuario() { return usuario; }
-    public void setUsuario(String usuario) { this.usuario = usuario; }
+	    public Pais getPaisNacimiento() {
+	        return paisNacimiento;
+	    }
 
-    public String getContraseña() { return contraseña; }
-    public void setContraseña(String contraseña) { this.contraseña = contraseña; }
+	    public void setPaisNacimiento(Pais paisNacimiento) {
+	        this.paisNacimiento = paisNacimiento;
+	    }
 
-    // M�todo para mostrar informaci�n del cliente
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "ID=" + id +
-                ", DNI='" + dni + '\'' +
-                ", CUIL='" + cuil + '\'' +
-                ", Nombre='" + nombre + '\'' +
-                ", Apellido='" + apellido + '\'' +
-                ", Sexo='" + sexo + '\'' +
-                ", Nacionalidad='" + nacionalidad + '\'' +
-                ", Fecha de Nacimiento='" + fechaNacimiento + '\'' +
-                ", Direcci�n='" + direccion + '\'' +
-                ", Localidad='" + localidad + '\'' +
-                ", Provincia='" + provincia + '\'' +
-                ", Correo Electr�nico='" + correoElectronico + '\'' +
-                ", Tel�fono='" + telefono + '\'' +
-                ", Usuario='" + usuario + '\'' +
-                '}';
-    }
+	    public LocalDate getFechaNacimiento() {
+	        return fechaNacimiento;
+	    }
+
+	    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+	        this.fechaNacimiento = fechaNacimiento;
+	    }
+
+	    public Usuario getUsuario() {
+	        return usuario;
+	    }
+
+	    public void setUsuario(Usuario usuario) {
+	        this.usuario = usuario;
+	    }
+
+		@Override
+		public String toString() {
+			return "Cliente [id=" + id + ", dni=" + dni + ", cuil=" + cuil + ", nombre=" + nombre + ", apellido="
+					+ apellido + ", sexo=" + sexo + ", paisNacimiento=" + paisNacimiento + ", fechaNacimiento="
+					+ fechaNacimiento + ", usuario=" + usuario + "]";
+		}
+
+	    
+	    
 }
 
