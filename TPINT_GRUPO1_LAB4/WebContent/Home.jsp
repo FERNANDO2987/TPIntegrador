@@ -64,8 +64,8 @@
                         </li>
                         <li class="list-group-item">Informes
                             <ul>
-                                <li><a href="#" onclick="showAlert('Generar Informe de Ingresos y Egresos')" class="text-decoration-none">Generar Informe de Ingresos y Egresos</a></li>
-                                <li><a href="#" onclick="showAlert('Generar Informe de Clientes Activos')" class="text-decoration-none">Generar Informe de Clientes Activos</a></li>
+                                <li><a href="InformeIngresosEgresos.jsp" onclick="showAlert('Generar Informe de Ingresos y Egresos')" class="text-decoration-none">Generar Informe de Ingresos y Egresos</a></li>
+                                <li><a href="InformeClientesActivosInactivos" onclick="showAlert('Generar Informe de Clientes Activos')" class="text-decoration-none">Generar Informe de Clientes Activos</a></li>
                                 <li><a href="#" onclick="showAlert('Otros Reportes Estadísticos')" class="text-decoration-none">Otros Reportes Estadísticos</a></li>
                             </ul>
                         </li>
