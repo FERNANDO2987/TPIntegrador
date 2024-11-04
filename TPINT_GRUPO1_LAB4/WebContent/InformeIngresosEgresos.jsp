@@ -12,16 +12,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-	<div class="container mt-5" style="width: 800px; height: 400px;">
-        <h2 class="text-center mb-4">Informe de Ingresos y Egresos</h2>
-		<div>
-  			<canvas id="myChart_ingresos"></canvas>
+	<div class="container mt-5">
+		<div class="row" style="padding: 10px">
+			<div class="col-4">
+				<a class= "col btn btn-danger" href="#" style="display: inline;">Volver</a>
+			</div>	
+			<div class="col-8">
+				<h2 class="text-center mb-4">Informe de Ingresos y Egresos</h2>
+			</div>					
 		</div>
-		<div>
-			<canvas id="myChart_egresos"></canvas>
+		<div class="row" style="padding: 10px">
+			<div class="col-4">
+				<a class= "col btn btn-primary" href="#">Generar Informe</a>
+			</div>
+			<div class="col-8">
+				<canvas id="myChart_ingresos" ></canvas>
+			</div>							
 		</div>
-		<div>
-  			<a class= "col btn btn-secondary" href="#">Generar Informe</a>
+		<div class="row" style="padding: 10px">
+			<div class="col-4">
+				<a class= "col btn btn-primary" href="#">Generar Informe</a>
+			</div>
+			<div class="col-8">
+				<canvas id="myChart_egresos" ></canvas>
+			</div>	
 		</div>
 	</div>
 	
@@ -32,10 +46,10 @@
 		new Chart(ctx1, {
 		  type: 'bar',
 		  data: {
-		    labels: ['Ene-Mar', 'Abr-Jun', 'Jul-Sep', 'Oct-Dic'],
+		    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
 		    datasets: [{
 		      label: ' Ingresos',
-		      data: [12, 19, 3, 5, 2, 3],  //Ejemplos de valor
+		      data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],  //Ejemplos de valor
 		      backgroundColor:['rgba(1, 210, 70, 0.2)'],
 		      borderWidth: 1
 		    }]
@@ -55,10 +69,10 @@
 		new Chart(ctx2, {
 		  type: 'bar',
 		  data: {
-		    labels: ['Ene-Mar', 'Abr-Jun', 'Jul-Sep', 'Oct-Dic'],
+		    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
 		    datasets: [{
 		      label: ' Egresos',
-		      data: [1, 10, 5, 5, 1, 3], //Ejemplos de valor
+		      data: [1, 10, 5, 5, 1, 3, 1, 10, 5, 5, 1, 3], //Ejemplos de valor
 		      backgroundColor:['rgba(255, 82, 84, 0.2)'],
 		      borderWidth: 1
 		    }]
