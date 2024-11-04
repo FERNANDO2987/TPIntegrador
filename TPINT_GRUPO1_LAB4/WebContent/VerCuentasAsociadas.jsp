@@ -29,7 +29,7 @@
                     <li class="list-group-item" style="font-size: 23px;"><strong> $423.588,58 </strong></li>
                 </ul>
                 <div class="card-body pt-1 pb-1">
-                    <a href="" style="font-size:13px;">Historial de movimientos</a>
+                    <a href="<%= request.getContextPath() %>/HistorialDeMovimientos.jsp" style="font-size:13px;">Historial de movimientos</a>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                     <li class="list-group-item" style="font-size: 23px;"><strong> $37.255,99 </strong></li>
                 </ul>
                 <div class="card-body pt-1 pb-1">
-                    <a href="" style="font-size:13px;">Historial de movimientos</a>
+                    <a href="<%= request.getContextPath() %>/HistorialDeMovimientos.jsp" style="font-size:13px;">Historial de movimientos</a>
                 </div>
             </div>
         </div>

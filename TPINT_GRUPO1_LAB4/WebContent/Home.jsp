@@ -94,7 +94,7 @@
                         <li class="list-group-item">Gestión de Cuentas
                             <ul>
                                 <li><a href="<%= request.getContextPath() %>/VerCuentasAsociadas.jsp"  class="text-decoration-none">Ver Cuentas Asociadas</a></li>
-                                <li><a href="#" onclick="showAlert('Consultar Historial de Movimientos')" class="text-decoration-none">Consultar Historial de Movimientos</a></li>
+                       
                             </ul>
                         </li>
                         <li class="list-group-item">Transferencias
