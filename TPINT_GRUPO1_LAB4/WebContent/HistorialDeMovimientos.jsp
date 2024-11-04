@@ -11,17 +11,17 @@
 <body>
 
 	<!-- SE TIENE QUE DESARROLLAR LA LÓGICA DE ESTA PÁGINA EN LA QUE
-		 SE RECIBE POR PARAMETRO LA CUENTA DESDE LA CUÁL FUE ABIERTA
+		 SE RECIBA POR PARAMETRO LA CUENTA DESDE LA CUÁL FUE ABIERTA
 		 ESTA PÁGINA. SUMAR EN LA PÁGINA VerCuentasAsociadas.jsp 
 		 EL ENVÍO DE LOS PARÁMETROS. TAMBIÉN EL SERVLET Y LA LOGICA
-		 PARA QUE FUNCIONE FILTRAR POR FECHA. -->
+		 PARA QUE FUNCIONE FILTRAR POR FECHA Y LA OBTENCION DE DATOS.  -->
 
 	<div class="container mt-5">
         <h2 class="text-center mb-4">Historial de movimientos</h2>
         
         <!-- Formulario de busqueda -->
-       <form action="servletListarCliente" method="get" class="form-inline mb-4" id="formBusqueda">
-            <input type="date" name="criterio" class="form-control mr-2" placeholder="Buscar cliente..." id="criterio">
+       <form action="ServletACrear" method="get" class="form-inline mb-4" id="formBusqueda">
+            <input type="date" name="criterio" class="form-control mr-2" id="criterio">
             <button type="submit" class="btn btn-primary mr-2">Buscar</button>
         </form>
         
