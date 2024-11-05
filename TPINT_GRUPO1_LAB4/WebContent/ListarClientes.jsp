@@ -59,14 +59,7 @@
                                 <td><%= cliente.getApellido() %></td>
                                 <td><%= cliente.getCuil() %></td>
                                 <td><%= cliente.getSexo() %></td>
-                                <td><%= cliente.getNacionalidad() %></td>
-                                <td><%= cliente.getFechaNacimiento() %></td>
-                                <td><%= cliente.getDireccion() %></td>
-                                <td><%= cliente.getLocalidad() %></td>
-                                <td><%= cliente.getProvincia() %></td>
-                                <td><%= cliente.getCorreoElectronico() %></td>
-                                <td><%= cliente.getTelefono() %></td>
-                                <td><%= cliente.getUsuario() %></td>
+                                
                                 <td>
                                     <a href="ModificarCliente.jsp?id=<%= cliente.getId() %>" class="btn btn-warning btn-sm" title="Editar">
                                         <i class="fas fa-edit"></i>
