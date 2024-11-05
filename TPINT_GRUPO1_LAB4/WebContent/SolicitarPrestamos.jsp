@@ -29,13 +29,15 @@
                 <label for="plazo">Plazo (en meses):</label>
                 <input type="number" class="form-control" id="plazo" name="plazo" placeholder="Ingrese el plazo en meses" required>
             </div>
+            
             <div class="form-group">
-                <label for="ingresos">Ingresos Mensuales:</label>
-                <input type="number" class="form-control" id="ingresos" name="ingresos" placeholder="Ingrese sus ingresos mensuales" required>
-            </div>
-            <div class="form-group">
-                <label for="detalle">Detalle (opcional):</label>
-                <input type="text" class="form-control" id="detalle" name="detalle" placeholder="Descripción de la solicitud">
+                <label for="metodoPago">Cuenta destino:</label>
+                <select class="form-control" id="cuentaDestino" name="cuentaDestino" required>
+                    <option value="">Seleccionar</option>
+                    <option value="15648945648651">15648945648651</option>
+                    <option value="18797894565641">18797894565641</option>
+                    <option value="18797894533333">1879789453333</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Solicitar Préstamo</button>
         </form>

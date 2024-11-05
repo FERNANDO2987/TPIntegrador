@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label for="metodoPago">Cuenta seleccionada:</label>
-                <select class="form-control" id="metodoPago" name="metodoPago" required>
+                <select class="form-control" id="cuentaSeleccionada" name="cuentaSeleccionada" required>
                     <option value="">Seleccionar</option>
                     <option value="15648945648651">15648945648651</option>
                     <option value="18797894565641">18797894565641</option>
