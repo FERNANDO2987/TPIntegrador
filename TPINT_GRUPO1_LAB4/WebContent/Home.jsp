@@ -98,8 +98,8 @@
                         </li>
                         <li class="list-group-item">Transferencias
                             <ul>
-                                <li><a href="#" onclick="showAlert('Transferir Dinero Entre Cuentas Propias')" class="text-decoration-none">Transferir Dinero Entre Cuentas Propias</a></li>
-                                <li><a href="#" onclick="showAlert('Transferir Dinero a Otro Cliente')" class="text-decoration-none">Transferir Dinero a Otro Cliente</a></li>
+                                <li><a href="<%= request.getContextPath() %>/TransferirCuentasPropias.jsp"  class="text-decoration-none">Transferir Dinero Entre Cuentas Propias</a></li>
+                                <li><a href="<%= request.getContextPath() %>/TransferirAOtroCliente.jsp"  class="text-decoration-none">Transferir Dinero a Otro Cliente</a></li>
                             </ul>
                         </li>
                         <li class="list-group-item">Préstamos
