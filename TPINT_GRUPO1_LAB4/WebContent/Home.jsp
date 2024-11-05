@@ -55,9 +55,7 @@
                         </li>
                         <li class="list-group-item">Préstamos
                             <ul>
-                                <li><a href="#" onclick="showAlert('Autorizar Préstamo')" class="text-decoration-none">Autorizar Préstamo</a></li>
-                                <li><a href="#" onclick="showAlert('Rechazar Préstamo')" class="text-decoration-none">Rechazar Préstamo</a></li>
-                                <li><a href="#" onclick="showAlert('Listar Préstamos')" class="text-decoration-none">Listar Préstamos</a></li>
+                                <li><a href="ListarPrestamos.jsp" class="text-decoration-none">Listar Préstamos</a></li>
                             </ul>
                         </li>
                         <li class="list-group-item">Informes
