@@ -99,8 +99,7 @@
                     </li>
                     <li>
                       <a
-                        href="#"
-                        onclick="showAlert('Listar Cuentas')"
+                        href="ListarCuentas.jsp"
                         class="text-decoration-none"
                         >Listar Cuentas</a
                       >
@@ -113,9 +112,8 @@
                     <li>
                       <a
                         href="ListarPrestamos.jsp"
-                        onclick="showAlert('Listar Pr�stamos')"
                         class="text-decoration-none"
-                        >Listar Pr�stamos</a
+                        >Listar Prestamos</a
                       >
                     </li>
                   </ul>
@@ -140,9 +138,9 @@
                     <li>
                       <a
                         href="#"
-                        onclick="showAlert('Otros Reportes Estad�sticos')"
+                        onclick="showAlert('Otros Reportes Estadisticos')"
                         class="text-decoration-none"
-                        >Otros Reportes Estad�sticos</a
+                        >Otros Reportes Estadisticos</a
                       >
                     </li>
                   </ul>
@@ -150,9 +148,9 @@
                 <li class="list-group-item">
                   <button
                     class="btn btn-danger"
-                    onclick="showAlert('Cerrar Sesi�n')"
+                    onclick="showAlert('Cerrar Sesion')"
                   >
-                    Cerrar Sesi�n
+                    Cerrar Sesion
                   </button>
                 </li>
               </ul>
@@ -220,17 +218,7 @@
                       <a
                         href="<%= request.getContextPath() %>/TransferirAOtroCliente.jsp"
                         class="text-decoration-none"
-                        >Transferir Dinero a Otro Cliente</a
-                      >
-                    </li>
-
-                    <li>
-                      <a
-                        href="#"
-                        onclick="showAlert('Transferir Dinero a Otro Cliente')"
-                        class="text-decoration-none"
-                        >Transferir Dinero</a
-                      >
+                        >Transferir Dinero a Otro Cliente</a>
                     </li>
                   </ul>
                 </li>
@@ -239,26 +227,23 @@
                   <ul>
                     <li>
                       <a
-                        href="#"
-                        onclick="showAlert('Solicitar Pr�stamo')"
+                        href="SolicitarPrestamos.jsp"
                         class="text-decoration-none"
-                        >Solicitar Pr�stamo</a
+                        >Solicitar Prestamo</a
                       >
                     </li>
                     <li>
                       <a
-                        href="#"
-                        onclick="showAlert('Ver Estado de Solicitud de Pr�stamo')"
+                        href="EstadoSolicitudPrestamo.jsp"
                         class="text-decoration-none"
-                        >Ver Estado de Solicitud de Pr�stamo</a
+                        >Ver Estado de Solicitud de Prestamo</a
                       >
                     </li>
                     <li>
                       <a
-                        href="#"
-                        onclick="showAlert('Pagar Cuotas de Pr�stamo')"
+                        href="PagarCuotasPrestamo.jsp"
                         class="text-decoration-none"
-                        >Pagar Cuotas de Pr�stamo</a
+                        >Pagar Cuotas de Prestamo</a
                       >
                     </li>
                   </ul>
@@ -266,9 +251,9 @@
                 <li class="list-group-item">
                   <button
                     class="btn btn-danger"
-                    onclick="showAlert('Cerrar Sesi�n')"
+                    onclick="showAlert('Cerrar Sesion')"
                   >
-                    Cerrar Sesi�n
+                    Cerrar Sesion
                   </button>
                 </li>
               </ul>
