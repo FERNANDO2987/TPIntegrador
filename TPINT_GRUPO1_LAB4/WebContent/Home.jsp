@@ -24,9 +24,7 @@
     <div class="container mt-5">
       <h1>Menu de Gestion de Banco</h1>
 
-      <button class="btn btn-primary mb-3" onclick="redirectToHome()">
-        Inicio
-      </button>
+      
       <!-- Bot�n para ir a Inicio -->
 
       <div class="accordion" id="menuAccordion">
