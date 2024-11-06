@@ -93,11 +93,6 @@
                   Gestion de Cuentas
                   <ul>
                     <li>
-                      <a href="AgregarCuenta.jsp" class="text-decoration-none"
-                        >Agregar Cuenta</a
-                      >
-                    </li>
-                    <li>
                       <a
                         href="ListarCuentas.jsp"
                         class="text-decoration-none"

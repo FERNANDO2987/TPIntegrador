@@ -54,7 +54,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="" class="card d-flex align-items-center justify-content-center text-decoration-none" style="width: 18rem; height: 100%;">
+            <a href="AgregarCuenta.jsp" class="card d-flex align-items-center justify-content-center text-decoration-none" style="width: 18rem; height: 100%;">
                 <div class="text-center">
                     <h1 style="font-size: 50px; margin: 0;">+</h1>
                     <p><strong>Agregar nueva cuenta</strong></p>

@@ -11,10 +11,6 @@
         <h2 class="text-center mb-4">Agregar Cuenta</h2>
         
             <form>
-                <div class="form-group">
-                    <label for="usuario">ID Usuario:</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" value="" required>
-                </div>
 				<div class="form-group">
 					<label for="admin">Tipo de cuenta:</label>
                     <select class="form-control" id="tiposcuenta" name="tiposcuenta" required>
@@ -22,7 +18,7 @@
                         <option value="2" >Cuenta corriente</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block mt-3">Agregar Usuario</button>
+                <button type="submit" class="btn btn-primary btn-block mt-3">Agregar Cuenta</button>
                 <a class= "btn btn-secondary btn-block" href="Home.jsp">Volver</a>
             </form>
 

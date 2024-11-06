@@ -26,6 +26,9 @@
                 <thead>
                     <tr>
                         <th>Fecha de Solicitud</th>
+                        <th>Numero de prestamo</th>
+                        <th>Numero de cuenta</th>
+                        <th>Importe</th>
                         <th>Estado</th>
                         <th>Comentario</th>
                     </tr>
@@ -33,16 +36,25 @@
                 <tbody>
                     <tr>
                         <td>01/11/2024</td>
+                        <td>1</td>
+                        <td>123</td>
+                        <td>$18.500,00</td>
                         <td>Aprobada</td>
                         <td>Su préstamo ha sido aprobado. Se le enviará una notificación con los detalles.</td>
                     </tr>
                     <tr>
                         <td>28/10/2024</td>
+                        <td>2</td>
+                        <td>128</td>
+                        <td>$2.500,00</td>
                         <td>En Proceso</td>
                         <td>Su solicitud está siendo revisada.</td>
                     </tr>
                     <tr>
                         <td>25/10/2024</td>
+                        <td>3</td>
+                        <td>124</td>
+                        <td>$12.500,00</td>
                         <td>Rechazada</td>
                         <td>Se necesita más información para procesar su solicitud.</td>
                     </tr>
