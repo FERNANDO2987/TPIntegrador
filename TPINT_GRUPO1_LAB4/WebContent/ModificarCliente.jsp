@@ -55,41 +55,7 @@
                         <option value="Otro" <%= cliente.getSexo().equals("Otro") ? "selected" : "" %>>Otro</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="nacionalidad">Nacionalidad:</label>
-                    <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" value="<%= cliente.getNacionalidad() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" value="<%= cliente.getFechaNacimiento() != null ? cliente.getFechaNacimiento().toString() : "" %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="direccion">Direccion:</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion" value="<%= cliente.getDireccion() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="localidad">Localidad:</label>
-                    <input type="text" class="form-control" id="localidad" name="localidad" value="<%= cliente.getLocalidad() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="provincia">Provincia:</label>
-                    <input type="text" class="form-control" id="provincia" name="provincia" value="<%= cliente.getProvincia() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="correoElectronico">Correo Electronico:</label>
-                    <input type="email" class="form-control" id="correoElectronico" name="correoElectronico" value="<%= cliente.getCorreoElectronico() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefono">Telefono:</label>
-                    <input type="tel" class="form-control" id="telefono" name="telefono" value="<%= cliente.getTelefono() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" value="<%= cliente.getUsuario() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="contraseña">Contraseña:</label>
-                    <input type="password" class="form-control" id="contraseña" name="contraseña" value="<%= cliente.getContraseña() %>">
+         
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">Modificar Cliente</button>
