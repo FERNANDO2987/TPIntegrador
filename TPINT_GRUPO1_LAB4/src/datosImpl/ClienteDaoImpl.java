@@ -1,6 +1,7 @@
 package datosImpl;
 
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -55,7 +56,6 @@ public class ClienteDaoImpl implements ClienteDao{
 	    return estado;
 	}
 
-	
 	
 	@Override
 	public List<Cliente> obtenerClientes() {
@@ -214,6 +214,51 @@ public class ClienteDaoImpl implements ClienteDao{
 	public boolean modificarCliente(Cliente cliente) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public Cliente obtenerClientexId(Long id) {
+		Cliente aux = new Cliente();
+		cn = new Conexion();
+		cn.Open();
+		
+		String query = "SELECT c.id, c.dni, c.cuil, c.nombre, c.apellido, c.sexo, " +
+                "c.id_pais_nacimiento, c.fecha_nacimiento, " +
+                "u.id AS usuario_id, u.usuario AS usuario_nombre, " +
+                "u.password AS usuario_password, u.nombre AS usuario_nombre_real, u.admin AS usuario_admin, " +
+                "p.nombre AS pais_nombre " +
+                "FROM Clientes c " +
+                "LEFT JOIN Usuarios u ON c.id_usuario = u.id " +
+                "LEFT JOIN Paises p ON c.id_pais_nacimiento = p.id " +
+                "WHERE c.id = ?";
+		
+		try
+		{
+			PreparedStatement prst = cn.connection.prepareStatement(query);	
+			ResultSet rs = prst.executeQuery();
+			rs.next();
+			aux.setId(rs.getLong("id"));
+			aux.setDni(rs.getInt("dni"));
+			aux.setCuil(rs.getInt("cuil"));
+			aux.setNombre(rs.getString("nombre"));
+			aux.setApellido(rs.getString("apellido"));
+            aux.setSexo(rs.getString("sexo"));
+            aux.setFechaNacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
+            aux.getPaisNacimiento().setId(rs.getInt("id_pais_nacimiento"));
+            aux.getPaisNacimiento().setNombre(rs.getString("pais_nombre"));
+            aux.setUsuario(null);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			cn.close();
+		}
+		return aux;
 	}
 
 	
