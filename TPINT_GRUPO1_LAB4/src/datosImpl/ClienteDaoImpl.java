@@ -236,6 +236,7 @@ public class ClienteDaoImpl implements ClienteDao{
 		try
 		{
 			PreparedStatement prst = cn.connection.prepareStatement(query);	
+			prst.setLong(1, id);
 			ResultSet rs = prst.executeQuery();
 			rs.next();
 			aux.setId(rs.getLong("id"));

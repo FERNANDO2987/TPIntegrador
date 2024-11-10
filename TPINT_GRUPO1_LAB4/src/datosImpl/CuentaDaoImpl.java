@@ -68,6 +68,8 @@ public class CuentaDaoImpl implements CuentaDao {
 					aux.getTipoCuenta().setId(rs.getInt("id_tipo_cuenta"));
 					aux.getTipoCuenta().setDescripcion(rs.getString("descripcion"));
 					aux.setCliente(clienteDao.obtenerClientexId(rs.getLong("id_cliente")));
+					
+					lista.add(aux);
 				}
 			}
 		}

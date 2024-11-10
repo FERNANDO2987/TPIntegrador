@@ -15,7 +15,10 @@ public class Cliente {
 
     // Constructor
 	  
-	    public Cliente() {}
+	    public Cliente() {
+	    	paisNacimiento = new Pais();
+	    	usuario = new Usuario();
+	    }
 
 	    // Constructor con parámetros
 	    public Cliente(long id, int dni, int cuil, String nombre, String apellido, String sexo, 

@@ -13,7 +13,10 @@ public class Cuenta {
     private BigDecimal saldo;
 
     // Constructor vacío
-    public Cuenta() {}
+    public Cuenta() {
+    	cliente = new Cliente();
+    	tipoCuenta = new TipoCuenta();
+    }
 
     // Constructor con parámetros
     public Cuenta(long nroCuenta, Cliente cliente, LocalDate fechaCreacion, TipoCuenta tipoCuenta, String cbu, BigDecimal saldo) {

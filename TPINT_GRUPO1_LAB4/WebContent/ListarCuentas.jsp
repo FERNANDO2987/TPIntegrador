@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="entidad.Cuenta" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,7 +25,20 @@
             <a href="#" class="btn btn-secondary">Limpiar</a>
         </form>
         
-        <!-- Tabla de usuarios -->
+        <!-- Tabla de cuentas -->
+        <%
+            		List<Cuenta> listaCuenta;
+		            if(request.getAttribute("listado") != null)
+		        	{
+		        		listaCuenta = (List<Cuenta>) request.getAttribute("listado");
+		        	}
+		            else
+		            {
+		            	listaCuenta = null;
+		            }
+					
+					
+		%>
         <table class="table table-bordered table-hover">
             <thead class="thead-dark">
                 <tr>
@@ -37,22 +52,53 @@
             </thead>
             
             <tbody>
-				<tr>
-	                <td>121</td>
-     				<td>1234567878942597649199</td>
-                    <td>2</td>
-                    <td>Cuenta Corriente</td>
-                    <td>$10.000,00</td>
-                    <td>
-						<a href="#" class="btn btn-primary btn-sm" title="Modificar">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger btn-sm" title="Eliminar" onclick="return confirm('¿Estas seguro de que deseas eliminar esta cuenta?');">
-                        	<i class="fas fa-trash-alt"></i>
-                        </a>
-                  	</td>
-                </tr>
-
+            	<%
+            		if (listaCuenta != null)
+            		{
+            			for(Cuenta cuenta : listaCuenta)
+            			{
+            				
+            	%>
+						<tr>
+						
+			                <td><%= cuenta.getNroCuenta() %></td>
+		     				<td><%= cuenta.getCbu() %></td>
+		                    <td><%= cuenta.getCliente().getId() %></td>
+		                    <td><%= cuenta.getTipoCuenta().getDescripcion() %></td>
+		                    <td>$<%= cuenta.getSaldo() %></td>
+		                    <td>
+								<a href="#" class="btn btn-primary btn-sm" title="Modificar">
+		                            <i class="fas fa-edit"></i>
+		                        </a>
+		                        <a href="#" class="btn btn-danger btn-sm" title="Eliminar" onclick="return confirm('¿Estas seguro de que deseas eliminar esta cuenta?');">
+		                        	<i class="fas fa-trash-alt"></i>
+		                        </a>
+		                  	</td>
+		                </tr>
+				<%
+            			}
+            		}
+            		else
+            		{
+				%>
+					<tr>
+						
+			                <td>-</td>
+		     				<td>-</td>
+		                    <td>-</td>
+		                    <td>-</td>
+		                    <td>$-</td>
+		                    <td>
+								<a href="#" class="btn btn-primary btn-sm" title="Modificar">
+		                            <i class="fas fa-edit"></i>
+		                        </a>
+		                        <a href="#" class="btn btn-danger btn-sm" title="Eliminar" onclick="return confirm('¿Estas seguro de que deseas eliminar esta cuenta?');">
+		                        	<i class="fas fa-trash-alt"></i>
+		                        </a>
+		                  	</td>
+		                </tr>
+					
+				<%	} %>
    
             </tbody>
         </table>

@@ -2,12 +2,17 @@ package Main;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import datos.ClienteDao;
+import datos.CuentaDao;
 import datosImpl.ClienteDaoImpl;
+import datosImpl.CuentaDaoImpl;
 import datosImpl.PaisDaoImpl;
 import datosImpl.UsuarioDaoImpl;
 import entidad.Cliente;
+import entidad.Cuenta;
 import entidad.Pais;
 import entidad.Usuario;
 
@@ -15,6 +20,22 @@ import entidad.Usuario;
 public class Main {
 
 	public static void main(String[] args) {
+		
+//		List<Cuenta> lista = new ArrayList<Cuenta>();
+//		CuentaDao cuentaDao = new CuentaDaoImpl();
+//		lista = cuentaDao.obtenerCuentas();
+//		System.out.println(lista.size());
+//		for (Cuenta cuenta : lista)
+//		{
+//			System.out.println(cuenta.toString());
+//		}
+		
+		//ClienteDao clienteDao = new ClienteDaoImpl();
+		//Cliente cliente = new Cliente();
+		//cliente = clienteDao.obtenerClientexId((long) 1);
+		//System.out.println(cliente.toString());
+		
+		
 
 //	      ClienteDaoImpl clienteDAO = new ClienteDaoImpl(); // Cambia esto a tu implementación concreta
 //
@@ -65,24 +86,25 @@ public class Main {
 		
 		
 	     // Crear una instancia del DAO de Usuario
-        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
+        //UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
         
         // Obtener la lista de usuarios
-        List<Usuario> usuarios = usuarioDao.obtenerUsuarios();
+        //List<Usuario> usuarios = usuarioDao.obtenerUsuarios();
         
         // Verificar si la lista de usuarios no está vacía
-        if (usuarios != null && !usuarios.isEmpty()) {
+       // if (usuarios != null && !usuarios.isEmpty()) {
             // Iterar y mostrar la información de cada usuario
-            for (Usuario usuario : usuarios) {
-                System.out.println("ID: " + usuario.getId());
-                System.out.println("Usuario: " + usuario.getUsuario());
-                System.out.println("Nombre: " + usuario.getNombre());
-                System.out.println("Rol: " + (usuario.isAdmin() ? "Administrador" : "Usuario"));
-                System.out.println("------");
-            }
-        } else {
-            System.out.println("No se encontraron usuarios.");
-        }
+         //   for (Usuario usuario : usuarios) {
+         //       System.out.println("ID: " + usuario.getId());
+         //       System.out.println("Usuario: " + usuario.getUsuario());
+         //       System.out.println("Nombre: " + usuario.getNombre());
+         //       System.out.println("Rol: " + (usuario.isAdmin() ? "Administrador" : "Usuario"));
+         //       System.out.println("------");
+         //   }
+       // } else {
+       //     System.out.println("No se encontraron usuarios.");
+       // }
 		
+	//}
 	}
 }

@@ -92,7 +92,7 @@
                   <ul>
                     <li>
                       <a
-                        href="ListarCuentas.jsp"
+                        href="servletListarCuentas"
                         class="text-decoration-none"
                         >Listar Cuentas</a
                       >
