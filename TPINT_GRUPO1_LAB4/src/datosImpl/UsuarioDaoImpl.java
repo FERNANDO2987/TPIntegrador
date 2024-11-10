@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.sql.CallableStatement;
-
+import java.sql.PreparedStatement;
 
 import datos.UsuarioDao;
 import entidad.Usuario;
@@ -88,6 +88,38 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	       return estado;
 	   }
+	   
+	   
+	   
+	   @Override
+	   public boolean modificarUsuario(Usuario usuario) {
+	       boolean estado = true;
+	       cn = new Conexion();
+	       cn.Open();
+
+	       String query = "{CALL AgregarUsuario(?, ?, ?, ?, ?)}"; // Asume que el procedimiento almacenado ya existe
+
+	       try (CallableStatement stmt = cn.connection.prepareCall(query)) {
+	           
+	           stmt.setLong(1, usuario.getId());            
+	           stmt.setString(2, usuario.getUsuario());     
+	           stmt.setString(3, usuario.getPassword());    
+	           stmt.setString(4, usuario.getNombre());      
+	           stmt.setBoolean(5, usuario.isAdmin());       
+
+	           stmt.executeUpdate(); // Ejecuta el procedimiento para actualizar
+
+	       } catch (SQLException e) {
+	           estado = false;
+	           e.printStackTrace();
+	       } finally {
+	           cn.close();
+	       }
+
+	       return estado;
+	   }
+	   
+
 
 
 }

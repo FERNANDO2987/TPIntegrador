@@ -6,6 +6,7 @@ import java.util.List;
 
 import datosImpl.ClienteDaoImpl;
 import datosImpl.PaisDaoImpl;
+import datosImpl.UsuarioDaoImpl;
 import entidad.Cliente;
 import entidad.Pais;
 import entidad.Usuario;
@@ -47,19 +48,41 @@ public class Main {
 //	            System.out.println("Error al agregar el cliente.");
 //	        }
 		
-	
-		   PaisDaoImpl paisDAO = new PaisDaoImpl();
-	        
-	        // Obtener la lista de países
-	        List<Pais> paises = paisDAO.obtenerPaises();
-	        
-	        // Mostrar la lista de países
-	        if (paises != null && !paises.isEmpty()) {
-	            for (Pais pais : paises) {
-	                System.out.println("ID: " + pais.getId() + ", Nombre: " + pais.getNombre());
-	            }
-	        } else {
-	            System.out.println("No se encontraron países.");
-	        }
+//	
+//		   PaisDaoImpl paisDAO = new PaisDaoImpl();
+//	        
+//	        // Obtener la lista de países
+//	        List<Pais> paises = paisDAO.obtenerPaises();
+//	        
+//	        // Mostrar la lista de países
+//	        if (paises != null && !paises.isEmpty()) {
+//	            for (Pais pais : paises) {
+//	                System.out.println("ID: " + pais.getId() + ", Nombre: " + pais.getNombre());
+//	            }
+//	        } else {
+//	            System.out.println("No se encontraron países.");
+//	        }
+		
+		
+	     // Crear una instancia del DAO de Usuario
+        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
+        
+        // Obtener la lista de usuarios
+        List<Usuario> usuarios = usuarioDao.obtenerUsuarios();
+        
+        // Verificar si la lista de usuarios no está vacía
+        if (usuarios != null && !usuarios.isEmpty()) {
+            // Iterar y mostrar la información de cada usuario
+            for (Usuario usuario : usuarios) {
+                System.out.println("ID: " + usuario.getId());
+                System.out.println("Usuario: " + usuario.getUsuario());
+                System.out.println("Nombre: " + usuario.getNombre());
+                System.out.println("Rol: " + (usuario.isAdmin() ? "Administrador" : "Usuario"));
+                System.out.println("------");
+            }
+        } else {
+            System.out.println("No se encontraron usuarios.");
+        }
+		
 	}
 }

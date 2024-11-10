@@ -8,5 +8,7 @@ public interface UsuarioDao {
 	
 	 public List<Usuario> obtenerUsuarios();
 	 public boolean agregarUsuario(Usuario usuario) ;
+	 public boolean modificarUsuario(Usuario usuario);
+	
 
 }
