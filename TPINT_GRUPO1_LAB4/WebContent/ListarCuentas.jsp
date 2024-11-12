@@ -17,14 +17,16 @@
 <body>
 <div class="container mt-5">
         <h2 class="text-center mb-4">Listado de Cuentas</h2>
-        
+       <div class="d-flex justify-content-between align-items-center mb-4"> 
         <!-- Formulario de b�squeda  // NO TIENE ACTION NI METHOD -->
        <form class="form-inline mb-4" id="formBusqueda">
             <input type="text" name="criterio" class="form-control mr-2" placeholder="Buscar cuenta..." id="criterio">
             <button type="submit" class="btn btn-primary mr-2">Buscar</button>
             <a href="#" class="btn btn-secondary">Limpiar</a>
+            
         </form>
-        
+        <a href="servletAgregarCuenta" class="btn btn-primary mr-2 mb-4">Agregar Nueva Cuenta</a>
+         </div>
         <!-- Tabla de cuentas -->
         <%
             		List<Cuenta> listaCuenta;

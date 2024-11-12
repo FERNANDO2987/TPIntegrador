@@ -110,9 +110,7 @@ public class Cliente {
 
 		@Override
 		public String toString() {
-			return "Cliente [id=" + id + ", dni=" + dni + ", cuil=" + cuil + ", nombre=" + nombre + ", apellido="
-					+ apellido + ", sexo=" + sexo + ", paisNacimiento=" + paisNacimiento + ", fechaNacimiento="
-					+ fechaNacimiento + ", usuario=" + usuario + "]";
+			return "[DNI: "+dni + " CUIL: "+cuil+" Nombre: "+nombre+" Apellido: "+apellido+"]" ;
 		}
 
 	    

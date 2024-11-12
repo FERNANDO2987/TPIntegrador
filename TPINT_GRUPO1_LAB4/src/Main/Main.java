@@ -7,19 +7,23 @@ import java.util.List;
 
 import datos.ClienteDao;
 import datos.CuentaDao;
+import datos.TipoCuentaDao;
 import datosImpl.ClienteDaoImpl;
 import datosImpl.CuentaDaoImpl;
 import datosImpl.PaisDaoImpl;
+import datosImpl.TipoCuentaDaoImpl;
 import datosImpl.UsuarioDaoImpl;
 import entidad.Cliente;
 import entidad.Cuenta;
 import entidad.Pais;
+import entidad.TipoCuenta;
 import entidad.Usuario;
 
 
 public class Main {
 
 	public static void main(String[] args) {
+		
 		
 //		List<Cuenta> lista = new ArrayList<Cuenta>();
 //		CuentaDao cuentaDao = new CuentaDaoImpl();

@@ -33,7 +33,7 @@ public class TipoCuenta {
 
 	@Override
 	public String toString() {
-		return "TipoCuenta [id=" + id + ", descripcion=" + descripcion + "]";
+		return descripcion;
 	}
     
     
