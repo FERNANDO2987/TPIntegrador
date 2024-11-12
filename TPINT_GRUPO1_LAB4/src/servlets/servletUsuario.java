@@ -7,15 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datosImpl.UsuarioDaoImpl;
-import entidad.Usuario;
 
-/**
- * Servlet implementation class servletUsuario
- */
+import entidad.Usuario;
+import negocio.UsuarioNeg;
+import negocioImpl.UsuarioNegImpl;
+
+
+
 @WebServlet("/servletUsuario")
 public class servletUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	  private UsuarioNeg usuarioNeg = new UsuarioNegImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,28 +40,24 @@ public class servletUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
-		   String usuario = request.getParameter("usuario");
+	       String usuario = request.getParameter("usuario");
 	        String password = request.getParameter("password");
 	        String nombre = request.getParameter("nombre");
 	        boolean admin = Boolean.parseBoolean(request.getParameter("admin"));
 
-	        Usuario nuevoUsuario = new Usuario(0, usuario, password, nombre, admin);
+	        Usuario nuevoUsuario = new Usuario();
+	        nuevoUsuario.setUsuario(usuario);
+	        nuevoUsuario.setPassword(password);
+	        nuevoUsuario.setNombre(nombre);
+	        nuevoUsuario.setAdmin(admin);
 
-	        // Llamar al método para agregar el usuario (tu lógica de agregar usuario aquí)
-	        boolean usuarioAgregado = new UsuarioDaoImpl().agregarUsuario(nuevoUsuario);
-
-	        // Si el usuario se agregó correctamente, muestra un mensaje en la misma página
-	        if (usuarioAgregado) {
-	            request.setAttribute("mensaje", "Usuario agregado correctamente.");
-	    
+	        boolean isInserted = usuarioNeg.insertarUsuario(nuevoUsuario);
+	        if (isInserted) {
+	            // Redirect to ListarUsuarios.jsp with a success message
+	            response.sendRedirect("ListarUsuarios.jsp?mensaje=Usuario agregado correctamente");
 	        } else {
-	            // Si hubo un error, muestra un mensaje de error
-	            request.setAttribute("mensaje", "Hubo un error al agregar el usuario.");
+	            response.getWriter().write("Error al agregar el usuario.");
 	        }
-
-	        // Redirige al mismo JSP con el mensaje
-	        request.getRequestDispatcher("AgregarUsuario.jsp").forward(request, response);
 	}
 
 }
