@@ -12,38 +12,27 @@
     <div class="container mt-5">
         <h2 class="text-center mb-4">Modificar Usuario</h2>
         
-        <!-- Formulario para modificar un usuario -->
-        <form action="servletModificarUsuario" method="post"> <!-- Cambiado para enviar los datos a servletModificarUsuario -->
+             <!-- Formulario para modificar un usuario -->
+        <form action="servletModificarUsuario" method="post">
+            <input type="hidden" name="id" value="${usuario.id}">
             <div class="form-group">
-                <label for="id">ID Usuario:</label>
-                <input type="text" class="form-control" id="id" name="id" readonly value="${usuario.id}"> <!-- ID solo lectura -->
+                <label>Usuario</label>
+                <input type="text" name="usuario" class="form-control" value="${usuario.usuario}" required>
             </div>
-            
             <div class="form-group">
-                <label for="usuario">Usuario:</label>
-                <input type="text" class="form-control" id="usuario" name="usuario" required value="${usuario.usuario}">
+                <label>Contraseña</label>
+                <input type="password" name="password" class="form-control" value="${usuario.password}" required>
             </div>
-            
             <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" class="form-control" id="password" name="password" required value="${usuario.password}">
+                <label>Nombre</label>
+                <input type="text" name="nombre" class="form-control" value="${usuario.nombre}" required>
             </div>
-            
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required value="${usuario.nombre}">
+            <div class="form-check">
+                <input type="checkbox" name="admin" class="form-check-input" ${usuario.admin ? 'checked' : ''}>
+                <label class="form-check-label">Administrador</label>
             </div>
-            
-            <div class="form-group">
-                <label for="admin">Admin:</label>
-                <select class="form-control" id="admin" name="admin" required>
-                    <option value="false" ${!usuario.admin ? 'selected' : ''}>No</option>
-                    <option value="true" ${usuario.admin ? 'selected' : ''}>Sí</option>
-                </select>
-            </div>
-            
-            <button type="submit" class="btn btn-primary btn-block mt-3">Modificar Usuario</button>
-            <a class="btn btn-secondary btn-block" href="ListarUsuarios.jsp">Volver</a>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <a href="ListadoUsuarios.jsp" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 </body>

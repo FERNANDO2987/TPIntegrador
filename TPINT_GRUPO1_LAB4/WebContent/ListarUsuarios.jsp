@@ -54,9 +54,8 @@
                                 <td><%= usuario.getNombre() %></td>
                                 <td><%= usuario.isAdmin() ? "Administrador" : "Usuario" %></td>
                                 <td>
-                                    <a href="ModificarUsuario.jsp?id=<%= usuario.getId() %>" class="btn btn-warning btn-sm" title="Editar">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+                                  <a href="servletModificarUsuario?id=<%= usuario.getId() %>" class="btn btn-warning btn-sm" title="Editar"> <i class="fas fa-edit"></i></a>
+
                                     <a href="servletEliminarUsuario?id=<%= usuario.getId() %>" class="btn btn-danger btn-sm" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>

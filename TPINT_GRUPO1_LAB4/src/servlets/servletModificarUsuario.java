@@ -1,12 +1,15 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datos.UsuarioDao;
 import datosImpl.UsuarioDaoImpl;
 import entidad.Usuario;
 
@@ -29,33 +32,49 @@ public class servletModificarUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
+		  // Obtener el ID del usuario desde la URL
+        long id = Long.parseLong(request.getParameter("id"));
+
+        // Buscar el usuario correspondiente en la base de datos
+        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
+        Usuario usuarioSeleccionado = usuarioDao.obtenerUsuarioPorId(id);
+
+        if (usuarioSeleccionado != null) {
+            // Pasar el usuario como atributo a la solicitud
+            request.setAttribute("usuario", usuarioSeleccionado);
+            // Redirigir al JSP para modificar el usuario
+            request.getRequestDispatcher("ModificarUsuario.jsp").forward(request, response);
+        } else {
+            // Si el usuario no se encuentra, redirigir a la lista con un mensaje de error
+            response.sendRedirect("ListarUsuarios.jsp?error=Usuario no encontrado");
+        }
 	}
 
 	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Obtener los datos del formulario
-        long id = Long.parseLong(request.getParameter("id"));
-        String usuario = request.getParameter("usuario");
-        String password = request.getParameter("password");
-        String nombre = request.getParameter("nombre");
-        boolean admin = Boolean.parseBoolean(request.getParameter("admin"));
+     UsuarioDao usuarioDao = new UsuarioDaoImpl();
         
-        // Crear un objeto Usuario con los datos obtenidos
-        Usuario usuarioModificado = new Usuario(id, usuario, password, nombre, admin);
-        
-        // Instancia de UsuarioDaoImpl y llamada a modificarUsuario
-        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
-        boolean resultado = usuarioDao.modificarUsuario(usuarioModificado);
-        
-        // Redirigir a una página de confirmación o lista de usuarios
-        if (resultado) {
-            response.sendRedirect("ListarUsuarios.jsp?mensaje=modificacionExitosa");
-        } else {
-            response.sendRedirect("ModificarUsuario.jsp?mensaje=modificacionFallida");
-        }
+     // Obtener los datos del formulario
+     long id = Long.parseLong(request.getParameter("id"));
+     String usuario = request.getParameter("usuario");
+     String password = request.getParameter("password");
+     String nombre = request.getParameter("nombre");
+     boolean admin = request.getParameter("admin") != null;
+
+     // Crear el objeto Usuario con los datos del formulario
+     Usuario usuarioModificado = new Usuario(id, usuario, password, nombre, admin);
+
+
+     boolean resultado = usuarioDao.modificarUsuario(usuarioModificado);
+
+     // Redirigir según el resultado
+     if (resultado) {
+         response.sendRedirect("ListadoUsuarios.jsp?mensaje=Usuario modificado con éxito");
+     } else {
+         response.sendRedirect("ModificarUsuario.jsp?id=" + id + "&error=No se pudo modificar el usuario");
+     }
     }
 
 }
