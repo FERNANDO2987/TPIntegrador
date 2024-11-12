@@ -21,6 +21,53 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	    }
 	   
 	   
+	   @Override
+	   public Usuario obtenerUsuarioPorId(long id) {
+	       Usuario usuario = null;
+	       ResultSet rs = null;
+
+	       try {
+	           cn.Open();
+	           // Llamamos al procedimiento almacenado con el parámetro id
+	           String query = "{CALL ObtenerUsuarioPorId(?)}"; 
+	           try (CallableStatement stmt = cn.connection.prepareCall(query)) {
+	               stmt.setLong(1, id); // Pasamos el id al procedimiento
+
+	               // Ejecutamos la consulta
+	               rs = stmt.executeQuery();
+
+	               if (rs != null && rs.next()) {
+	                   // Si encontramos el usuario, lo asignamos
+	                   long usuarioId = rs.getLong("id");
+	                   String usuarioNombre = rs.getString("usuario");
+	                   String password = rs.getString("password");
+	                   String nombre = rs.getString("nombre");
+	                   boolean admin = rs.getBoolean("admin");
+
+	                   // Creamos el objeto Usuario con los datos obtenidos
+	                   usuario = new Usuario(usuarioId, usuarioNombre, password, nombre, admin);
+	               } else {
+	                   System.out.println("No se encontró un usuario con el id: " + id);
+	               }
+	           }
+	       } catch (SQLException e) {
+	           e.printStackTrace();
+	       } finally {
+	           try {
+	               if (rs != null) {
+	                   rs.close(); // Cerramos el ResultSet
+	               }
+	               cn.close(); // Cerramos la conexión
+	           } catch (SQLException e) {
+	               e.printStackTrace();
+	           }
+	       }
+
+	       return usuario; // Retornamos el usuario encontrado, o null si no se encuentra
+	   }
+
+	   
+	   
 	   
 	   @Override
 	    public List<Usuario> obtenerUsuarios() {
