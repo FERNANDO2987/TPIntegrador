@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +18,7 @@
                 <input type="text" class="form-control" id="usuario" name="usuario" required>
             </div>
             <div class="form-group">
-                <label for="password">Contraseña:</label> <!-- Cambiado el name a "password" -->
+                <label for="password">ContraseÃ±a:</label> <!-- Cambiado el name a "password" -->
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="form-group">
@@ -30,11 +29,12 @@
                 <label for="admin">Admin:</label>
                 <select class="form-control" id="admin" name="admin" required>
                     <option value="false">No</option>
-                    <option value="true">Sí</option>
+                    <option value="true">SÃ­</option>
                 </select>
             </div>
          
-             <a  class="btn btn-primary btn-block mt-3" href="AgregarUsuario.jsp">Agregar Usuario</a>
+             
+                <button type="submit" class="btn btn-primary btn-block">Agregar Usuario</button>
             <a class="btn btn-secondary btn-block" href="ListarUsuarios.jsp">Volver</a>
         </form>
 

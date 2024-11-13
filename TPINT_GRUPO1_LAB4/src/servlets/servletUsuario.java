@@ -45,19 +45,20 @@ public class servletUsuario extends HttpServlet {
 	        String nombre = request.getParameter("nombre");
 	        boolean admin = Boolean.parseBoolean(request.getParameter("admin"));
 
-	        Usuario nuevoUsuario = new Usuario();
-	        nuevoUsuario.setUsuario(usuario);
-	        nuevoUsuario.setPassword(password);
-	        nuevoUsuario.setNombre(nombre);
-	        nuevoUsuario.setAdmin(admin);
+	        Usuario nuevoUsuario = new Usuario(0, usuario, password, nombre, admin);
+	        
 
-	        boolean isInserted = usuarioNeg.insertarUsuario(nuevoUsuario);
-	        if (isInserted) {
-	            // Redirect to ListarUsuarios.jsp with a success message
-	            response.sendRedirect("ListarUsuarios.jsp?mensaje=Usuario agregado correctamente");
+	        boolean usuarioAgregado = usuarioNeg.insertarUsuario(nuevoUsuario);
+	        // Si el usuario se agregó correctamente, muestra un mensaje en la misma página
+	        if (usuarioAgregado) {
+	            request.setAttribute("mensaje", "Usuario agregado correctamente.");
+	    
 	        } else {
-	            response.getWriter().write("Error al agregar el usuario.");
+	            // Si hubo un error, muestra un mensaje de error
+	            request.setAttribute("mensaje", "Hubo un error al agregar el usuario.");
 	        }
+	        request.getRequestDispatcher("AgregarUsuario.jsp").forward(request, response);
+	        
 	}
 
 }

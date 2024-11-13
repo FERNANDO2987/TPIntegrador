@@ -70,16 +70,16 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	       try {
 	           cn.Open();
-	           // Llamamos al procedimiento almacenado con el parámetro id
+	     
 	           String query = "{CALL ObtenerUsuarioPorId(?)}"; 
 	           try (CallableStatement stmt = cn.connection.prepareCall(query)) {
-	               stmt.setLong(1, id); // Pasamos el id al procedimiento
+	               stmt.setLong(1, id); 
 
-	               // Ejecutamos la consulta
+	           
 	               rs = stmt.executeQuery();
 
 	               if (rs != null && rs.next()) {
-	                   // Si encontramos el usuario, lo asignamos
+	                 
 	                   long usuarioId = rs.getLong("id");
 	                   String usuarioNombre = rs.getString("usuario");
 	                   String password = rs.getString("password");
@@ -105,7 +105,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	           }
 	       }
 
-	       return usuario; // Retornamos el usuario encontrado, o null si no se encuentra
+	       return usuario; 
 	   }
 
 	   
