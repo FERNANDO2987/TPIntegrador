@@ -26,14 +26,14 @@
                         <label for="usuario">Usuario</label>
                         <input type="text" class="form-control" id="usuario" name="usuario" 
                                placeholder="Ingresa tu usuario" 
-                               value="<%= request.getParameter("usuario") != null ? request.getParameter("usuario") : "" %>">
+                               value="">
                     </div>
                     <div class="form-group">
-                        <label for="contraseña">Contraseña</label>
-                        <input type="password" class="form-control" id="contraseña" name="contraseña" 
+                        <label for="contrasnia">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasenia" name="contrasenia" 
                                placeholder="Ingresa tu contraseña">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+                    <input type="submit" value="Iniciar sesión" class="btn-primary">
                 </form>
             </div>
         </div>

@@ -24,6 +24,21 @@ public class UsuarioNegImpl implements UsuarioNeg {
 		
 	}
 	
+	public Usuario iniciarSesion(String nombreUsuario, String contrasena) {
+	    Usuario usuario = new Usuario();
+	    usuario.setUsuario(nombreUsuario);
+	    usuario.setPassword(contrasena);
+	    
+	    Usuario usuarioValido = userDao.loguear(usuario);
+	    
+	    if (usuarioValido != null) {
+	        return usuarioValido; // Devuelve el usuario con todos los datos cargados
+	    } else {
+	        throw new IllegalArgumentException("Credenciales incorrectas");
+	    }
+	}
+
+	
 	@Override
 	 public ArrayList<Usuario> listarUsuarios()
 	 {

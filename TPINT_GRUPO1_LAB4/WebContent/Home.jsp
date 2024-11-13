@@ -21,6 +21,23 @@
     </script>
   </head>
   <body>
+  	<%@ page import="entidad.Usuario" %>
+<%
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if (usuario != null) {
+%>
+    <script>
+        alert("Sesión Iniciada: <%= usuario.getUsuario() %>!");
+    </script>
+<%
+    } else {
+        // Si no hay sesión de usuario, redirige al login
+        response.sendRedirect("Login.jsp");
+    }
+%>
+
+  
+  
     <div class="container mt-5">
       <h1>Menu de Gestion de Banco</h1>
 

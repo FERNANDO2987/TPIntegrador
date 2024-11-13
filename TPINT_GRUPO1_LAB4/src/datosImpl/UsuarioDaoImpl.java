@@ -17,9 +17,51 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	private Conexion cn;
 
 	   public UsuarioDaoImpl() {
-	        cn = new Conexion(); // Inicializa la conexión
+	       
 	    }
 	   
+	   
+	   @Override
+	   public Usuario loguear(Usuario usuario) {
+	       Usuario usuarioBD = null;
+	       cn = new Conexion();
+	       ResultSet rs = null;
+	       cn.Open();
+
+	       String query = "{CALL ValidarUsuario(?, ?)}";
+
+	       try (CallableStatement stmt = cn.connection.prepareCall(query)) {
+	           stmt.setString(1, usuario.getUsuario());
+	           stmt.setString(2, usuario.getPassword()); 
+
+	           rs = stmt.executeQuery();
+
+	           if (rs != null && rs.next()) {
+
+	        	   usuarioBD = new Usuario();
+	        	   usuarioBD.setId(rs.getLong("id"));
+	        	   usuarioBD.setUsuario(rs.getString("usuario"));
+	        	   usuarioBD.setPassword(rs.getString("password"));
+	        	   usuarioBD.setNombre(rs.getString("nombre"));
+	        	   usuarioBD.setAdmin(rs.getBoolean("admin"));
+	           }
+	       } catch (SQLException e) {
+	           e.printStackTrace();
+	       } finally {
+	           try {
+	               if (rs != null) {
+	                   rs.close();
+	               }
+	               cn.close();
+	           } catch (SQLException e) {
+	               e.printStackTrace();
+	           }
+	       }
+
+	       return usuarioBD;
+	   }
+
+
 	   
 	   @Override
 	   public Usuario obtenerUsuarioPorId(long id) {
@@ -71,6 +113,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	   
 	   @Override
 	    public List<Usuario> obtenerUsuarios() {
+		    cn = new Conexion();
 	        List<Usuario> usuarios = new ArrayList<>();
 	        ResultSet rs = null;
 
@@ -166,7 +209,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	       return estado;
 	   }
 	   
-
+	   
 
 
 }
