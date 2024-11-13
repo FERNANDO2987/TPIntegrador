@@ -11,6 +11,7 @@ public class Cuenta {
     private TipoCuenta tipoCuenta;
     private String cbu;
     private BigDecimal saldo;
+    private boolean estado;
 
     // Constructor vacío
     public Cuenta() {
@@ -19,13 +20,14 @@ public class Cuenta {
     }
 
     // Constructor con parámetros
-    public Cuenta(long nroCuenta, Cliente cliente, LocalDate fechaCreacion, TipoCuenta tipoCuenta, String cbu, BigDecimal saldo) {
+    public Cuenta(long nroCuenta, Cliente cliente, LocalDate fechaCreacion, TipoCuenta tipoCuenta, String cbu, BigDecimal saldo, boolean estado) {
         this.nroCuenta = nroCuenta;
         this.cliente = cliente;
         this.fechaCreacion = fechaCreacion;
         this.tipoCuenta = tipoCuenta;
         this.cbu = cbu;
         this.saldo = saldo;
+        this.estado = estado;
     }
     
     
@@ -82,6 +84,14 @@ public class Cuenta {
 	public String toString() {
 		return "Cuenta [nroCuenta=" + nroCuenta + ", cliente=" + cliente + ", fechaCreacion=" + fechaCreacion
 				+ ", tipoCuenta=" + tipoCuenta + ", cbu=" + cbu + ", saldo=" + saldo + "]";
+	}
+
+	public boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
     
     

@@ -9,4 +9,5 @@ public interface CuentaDao {
 	public List<Cuenta> obtenerCuentas();
 	public boolean modificarCuenta(Cuenta cuenta);
 	public boolean darDeBajaCuenta(Long nroCuenta);
+	public Cuenta obtenerCuentaXNroCuenta(Long nroCuenta);
 }

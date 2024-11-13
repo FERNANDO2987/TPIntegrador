@@ -24,6 +24,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		/*CuentaDao cuentaDao = new CuentaDaoImpl();
+		Cuenta cuenta = new Cuenta();
+		cuenta = cuentaDao.obtenerCuentaXNroCuenta(Long.parseLong("5"));
+		System.out.println(cuenta.toString());*/
+		
 		
 //		List<Cuenta> lista = new ArrayList<Cuenta>();
 //		CuentaDao cuentaDao = new CuentaDaoImpl();
