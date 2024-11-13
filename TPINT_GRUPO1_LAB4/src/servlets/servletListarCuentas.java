@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datos.CuentaDao;
+import datos.TipoCuentaDao;
 import datosImpl.CuentaDaoImpl;
+import datosImpl.TipoCuentaDaoImpl;
 import entidad.Cuenta;
+import entidad.TipoCuenta;
 
 /**
  * Servlet implementation class servletListarCuentas
@@ -46,7 +49,29 @@ public class servletListarCuentas extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		if(request.getParameter("btnModificar") != null)
+		{
+			Long nroCuenta = Long.parseLong(request.getParameter("nroCuenta"));
+			TipoCuentaDao tipoCuentaDao = new TipoCuentaDaoImpl();
+			List<TipoCuenta> listaTipoCuenta = new ArrayList<TipoCuenta>();
+			listaTipoCuenta = tipoCuentaDao.obtenerCuentas();
+			request.setAttribute("listaTiposCuentas", listaTipoCuenta);
+	
+			CuentaDao cuentaDao = new CuentaDaoImpl();
+			Cuenta cuenta = cuentaDao.obtenerCuentaXNroCuenta(nroCuenta);
+			request.setAttribute("cuenta", cuenta);
+			
+			request.getRequestDispatcher("ModificarCuenta.jsp").forward(request, response);
+		}
+		if(request.getParameter("btnEliminar") != null)
+		{
+			Long nroCuenta = Long.parseLong(request.getParameter("nroCuenta"));
+			Cuenta aux = new Cuenta();
+			aux.setNroCuenta(nroCuenta);
+			CuentaDao cuentaDao = new CuentaDaoImpl();
+			cuentaDao.darDeBajaCuenta(nroCuenta);
+			doGet(request, response);
+		}
 	}
 
 }

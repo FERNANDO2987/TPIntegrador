@@ -44,11 +44,12 @@
         <table class="table table-bordered table-hover">
             <thead class="thead-dark">
                 <tr>
-                    <th>N° Cuenta</th>
+                    <th>Nro Cuenta</th>
                     <th>CBU</th>
-                    <th>ID Cliente</th>
+                    <th>Cliente</th>
                     <th>Tipo de Cuenta</th>
                     <th>Saldo</th>
+                    <th>Activo</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -61,22 +62,30 @@
             			{
             				
             	%>
-						<tr>
-						
-			                <td><%= cuenta.getNroCuenta() %></td>
-		     				<td><%= cuenta.getCbu() %></td>
-		                    <td><%= cuenta.getCliente().getId() %></td>
-		                    <td><%= cuenta.getTipoCuenta().getDescripcion() %></td>
-		                    <td>$<%= cuenta.getSaldo() %></td>
-		                    <td>
-								<a href="#" class="btn btn-primary btn-sm" title="Modificar">
-		                            <i class="fas fa-edit"></i>
-		                        </a>
-		                        <a href="#" class="btn btn-danger btn-sm" title="Eliminar" onclick="return confirm('¿Estas seguro de que deseas eliminar esta cuenta?');">
-		                        	<i class="fas fa-trash-alt"></i>
-		                        </a>
-		                  	</td>
-		                </tr>
+            			
+							<tr>
+								<form action="servletListarCuentas" method="post">
+					                <td><%= cuenta.getNroCuenta() %><input type="hidden" value="<%= cuenta.getNroCuenta() %>" name="nroCuenta"></td>
+				     				<td><%= cuenta.getCbu() %></td>
+				                    <td><%= cuenta.getCliente().getNombre() %> <%= cuenta.getCliente().getApellido() %></td>
+				                    <td><%= cuenta.getTipoCuenta().getDescripcion() %></td>
+				                    <td>$<%= cuenta.getSaldo() %></td>
+				                    <% if(cuenta.getEstado())
+				                    	{%>
+				                    		<td>Inactivo</td>
+				                    <%  }
+				                    	else
+				                    	{%>
+				                    		<td>Activo</td>
+				                    <%	}%>				                    
+				                    
+				                    <td>
+										<input type="submit" class="btn btn-primary btn-sm" name="btnModificar" value="Modificar">
+				                        <input type="submit" class="btn btn-danger btn-sm" name="btnEliminar" value="Eliminar">
+				                  	</td>
+			                  	</form>
+			                </tr>
+		               
 				<%
             			}
             		}
@@ -90,13 +99,10 @@
 		                    <td>-</td>
 		                    <td>-</td>
 		                    <td>$-</td>
+		                    <td>-</td>
 		                    <td>
-								<a href="#" class="btn btn-primary btn-sm" title="Modificar">
-		                            <i class="fas fa-edit"></i>
-		                        </a>
-		                        <a href="#" class="btn btn-danger btn-sm" title="Eliminar" onclick="return confirm('¿Estas seguro de que deseas eliminar esta cuenta?');">
-		                        	<i class="fas fa-trash-alt"></i>
-		                        </a>
+								<input type="submit" class="btn btn-primary btn-sm" name="btnModificar" value="Modificar">
+				                <input type="submit" class="btn btn-danger btn-sm" name="btnEliminar" value="Eliminar">
 		                  	</td>
 		                </tr>
 					
