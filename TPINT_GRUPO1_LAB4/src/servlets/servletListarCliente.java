@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import datosImpl.ClienteDaoImpl;
 import entidad.Cliente;
+import entidad.Usuario;
 
 /**
  * Servlet implementation class servletListarCliente
@@ -19,15 +20,25 @@ import entidad.Cliente;
 @WebServlet("/servletListarCliente")
 public class servletListarCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private ClienteDaoImpl clienteDao;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public servletListarCliente() {
         super();
-        // TODO Auto-generated constructor stub
+        this.clienteDao = new ClienteDaoImpl();
+        List<Cliente> cliente = clienteDao.obtenerClientes();
     }
 
+    @Override
+    public void init() throws ServletException {
+        // Este método se ejecuta una sola vez cuando el servlet es cargado
+        // Cargar los usuarios al inicio
+    	 List<Cliente> cliente = clienteDao.obtenerClientes();
+        getServletContext().setAttribute("clientes", cliente); // Guardar usuarios globalmente en el contexto del servlet
+    }
+
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */

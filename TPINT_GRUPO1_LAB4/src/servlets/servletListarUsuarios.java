@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,46 +20,47 @@ import entidad.Usuario;
 @WebServlet("/servletListarUsuarios")
 public class servletListarUsuarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	   private UsuarioDaoImpl usuarioDao;  
     /**
      * @see HttpServlet#HttpServlet()
      */
     public servletListarUsuarios() {
         super();
-        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
+        this.usuarioDao = new UsuarioDaoImpl(); // Inicializar aquí  
         List<Usuario> usuarios = usuarioDao.obtenerUsuarios();
+    }
+    
+    @Override
+    public void init() throws ServletException {
+        // Este método se ejecuta una sola vez cuando el servlet es cargado
+        // Cargar los usuarios al inicio
+        List<Usuario> usuarios = usuarioDao.obtenerUsuarios();
+        getServletContext().setAttribute("usuarios", usuarios); // Guardar usuarios globalmente en el contexto del servlet
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Obtener la lista completa de usuarios desde el DAO
-        UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
-        List<Usuario> usuarios = usuarioDao.obtenerUsuarios();
+    	   List<Usuario> usuarios = usuarioDao.obtenerUsuarios(); // Obtener usuarios aquí  
 
-        // Verificar si la lista de usuarios está vacía
-        System.out.println("Usuarios obtenidos: " + usuarios.size());
+           // Obtener el criterio de búsqueda de la solicitud (si existe)  
+           String criterio = request.getParameter("criterio");  
 
-        // Obtener el criterio de búsqueda de la solicitud (si existe)
-        String criterio = request.getParameter("criterio");
-        System.out.println("Criterio de búsqueda: " + criterio);
+           // Si hay un criterio, filtrar los usuarios  
+           if (criterio != null && !criterio.trim().isEmpty()) {  
+               usuarios = usuarios.stream()  
+                   .filter(usuario -> (usuario.getNombre() != null && usuario.getNombre().toLowerCase().contains(criterio.toLowerCase())) ||  
+                                      (usuario.getUsuario() != null && usuario.getUsuario().toLowerCase().contains(criterio.toLowerCase())))  
+                   .collect(Collectors.toList());  
+           }  
 
-        // Si hay un criterio, filtrar los usuarios
-        if (criterio != null && !criterio.trim().isEmpty()) {
-            usuarios = usuarios.stream()
-                .filter(usuario -> (usuario.getNombre() != null && usuario.getNombre().toLowerCase().contains(criterio.toLowerCase())) ||
-                                   (usuario.getUsuario() != null && usuario.getUsuario().toLowerCase().contains(criterio.toLowerCase())))
-                .collect(Collectors.toList());
-            System.out.println("Usuarios después de filtrar: " + usuarios.size());
-        }
+           // Establecer los usuarios y el criterio como atributos para la vista  
+           request.setAttribute("usuarios", usuarios);  
+           request.setAttribute("criterio", criterio);  
 
-        // Establecer los usuarios y el criterio como atributos para la vista
-        request.setAttribute("usuarios", usuarios);
-        request.setAttribute("criterio", criterio);  // Mantener el valor del campo de búsqueda
-
-        // Redirigir a la vista JSP para mostrar los usuarios
-        request.getRequestDispatcher("ListarUsuarios.jsp").forward(request, response);
+           // Redirigir a la vista JSP para mostrar los usuarios  
+           request.getRequestDispatcher("ListarUsuarios.jsp").forward(request, response);  
     }
 
 
