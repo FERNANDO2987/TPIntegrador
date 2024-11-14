@@ -56,7 +56,7 @@ public class servletListarCuentas extends HttpServlet {
 			List<TipoCuenta> listaTipoCuenta = new ArrayList<TipoCuenta>();
 			listaTipoCuenta = tipoCuentaDao.obtenerCuentas();
 			request.setAttribute("listaTiposCuentas", listaTipoCuenta);
-	
+			
 			CuentaDao cuentaDao = new CuentaDaoImpl();
 			Cuenta cuenta = cuentaDao.obtenerCuentaXNroCuenta(nroCuenta);
 			request.setAttribute("cuenta", cuenta);

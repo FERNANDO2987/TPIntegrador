@@ -34,9 +34,11 @@ public class servletLogin extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    if (request.getParameter("btnAceptar") != null) {
+		if (request.getParameter("btnAceptar") != null) {
+			
 	        String usuario = request.getParameter("usuario");
 	        String contrasenia = request.getParameter("contrasenia");
+	        
 
 	        if (usuario != null && contrasenia != null) {
 	            UsuarioNegImpl usuarioNegocio = new UsuarioNegImpl();

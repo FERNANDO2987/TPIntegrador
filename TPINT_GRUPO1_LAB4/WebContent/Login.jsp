@@ -33,7 +33,7 @@
                         <input type="password" class="form-control" id="contrasenia" name="contrasenia" 
                                placeholder="Ingresa tu contraseña">
                     </div>
-                    <input type="submit" value="Iniciar sesión" class="btn-primary">
+                    <input type="submit" value="Iniciar sesión" class="btn-primary" name="btnAceptar">
                 </form>
             </div>
         </div>

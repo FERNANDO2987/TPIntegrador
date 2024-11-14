@@ -45,32 +45,32 @@ public class servletModificarCuenta extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println((String) request.getParameter("txtCuenta"));
-		System.out.println((String) request.getParameter("TipoCuenta"));
-		System.out.println((String) request.getParameter("chkActivo"));
-		if(request.getParameter("btnModificar") != null)
-		{
+		
+		if(request.getParameter("btnModificarCuenta") != null)
+		{	
+			
 			Cuenta cuenta = new Cuenta();
 			cuenta.setNroCuenta(Long.parseLong((String) request.getParameter("txtCuenta")));
 			cuenta.getTipoCuenta().setId(Integer.parseInt(request.getParameter("TipoCuenta")));
-			Boolean chkActivo = request.getParameter("chkActivo") == "Activo"? false : true;
+			Boolean chkActivo = request.getParameter("chkActivo") == "Activo"? true : false;
 			cuenta.setEstado(chkActivo);
 			
-			//CuentaDao cuentaDao = new CuentaDaoImpl();
+			CuentaDao cuentaDao = new CuentaDaoImpl();
 			boolean exito;
-			//if(cuentaDao.modificarCuenta(cuenta))
-			//{
-			//	exito = true;
-			//}
-			//else
-			//{
+			if(cuentaDao.modificarCuenta(cuenta))
+			{
+				exito = true;
+				System.out.println("Operacion exitosa");
+			}
+			else
+			{
 				exito = false;
-			//}
+				System.out.println("Sin cambios en DB");
+			}
 			request.setAttribute("exito", exito );
 			
 		}	
-		request.setAttribute("Recarga", 1);
-		request.getRequestDispatcher("servletListarCuentas").forward(request, response);
+		request.getRequestDispatcher("ModificarCuenta.jsp").forward(request, response);
 		
 	}
 
