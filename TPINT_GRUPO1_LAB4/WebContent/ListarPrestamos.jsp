@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List" %>
+<%@page import="entidad.Prestamo" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +19,21 @@
 	<div class="container mt-5">
         <h2 class="text-center mb-4">Listado de Prestamos</h2>
         
+        <form method="post" action="servletListarPrestamos">
+        	<input type="submit" name="btnListarPrestamos" value="Traer prestamos">
+        </form>
+        
+ 
+        <%
+        	ArrayList<Prestamo> listaPrestamos = null;
+        	if(request.getAttribute("ListaP")!=null)
+        	{
+        		listaPrestamos = (ArrayList<Prestamo>) request.getAttribute("ListaP");
+        	}
+        %>
+        
         <!-- Tabla de clientes -->
+        
         <table class="table table-bordered table-hover">
             <thead class="thead-dark">
                 <tr>
@@ -28,36 +45,24 @@
                 </tr>
             </thead>
             <tbody>
+            
+            <% 
+            if(listaPrestamos != null)
+            for(Prestamo p : listaPrestamos) { %>
 				<tr>
-	                <td>1</td>
-     				<td>123</td>
-                    <td>11/04/2024</td>
-                    <td>$18.500,00</td>
+	               	<td><%=p.getId() %></td>
+     				<td><%=p.getCuenta().getNroCuenta() %></td>
+                    <td><%=p.getFechaSolicitud() %></td>
+                    <td><%=p.getImporte() %></td>
                     <td>
                     	<a href="#">Ver</a>
                     </td>
                 </tr>
+            
+            <%
+            	}            
+            %>
                 
-                <tr>
-	                <td>2</td>
-     				<td>128</td>
-                    <td>9/04/2024</td>
-                    <td>$2.500,00</td>
-                    <td>
-                    	<a href="#">Ver</a>
-                    </td>
-                </tr>
-                
-                <tr>
-	                <td>3</td>
-     				<td>124</td>
-                    <td>13/03/2024</td>
-                    <td>$12.500,00</td>
-                    <td>
-                    	<a href="#">Ver</a>
-                    </td>
-                </tr>
-
    
             </tbody>
         </table>

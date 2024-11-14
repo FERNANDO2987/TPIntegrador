@@ -1,6 +1,7 @@
 package Main;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +12,13 @@ import datos.TipoCuentaDao;
 import datosImpl.ClienteDaoImpl;
 import datosImpl.CuentaDaoImpl;
 import datosImpl.PaisDaoImpl;
+import datosImpl.PrestamoDaoImpl;
 import datosImpl.TipoCuentaDaoImpl;
 import datosImpl.UsuarioDaoImpl;
 import entidad.Cliente;
 import entidad.Cuenta;
 import entidad.Pais;
+import entidad.Prestamo;
 import entidad.TipoCuenta;
 import entidad.Usuario;
 
@@ -29,6 +32,55 @@ public class Main {
 		cuenta = cuentaDao.obtenerCuentaXNroCuenta(Long.parseLong("5"));
 		System.out.println(cuenta.toString());*/
 		
+		
+/*		
+  
+  //Rechazar Prestamo
+		PrestamoDaoImpl dao = new PrestamoDaoImpl();
+		
+		if(dao.rechazarPrestamo(Long.valueOf(4)))
+		{
+			System.out.println("Se rechazó el prestamo");
+		}
+		else
+		{
+			System.out.println("hubo un error");
+		}
+		
+		
+ 	//Obtener prestamos x id 
+		Prestamo p = new Prestamo();
+		PrestamoDaoImpl dao = new PrestamoDaoImpl();
+		p = dao.obtenerPrestamoxId(Long.valueOf(3));
+		System.out.println( p.toString());
+ 	//Agrega Prestamo	
+ 	 
+		Prestamo p = new Prestamo();
+			Cuenta c = new Cuenta(); 
+				c.setNroCuenta(1);
+			Cliente cl = new Cliente();
+				cl.setId(1);
+		p.setCliente(cl);
+		p.setCuenta(c);
+		p.setCuotas(5);
+		p.setImporte(BigDecimal.valueOf(11000));
+		PrestamoDaoImpl dao = new PrestamoDaoImpl();
+		if(dao.agregarPrestamo(p))
+		{
+			System.out.println("Se agregó con éxito");
+		}
+	
+		//Lee prestamos
+		
+		List<Prestamo> p = new ArrayList<Prestamo>();
+		PrestamoDaoImpl dao = new PrestamoDaoImpl();
+		p = dao.obtenerPrestamos();
+		for(Prestamo prestamo : p)
+		{
+			System.out.println(prestamo.toString());
+		}
+*/
+		//-----
 		
 //		List<Cuenta> lista = new ArrayList<Cuenta>();
 //		CuentaDao cuentaDao = new CuentaDaoImpl();
