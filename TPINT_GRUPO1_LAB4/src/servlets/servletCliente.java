@@ -16,6 +16,10 @@ import datosImpl.ClienteDaoImpl;
 import datosImpl.PaisDaoImpl;
 import entidad.Cliente;
 import entidad.Pais;
+import negocio.ClienteNeg;
+import negocio.PaisNeg;
+import negocioImpl.ClienteNegImpl;
+import negocioImpl.PaisNegImpl;
 
 
 /**
@@ -25,6 +29,8 @@ import entidad.Pais;
 public class servletCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private ClienteNeg  clienteNeg = new ClienteNegImpl();
+	private PaisNeg paisNeg = new PaisNegImpl();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -70,9 +76,9 @@ public class servletCliente extends HttpServlet {
     	        return;
     	    }
 
-    	    // Look up the country by name
-    	    PaisDaoImpl paisDao = new PaisDaoImpl();
-    	    List<Pais> paises = paisDao.obtenerPaises();
+    	     	 
+    	    
+    	    List<Pais> paises = paisNeg.listarPaises();
     	    Pais paisNacimiento = paises.stream()
     	                                .filter(p -> p.getNombre().equalsIgnoreCase(nacionalidad))
     	                                .findFirst()
@@ -86,9 +92,9 @@ public class servletCliente extends HttpServlet {
     	    // Create Cliente object
     	    Cliente cliente = new Cliente(0, dni, cuil, nombre, apellido, sexo, paisNacimiento, fechaNacimiento, null);
 
-    	    // Save the client in the database
-    	    ClienteDaoImpl clienteDao = new ClienteDaoImpl();
-    	    boolean estado = clienteDao.agregarCliente(cliente);
+    	    
+    	    
+    	    boolean estado = clienteNeg.insertarCliente(cliente);
 
     	    if (estado) {
     	        response.getWriter().write("Cliente agregado exitosamente.");

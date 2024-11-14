@@ -33,14 +33,6 @@
                     <th>Apellido</th>
                     <th>CUIL</th>
                     <th>Sexo</th>
-                    <th>Nacionalidad</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Direccion</th>
-                    <th>Localidad</th>
-                    <th>Provincia</th>
-                    <th>Correo Electronico</th>
-                    <th>Telefono</th>
-                    <th>Usuario</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

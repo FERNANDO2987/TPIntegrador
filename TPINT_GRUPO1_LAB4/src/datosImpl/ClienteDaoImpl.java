@@ -124,65 +124,6 @@ public class ClienteDaoImpl implements ClienteDao{
 	}
 
 	
-//	
-//	@Override
-//	public boolean modificarCliente(Cliente cliente) {
-//	    boolean estado = true;
-//	    cn = new Conexion();
-//	    cn.Open();
-//
-//	    String query = "UPDATE clientes SET dni = ?, "
-//	                 + "cuil = ?, "
-//	                 + "nombre = ?, "
-//	                 + "apellido = ?, "
-//	                 + "sexo = ?, "
-//	                 + "id_pais_nacimiento = ?, "
-//	                 + "fecha_nacimiento = ?, "
-//	                 + "direccion = ?, "
-//	                 + "localidad = ?, "
-//	                 + "provincia = ?, "
-//	                 + "correoElectronico = ?, "
-//	                 + "telefono = ?, "
-//	                 + "id_usuario = ? "
-//	                 + "WHERE idCliente = ?";
-//
-//	    try {
-//	        PreparedStatement pstmt = cn.prepareStatement(query);
-//	        pstmt.setInt(1, cliente.getDni());
-//	        pstmt.setInt(2, cliente.getCuil());
-//	        pstmt.setString(3, cliente.getNombre());
-//	        pstmt.setString(4, cliente.getApellido());
-//	        pstmt.setString(5, cliente.getSexo());
-//	        
-//	        // Asignar el país de nacimiento, asegurándose de que se esté utilizando el ID correcto
-//	        Pais paisNacimiento = cliente.getPaisNacimiento();
-//	        pstmt.setInt(6, (paisNacimiento != null) ? paisNacimiento.getId() : 0); // Establecer ID del país o 0 si es nulo
-//
-//	        pstmt.setDate(7, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
-//	        pstmt.setString(8, cliente.getDireccion());
-//	        pstmt.setString(9, cliente.getLocalidad());
-//	        pstmt.setString(10, cliente.getProvincia());
-//	        pstmt.setString(11, cliente.getCorreoElectronico());
-//	        pstmt.setString(12, cliente.getTelefono());
-//	        
-//	        // Asignar el usuario, asegurándose de que se esté utilizando el ID correcto
-//	        Usuario usuario = cliente.getUsuario();
-//	        pstmt.setLong(13, (usuario != null) ? usuario.getId() : 0); // Establecer ID de usuario o 0 si es nulo
-//	        
-//	        pstmt.setLong(14, cliente.getId());
-//
-//	        int rowsAffected = pstmt.executeUpdate();
-//	        estado = (rowsAffected > 0);
-//
-//	    } catch (Exception e) {
-//	        e.printStackTrace();
-//	        estado = false;
-//	    } finally {
-//	        cn.close();
-//	    }
-//
-//	    return estado;
-//	}
 
 	
 	@Override
@@ -209,11 +150,38 @@ public class ClienteDaoImpl implements ClienteDao{
 	}
 
 
-
 	@Override
 	public boolean modificarCliente(Cliente cliente) {
-		// TODO Auto-generated method stub
-		return false;
+	    boolean estado = true;
+	    cn = new Conexion();
+	    cn.Open();
+
+	    // Suponiendo que tienes un procedimiento almacenado llamado "ModificarCliente"
+	    String query = "{CALL AgregarCliente(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+
+	    try (CallableStatement stmt = cn.connection.prepareCall(query)) {
+	        // Establecer los parámetros
+	        stmt.setLong(1, cliente.getId()); // p_id
+	        stmt.setInt(2, cliente.getDni()); // p_dni
+	        stmt.setInt(3, cliente.getCuil()); // p_cuil
+	        stmt.setString(4, cliente.getNombre()); // p_nombre
+	        stmt.setString(5, cliente.getApellido()); // p_apellido
+	        stmt.setString(6, cliente.getSexo()); // p_sexo
+	        stmt.setObject(7, (cliente.getPaisNacimiento() != null ? cliente.getPaisNacimiento().getId() : null)); // p_id_pais_nacimiento
+	        stmt.setDate(8, cliente.getFechaNacimiento() != null ? java.sql.Date.valueOf(cliente.getFechaNacimiento()) : null); // p_fecha_nacimiento
+	        stmt.setObject(9, (cliente.getUsuario() != null ? cliente.getUsuario().getId() : null)); // p_id_usuario
+
+	        // Ejecutar el procedimiento
+	        stmt.executeUpdate();
+	        
+	    } catch (SQLException e) {
+	        estado = false;
+	        e.printStackTrace();
+	    } finally {
+	        cn.close();
+	    }
+
+	    return estado;
 	}
 
 

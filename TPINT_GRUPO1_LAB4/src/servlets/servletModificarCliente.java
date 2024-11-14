@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datos.ClienteDao;
 import datosImpl.ClienteDaoImpl;
 import entidad.Cliente;
 
@@ -58,8 +61,62 @@ public class servletModificarCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		  ClienteDao clienteDao = new ClienteDaoImpl();
+	        int idCliente;
+
+	        // Obtener y validar el ID del cliente
+	        try {
+	            idCliente = Integer.parseInt(request.getParameter("id")); // Asegúrate de que este nombre coincida con el del formulario
+	        } catch (NumberFormatException e) {
+	            request.setAttribute("error", "ID de cliente no válido.");
+	            request.getRequestDispatcher("modificarCliente.jsp").forward(request, response);
+	            return;
+	        }
+
+	        // Obtener otros parámetros
+	        String dni = request.getParameter("dni");
+	        String cuil = request.getParameter("cuil");
+	        String nombre = request.getParameter("nombre");
+	        String apellido = request.getParameter("apellido");
+	        String sexo = request.getParameter("sexo");
+	        String nacionalidad = request.getParameter("nacionalidad");
+	        LocalDate fechaNacimiento;
+
+	        // Obtener y validar la fecha de nacimiento
+	        try {
+	            fechaNacimiento = LocalDate.parse(request.getParameter("fechaNacimiento")); // Asegúrate de que el formato sea correcto
+	        } catch (DateTimeParseException e) {
+	            request.setAttribute("error", "Fecha de nacimiento no válida.");
+	            request.getRequestDispatcher("modificarCliente.jsp").forward(request, response);
+	            return;
+	        }
+
+	        // Obtener el resto de los parámetros
+	        String direccion = request.getParameter("direccion");
+	        String localidad = request.getParameter("localidad");
+	        String provincia = request.getParameter("provincia");
+	        String correoElectronico = request.getParameter("correoElectronico");
+	        String telefono = request.getParameter("telefono");
+	        String usuario = request.getParameter("usuario");
+
+	        // Crear la instancia de Cliente
+	        Cliente cliente = new Cliente(idCliente, dni, cuil, nombre, apellido, sexo, nacionalidad, 
+	                                      fechaNacimiento, direccion, localidad, provincia, 
+	                                      correoElectronico, telefono, usuario, null); // Asegúrate de incluir la contraseña si es necesario
+
+	        // Modificar el cliente
+	        boolean resultado = clienteDao.modificarCliente(cliente);
+
+	        // Verificar el resultado
+	        if (resultado) {
+	            // Si la modificación fue exitosa, redirigir a la página de listado de clientes
+	            response.sendRedirect("listarClientes.jsp"); 
+	        } else {
+	            // Si ocurrió un error, mostrar el mensaje de error y redirigir al formulario de modificación
+	            request.setAttribute("error", "Error al modificar el cliente.");
+	            request.getRequestDispatcher("modificarCliente.jsp").forward(request, response); 
+	        }
+    }
+	
 
 }
