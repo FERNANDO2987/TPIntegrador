@@ -70,41 +70,29 @@ public class servletModificarUsuario extends HttpServlet {
 	
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	  UsuarioDao usuarioDao = new UsuarioDaoImpl();
-          
-          // Obtener los datos del formulario
-          String idParam = request.getParameter("id");
-          if (idParam == null || idParam.isEmpty()) {
-              response.sendRedirect("ModificarUsuario.jsp?error=ID no válido");
-              return;
-          }
+    	
+    	UsuarioDao usuarioDao = new UsuarioDaoImpl();  
 
-          try {
-              long id = Long.parseLong(idParam);
-              String usuario = request.getParameter("usuario");
-              String password = request.getParameter("password");
-              String nombre = request.getParameter("nombre");
-              boolean admin = request.getParameter("admin") != null;
+        // Obtener los datos del formulario  
+        long id = Long.parseLong(request.getParameter("id"));  
+        String usuario = request.getParameter("usuario");  
+        String password = request.getParameter("password");  
+        String nombre = request.getParameter("nombre");  
+        boolean admin = request.getParameter("admin") != null;  
 
-              // Crear el objeto Usuario con los datos del formulario
-              Usuario usuarioModificado = new Usuario(id, usuario, password, nombre, admin);
+        // Crear el objeto Usuario con los datos del formulario  
+        Usuario usuarioModificado = new Usuario(id, usuario, password, nombre, admin);  
 
-              boolean resultado = usuarioDao.modificarUsuario(usuarioModificado);
+        boolean resultado = usuarioDao.modificarUsuario(usuarioModificado);  
 
-              // Redirigir según el resultado
-              if (resultado) {
-                  response.sendRedirect("ListaUsuarios.jsp?mensaje=Usuario modificado con éxito");
-              } else {
-                  response.sendRedirect("ModificarUsuario.jsp?id=" + id + "&error=No se pudo modificar el usuario");
-              }
-          } catch (NumberFormatException e) {
-              // En caso de que el parámetro 'id' no sea un número válido
-              response.sendRedirect("ModificarUsuario.jsp?error=ID no válido");
-          } catch (Exception e) {
-              // Captura de cualquier otro tipo de excepción
-              e.printStackTrace();
-              response.sendRedirect("ModificarUsuario.jsp?error=Error en el servidor");
-          }
+        // Redirigir según el resultado  
+        if (resultado) {  
+            response.sendRedirect("ListadoUsuarios.jsp?mensaje=Usuario modificado con éxito");  
+        } else {  
+        	 response.sendRedirect("ListadoUsuarios.jsp?mensaje=Error");  
+        }  
+    	
+    	
     }
 
 }

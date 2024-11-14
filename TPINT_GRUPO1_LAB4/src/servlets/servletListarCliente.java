@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import datosImpl.ClienteDaoImpl;
 import entidad.Cliente;
 
-/**
- * Servlet implementation class servletListarCliente
- */
+
 @WebServlet("/servletListarCliente")
 public class servletListarCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,9 +26,7 @@ public class servletListarCliente extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ClienteDaoImpl clienteDao = new ClienteDaoImpl();
@@ -52,9 +48,9 @@ public class servletListarCliente extends HttpServlet {
         request.setAttribute("criterio", criterio);  // para mantener el valor en el campo de búsqueda
         request.getRequestDispatcher("ListarClientes.jsp").forward(request, response);
     }
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
+    
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
