@@ -1,14 +1,16 @@
 
 --Obtener Paises
 
+DELIMITER $$
 CREATE PROCEDURE `ObtenerPaises`()
 BEGIN
     -- Seleccionar todos los países
     SELECT * FROM Paises WHERE deleted = 0;  -- Asegurarse de no incluir países eliminados
-END;
+END $$
 
 --Agregar Usuarios
 
+DELIMITER $$
 CREATE PROCEDURE `AgregarPais`(
     IN p_id INT,
     IN p_nombre NVARCHAR(255)
@@ -30,9 +32,11 @@ BEGIN
         -- Obtener el último ID insertado
         SELECT LAST_INSERT_ID() AS nuevo_id;
     END IF;
-END
+END $$
 
  --Agregar Cliente
+
+DELIMITER $$
 CREATE PROCEDURE `AgregarCliente`(
     IN p_id BIGINT,
     IN p_dni INT,
@@ -71,18 +75,21 @@ BEGIN
         -- Obtener el último ID insertado
         SELECT LAST_INSERT_ID() AS nuevo_id;
     END IF;
-END
+END $$
 
 --Obtener Usuarios
+
+DELIMITER $$
 CREATE PROCEDURE `ObtenerUsuarios`()
 BEGIN
     -- Seleccionar todos los Usuarios
     SELECT * FROM Usuarios WHERE deleted = 0;  
-END
+END $$
 
 
 --Agregar Usuarios
 
+DELIMITER $$
 CREATE  PROCEDURE `AgregarUsuario`(
     IN p_id BIGINT,
     IN p_usuario NVARCHAR(255),
@@ -113,4 +120,4 @@ BEGIN
       
         SELECT LAST_INSERT_ID() AS nuevo_id;
     END IF;
-END
+END $$
