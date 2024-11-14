@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS bdbanco;
 USE bdbanco;
 
 CREATE TABLE Paises (  
@@ -141,7 +142,7 @@ CREATE TABLE Cuotas(
 
 
 CREATE TABLE TiposMovimiento(  
-    id INT PRIMARY KEY AUTO_INCREMENT,  
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,  
     descripcion VARCHAR(255) NOT NULL,  
     deleteDate DATETIME NULL,  
     deleted BIT NOT NULL DEFAULT 0,  
