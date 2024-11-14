@@ -48,14 +48,12 @@ public class servletLogin extends HttpServlet {
 	                HttpSession session = request.getSession();
 	                session.setAttribute("usuario", usuarioSesion);
 
-	                System.out.println("Inicio de sesión exitoso para: " + usuarioSesion.getUsuario());
-
-	                // Redirige usando RequestDispatcher para evitar problemas de redireccionamiento
 	                RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
 	                rd.forward(request, response);
-	            } else {
-	                System.out.println("Error en inicio de sesión para: " + usuario);
-	                response.sendRedirect("Login.jsp?error=true");
+	            } 
+                else {
+                System.out.println("Error en inicio de sesión para: " + usuario);
+                response.sendRedirect("Login.jsp?error=true");
 	            }
 	        }
 	    }

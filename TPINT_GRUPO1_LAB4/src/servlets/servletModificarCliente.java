@@ -100,22 +100,22 @@ public class servletModificarCliente extends HttpServlet {
 	        String usuario = request.getParameter("usuario");
 
 	        // Crear la instancia de Cliente
-	        Cliente cliente = new Cliente(idCliente, dni, cuil, nombre, apellido, sexo, nacionalidad, 
-	                                      fechaNacimiento, direccion, localidad, provincia, 
-	                                      correoElectronico, telefono, usuario, null); // Asegúrate de incluir la contraseña si es necesario
-
-	        // Modificar el cliente
-	        boolean resultado = clienteDao.modificarCliente(cliente);
-
-	        // Verificar el resultado
-	        if (resultado) {
-	            // Si la modificación fue exitosa, redirigir a la página de listado de clientes
-	            response.sendRedirect("listarClientes.jsp"); 
-	        } else {
-	            // Si ocurrió un error, mostrar el mensaje de error y redirigir al formulario de modificación
-	            request.setAttribute("error", "Error al modificar el cliente.");
-	            request.getRequestDispatcher("modificarCliente.jsp").forward(request, response); 
-	        }
+//	        Cliente cliente = new Cliente(idCliente, dni, cuil, nombre, apellido, sexo, nacionalidad, 
+//	                                      fechaNacimiento, direccion, localidad, provincia, 
+//	                                      correoElectronico, telefono, usuario, null); // Asegúrate de incluir la contraseña si es necesario
+//
+//	        // Modificar el cliente
+//	        boolean resultado = clienteDao.modificarCliente(cliente);
+//
+//	        // Verificar el resultado
+//	        if (resultado) {
+//	            // Si la modificación fue exitosa, redirigir a la página de listado de clientes
+//	            response.sendRedirect("listarClientes.jsp"); 
+//	        } else {
+//	            // Si ocurrió un error, mostrar el mensaje de error y redirigir al formulario de modificación
+//	            request.setAttribute("error", "Error al modificar el cliente.");
+//	            request.getRequestDispatcher("modificarCliente.jsp").forward(request, response); 
+//	        }
     }
 	
 

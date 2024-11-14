@@ -12,7 +12,7 @@
         <h2 class="text-center">Iniciar Sesión</h2>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <%
+                <%-- <%
                     // Verifica si hay un error en las credenciales
                     String error = request.getParameter("error");
                     if ("true".equals(error)) {
@@ -20,7 +20,7 @@
                     <div class="alert alert-danger" role="alert">
                         Credenciales no válidas. Inténtalo de nuevo.
                     </div>
-                <% } %>
+                <% } %> --%>
                 <form action="servletLogin" method="post"> 
                     <div class="form-group">
                         <label for="usuario">Usuario</label>

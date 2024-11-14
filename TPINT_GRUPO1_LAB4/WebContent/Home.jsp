@@ -22,24 +22,20 @@
   </head>
   <body>
   	<%@ page import="entidad.Usuario" %>
+  	
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if (usuario != null) {
-%>
-    <script>
-        alert("Sesión Iniciada: <%= usuario.getUsuario() %>!");
-    </script>
-<%
-    } else {
-        // Si no hay sesión de usuario, redirige al login
-        response.sendRedirect("Login.jsp");
+    if (usuario == null) {
+    	response.sendRedirect("Login.jsp");
     }
 %>
+
 
   
   
     <div class="container mt-5">
       <h1>Menu de Gestion de Banco</h1>
+      <h4>Bienvenido, <%= usuario.getUsuario()%>.</h4>
 
       
       <!-- Botï¿½n para ir a Inicio -->
@@ -155,14 +151,14 @@
                     </li>
                   </ul>
                 </li>
-                <li class="list-group-item">
+               <!--  <li class="list-group-item">
                   <button
                     class="btn btn-danger"
                     onclick="showAlert('Cerrar Sesion')"
                   >
                     Cerrar Sesion
                   </button>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>

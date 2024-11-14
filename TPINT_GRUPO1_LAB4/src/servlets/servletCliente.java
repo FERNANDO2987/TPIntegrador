@@ -16,9 +16,9 @@ import datosImpl.ClienteDaoImpl;
 import datosImpl.PaisDaoImpl;
 import entidad.Cliente;
 import entidad.Pais;
-import negocio.ClienteNeg;
+//import negocio.ClienteNeg;
 import negocio.PaisNeg;
-import negocioImpl.ClienteNegImpl;
+//import negocioImpl.ClienteNegImpl;
 import negocioImpl.PaisNegImpl;
 
 
@@ -29,7 +29,7 @@ import negocioImpl.PaisNegImpl;
 public class servletCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private ClienteNeg  clienteNeg = new ClienteNegImpl();
+	//private ClienteNeg  clienteNeg = new ClienteNegImpl();
 	private PaisNeg paisNeg = new PaisNegImpl();
     /**
      * @see HttpServlet#HttpServlet()
@@ -94,13 +94,13 @@ public class servletCliente extends HttpServlet {
 
     	    
     	    
-    	    boolean estado = clienteNeg.insertarCliente(cliente);
-
-    	    if (estado) {
-    	        response.getWriter().write("Cliente agregado exitosamente.");
-    	    } else {
-    	        response.getWriter().write("Error al agregar cliente.");
-    	    }
+//    	    boolean estado = clienteNeg.insertarCliente(cliente);
+//
+//    	    if (estado) {
+//    	        response.getWriter().write("Cliente agregado exitosamente.");
+//    	    } else {
+//    	        response.getWriter().write("Error al agregar cliente.");
+//    	    }
     }
 
 }
