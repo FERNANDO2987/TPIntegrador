@@ -79,7 +79,7 @@
                     </li>
                     <li>
                       <a
-                        href="<%= request.getContextPath() %>/ListarClientes.jsp"
+                        href="servletListarCliente"
                         class="text-decoration-none"
                         >Listar Clientes</a
                       >

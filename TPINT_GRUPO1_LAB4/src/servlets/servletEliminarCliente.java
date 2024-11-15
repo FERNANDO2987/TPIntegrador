@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datosImpl.ClienteDaoImpl;
+import datos.ClienteDao;
 
 /**
  * Servlet implementation class servletEliminarCliente
@@ -32,7 +33,7 @@ public class servletEliminarCliente extends HttpServlet {
         
         if (idParam != null) {
             int idCliente = Integer.parseInt(idParam);
-            ClienteDaoImpl clienteDao = new ClienteDaoImpl();
+            ClienteDao clienteDao = new ClienteDaoImpl();
             
             boolean resultado = clienteDao.darDeBajaCliente(idCliente);
             

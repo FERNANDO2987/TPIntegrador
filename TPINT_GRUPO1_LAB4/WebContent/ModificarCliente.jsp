@@ -14,13 +14,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Modificar Cliente</h2>
-
         <%
             // Obtener el ID del cliente desde la solicitud
             int idCliente = Integer.parseInt(request.getParameter("id"));
             ClienteDao clienteDao = new ClienteDaoImpl();
+            
             Cliente cliente = clienteDao.obtenerClientes().stream()
                     .filter(c -> c.getId() == idCliente)
                     .findFirst()
@@ -28,37 +26,37 @@
 
             if (cliente != null) {
         %>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Modificar Cliente</h2>
+
             <form action="servletModificarCliente" method="post">
                 <input type="hidden" name="id" value="<%= cliente.getId() %>"> <!-- Campo oculto para el ID -->
 
                 <div class="form-group">
-                    <label for="dni">DNI:</label>
+                    <label for="txtDni">DNI:</label>
                     <input type="text" class="form-control" id="dni" name="dni" value="<%= cliente.getDni() %>" required>
                 </div>
                 <div class="form-group">
-                    <label for="cuil">CUIL:</label>
+                    <label for="txtCuil">CUIL:</label>
                     <input type="text" class="form-control" id="cuil" name="cuil" value="<%= cliente.getCuil() %>" required>
                 </div>
                 <div class="form-group">
-                    <label for="nombre">Nombre:</label>
+                    <label for="txtNombre">Nombre:</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" value="<%= cliente.getNombre() %>" required>
                 </div>
                 <div class="form-group">
-                    <label for="apellido">Apellido:</label>
+                    <label for="txtApellido">Apellido:</label>
                     <input type="text" class="form-control" id="apellido" name="apellido" value="<%= cliente.getApellido() %>" required>
                 </div>
                 <div class="form-group">
-                    <label for="sexo">Sexo:</label>
+                    <label for="txtSexo">Sexo:</label>
                     <select class="form-control" id="sexo" name="sexo" required>
                         <option value="Masculino" <%= cliente.getSexo().equals("Masculino") ? "selected" : "" %>>Masculino</option>
                         <option value="Femenino" <%= cliente.getSexo().equals("Femenino") ? "selected" : "" %>>Femenino</option>
                         <option value="Otro" <%= cliente.getSexo().equals("Otro") ? "selected" : "" %>>Otro</option>
                     </select>
                 </div>
-         
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block">Modificar Cliente</button>
+      			<input type="submit" class="btn btn-primary btn-block" value="Modificar Cliente" name="btnModificarCliente">
             </form>
 
             <% 

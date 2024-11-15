@@ -124,65 +124,40 @@ public class ClienteDaoImpl implements ClienteDao{
 	}
 
 	
-//	
-//	@Override
-//	public boolean modificarCliente(Cliente cliente) {
-//	    boolean estado = true;
-//	    cn = new Conexion();
-//	    cn.Open();
-//
-//	    String query = "UPDATE clientes SET dni = ?, "
-//	                 + "cuil = ?, "
-//	                 + "nombre = ?, "
-//	                 + "apellido = ?, "
-//	                 + "sexo = ?, "
-//	                 + "id_pais_nacimiento = ?, "
-//	                 + "fecha_nacimiento = ?, "
-//	                 + "direccion = ?, "
-//	                 + "localidad = ?, "
-//	                 + "provincia = ?, "
-//	                 + "correoElectronico = ?, "
-//	                 + "telefono = ?, "
-//	                 + "id_usuario = ? "
-//	                 + "WHERE idCliente = ?";
-//
-//	    try {
-//	        PreparedStatement pstmt = cn.prepareStatement(query);
-//	        pstmt.setInt(1, cliente.getDni());
-//	        pstmt.setInt(2, cliente.getCuil());
-//	        pstmt.setString(3, cliente.getNombre());
-//	        pstmt.setString(4, cliente.getApellido());
-//	        pstmt.setString(5, cliente.getSexo());
-//	        
-//	        // Asignar el país de nacimiento, asegurándose de que se esté utilizando el ID correcto
-//	        Pais paisNacimiento = cliente.getPaisNacimiento();
-//	        pstmt.setInt(6, (paisNacimiento != null) ? paisNacimiento.getId() : 0); // Establecer ID del país o 0 si es nulo
-//
-//	        pstmt.setDate(7, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
-//	        pstmt.setString(8, cliente.getDireccion());
-//	        pstmt.setString(9, cliente.getLocalidad());
-//	        pstmt.setString(10, cliente.getProvincia());
-//	        pstmt.setString(11, cliente.getCorreoElectronico());
-//	        pstmt.setString(12, cliente.getTelefono());
-//	        
-//	        // Asignar el usuario, asegurándose de que se esté utilizando el ID correcto
-//	        Usuario usuario = cliente.getUsuario();
-//	        pstmt.setLong(13, (usuario != null) ? usuario.getId() : 0); // Establecer ID de usuario o 0 si es nulo
-//	        
-//	        pstmt.setLong(14, cliente.getId());
-//
-//	        int rowsAffected = pstmt.executeUpdate();
-//	        estado = (rowsAffected > 0);
-//
-//	    } catch (Exception e) {
-//	        e.printStackTrace();
-//	        estado = false;
-//	    } finally {
-//	        cn.close();
-//	    }
-//
-//	    return estado;
-//	}
+	
+	@Override
+	public boolean modificarCliente(Cliente cliente) {
+	    boolean exito = true;
+	    cn = new Conexion();
+	    cn.Open();
+
+	    String query = "{CALL ModificarCliente(?,?,?,?,?,?)}";
+
+	    try
+	    {
+	    	CallableStatement cst = cn.connection.prepareCall(query);
+	    	cst.setLong(1, cliente.getId());
+	    	cst.setInt(2, cliente.getDni());
+	    	cst.setInt(3, cliente.getCuil());
+	    	cst.setString(4, cliente.getNombre());
+	    	cst.setString(5, cliente.getApellido());
+	    	cst.setString(6, cliente.getSexo());
+
+	    	cst.execute();
+
+	    } 
+	    catch (Exception e) 
+	    {
+	    	exito = false;
+	        e.printStackTrace();
+	    } 
+	    finally
+	    {
+	        cn.close();
+	    }
+	
+	    return exito;
+	}
 
 	
 	@Override
@@ -192,7 +167,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	    cn.Open();
 
 	    // Consulta para actualizar el estado del cliente a inactivo
-	    String query = "UPDATE clientes SET Deleted = TRUE, DeleteDate = NOW() WHERE idCliente = " + idCliente;
+	    String query = "UPDATE clientes SET Deleted = TRUE, DeleteDate = NOW() WHERE id = " + idCliente;
 
 	    System.out.println(query);
 
@@ -208,13 +183,6 @@ public class ClienteDaoImpl implements ClienteDao{
 	    return estado;
 	}
 
-
-
-	@Override
-	public boolean modificarCliente(Cliente cliente) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 	@Override
