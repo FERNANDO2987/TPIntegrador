@@ -20,10 +20,7 @@ public class Cliente {
     private Boolean admin;
 
     
-    public Cliente()
-    {
-    	
-    }
+  
     // Constructor
     public Cliente(Long id, Long dni, Long cuil, String nombre, String apellido, String sexo, String usuario, 
                    String password, Pais paisNacimiento, Date fechaNacimiento,String correo,String telefono,String celular, Boolean admin) {
@@ -43,6 +40,10 @@ public class Cliente {
         this.admin = admin;
     }
 
+    public Cliente()
+    {
+    	
+    }
     // Getters y Setters
     public Long getId() {
         return id;

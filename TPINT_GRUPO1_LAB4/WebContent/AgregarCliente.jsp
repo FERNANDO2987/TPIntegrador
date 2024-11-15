@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="entidad.Pais" %>
-<%@ page import="datosImpl.PaisDaoImpl" %>
+<%@ page import="negocio.PaisNeg" %>
+<%@ page import="negocioImpl.PaisNegImpl" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,7 +18,7 @@
         <form action="servletCliente" method="POST">
             <div class="form-group">
                 <label for="dni">DNI:</label>
-                <input type="text" class="form-control" id="dni" name="dni" pattern="\d{7,8}" title="Ingrese 7 u 8 dígitos" required>
+                <input type="text" class="form-control" id="dni" name="dni" pattern="\d{8}" title="Ingrese 7 u 8 dígitos" required>
             </div>
             <div class="form-group">
                 <label for="cuil">CUIL:</label>
@@ -37,7 +38,6 @@
                     <option value="">Seleccionar</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
-                   
                 </select>
             </div>
             <div class="form-group">
@@ -51,12 +51,12 @@
             
             <div class="form-group">
                 <label for="pais">País:</label>
-                <select class="form-control" id="pais" name="pais" required>
+                    <select class="form-control" id="pais" name="pais" required>
                     <option value="">Seleccionar</option>
                     <%
                         // Obtener la lista de países desde la base de datos
-                        PaisDaoImpl paisDao = new PaisDaoImpl();
-                        List<Pais> paises = paisDao.obtenerPaises();
+                        PaisNegImpl paisNeg = new PaisNegImpl();
+                        List<Pais> paises = paisNeg.listarPaises();
                         // Iterar sobre los países y generar las opciones
                         for (Pais pais : paises) {
                     %>
@@ -76,18 +76,17 @@
             </div>
             <div class="form-group">
                 <label for="telefono">Teléfono:</label>
-                <input type="tel" class="form-control" id="telefono" name="telefono" pattern="\d{10,15}" title="Ingrese entre 10 y 15 dígitos" required>
+                <input type="tel" class="form-control" id="telefono" name="telefono" pattern="\d{5}" title="Ingrese entre 10 y 15 dígitos" required>
             </div>
-             <div class="form-group">
-                <label for="telefono">Celular:</label>
-                <input type="tel" class="form-control" id="telefono" name="telefono" pattern="\d{10,15}" title="Ingrese entre 10 y 15 dígitos" required>
+            <div class="form-group">
+                <label for="celular">Celular:</label>
+                <input type="tel" class="form-control" id="celular" name="celular" pattern="\d{5}" title="Ingrese entre 10 y 15 dígitos" required>
             </div>
-              <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="admin" name="admin" value="true">
-                    <label class="form-check-label" for="admin">Marque si el usuario es administrador.</label>
-                </div>
-            </br>
-            </br>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="admin" name="admin" value="true">
+                <label class="form-check-label" for="admin">Marque si el usuario es administrador.</label>
+            </div>
+            <br><br>
             <button type="submit" class="btn btn-primary btn-block">Registrar Cliente</button>
         </form>
     </div>

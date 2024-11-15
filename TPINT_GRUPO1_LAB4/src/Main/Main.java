@@ -1,8 +1,5 @@
 package Main;
 
-import java.util.Date;
-
-import datosImpl.ClienteDaoImpl;
 import entidad.Cliente;
 
 public class Main {
@@ -10,12 +7,12 @@ public class Main {
 	public static void main(String[] args) {
 		
 	    Cliente cliente = new Cliente();
-        cliente.setDni(125555555L);
-        cliente.setCuil(255555678L);
+        cliente.setDni(12345678L);
+        cliente.setCuil(20312345678L);
         cliente.setNombre("Juan");
         cliente.setApellido("Pérez");
         cliente.setSexo("Masculino");
-        cliente.setUsuario("juanperez6");
+        cliente.setUsuario("juanperez");
         cliente.setPassword("password123");
         cliente.setFechaNacimiento(new Date()); // Fecha de nacimiento actual como ejemplo
         cliente.setCorreo("juan.perez@example.com");
