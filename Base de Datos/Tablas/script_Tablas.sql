@@ -1,0 +1,155 @@
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS bdbanco;
+USE bdbanco;
+
+-- Tabla Paises
+CREATE TABLE Paises (  
+    id INT PRIMARY KEY AUTO_INCREMENT,  
+    nombre NVARCHAR(255) NOT NULL,  
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0  
+); 
+
+-- Tabla Provincias
+CREATE TABLE Provincias (  
+    id INT PRIMARY KEY AUTO_INCREMENT,  
+    nombre NVARCHAR(255) NOT NULL,  
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0  
+);  
+
+-- Tabla Localidades
+CREATE TABLE Localidades (  
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,  
+    id_provincia INT,  
+    nombre NVARCHAR(255) NOT NULL,
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,	
+    FOREIGN KEY (id_provincia) REFERENCES Provincias(id)  
+); 
+
+-- Tabla Clientes
+CREATE TABLE Clientes (  
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,  
+    dni INT NOT NULL UNIQUE,  
+    cuil INT NOT NULL UNIQUE,  
+    nombre NVARCHAR(255) NOT NULL,  
+    apellido NVARCHAR(255) NOT NULL,  
+    sexo NVARCHAR(50) NOT NULL,
+    usuario NVARCHAR(255) NOT NULL UNIQUE,  
+    password NVARCHAR(255) NOT NULL,  
+    id_pais_nacimiento INT,  
+    fecha_nacimiento DATE NOT NULL,  
+    admin BOOLEAN NOT NULL,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,  
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_pais_nacimiento) REFERENCES Paises(id)
+); 
+
+-- Tabla Contactos
+CREATE TABLE Contactos (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    correo NVARCHAR(255) NOT NULL,
+    telefono NVARCHAR(255),
+    id_cliente BIGINT,
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,  
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id)
+);
+
+-- Tabla Direcciones
+CREATE TABLE Direcciones (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT, 
+    calle VARCHAR(255) NOT NULL,
+    numero_casa INT,
+    id_localidad BIGINT NOT NULL,
+    id_cliente BIGINT NOT NULL,
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,  
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id),
+    FOREIGN KEY (id_localidad) REFERENCES Localidades(id)
+);
+
+-- Tabla TiposCuenta
+CREATE TABLE TiposCuenta (  
+    id INT PRIMARY KEY AUTO_INCREMENT,  
+    descripcion VARCHAR(255) NOT NULL,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,  
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP  
+);  
+
+-- Tabla Cuentas
+CREATE TABLE Cuentas (  
+    nro_cuenta BIGINT PRIMARY KEY,  
+    id_cliente BIGINT NOT NULL,  
+    fecha_creacion DATE NOT NULL,  
+    id_tipo_cuenta INT NOT NULL,  
+    cbu NVARCHAR(255) NOT NULL UNIQUE,  
+    saldo DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id),
+    FOREIGN KEY (id_tipo_cuenta) REFERENCES TiposCuenta(id)
+);  
+
+-- Tabla Prestamos
+CREATE TABLE Prestamos (  
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    nro_cuenta BIGINT,  
+    id_cliente BIGINT,  
+    fecha_solicitud DATE NOT NULL,  
+    importe DECIMAL(10,2) NOT NULL,  
+    cuotas INT NOT NULL,
+    estado BIT NOT NULL DEFAULT 1,
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,	
+    FOREIGN KEY (nro_cuenta) REFERENCES Cuentas(nro_cuenta),  
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id)
+);
+
+-- Tabla Cuotas
+CREATE TABLE Cuotas (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    nro_cuota INT NOT NULL,
+    monto DECIMAL(10,2) NOT NULL,
+    fecha_pago DATETIME NOT NULL,
+    id_prestamo BIGINT,
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,
+    FOREIGN KEY (id_prestamo) REFERENCES Prestamos(id)
+);
+
+-- Tabla TiposMovimiento
+CREATE TABLE TiposMovimiento (  
+    id INT PRIMARY KEY AUTO_INCREMENT,  
+    descripcion VARCHAR(255) NOT NULL,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,  
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP  
+);
+
+-- Tabla Movimientos
+CREATE TABLE Movimientos (  
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,  
+    fecha DATE NOT NULL,  
+    detalle VARCHAR(255),  
+    importe DECIMAL(10,2) NOT NULL,  
+    tipo_movimiento INT,  
+    nro_cuenta BIGINT NOT NULL,
+    estado BIT NOT NULL,  
+    createDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+    deleteDate DATETIME NULL,  
+    deleted BIT NOT NULL DEFAULT 0,
+    FOREIGN KEY (tipo_movimiento) REFERENCES TiposMovimiento(id),
+    FOREIGN KEY (nro_cuenta) REFERENCES Cuentas(nro_cuenta)
+);  
