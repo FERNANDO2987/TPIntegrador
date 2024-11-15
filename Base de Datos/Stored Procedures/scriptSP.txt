@@ -88,8 +88,8 @@ END$$
 -- Procedimientos adicionales para clientes, países y usuarios
 CREATE PROCEDURE AgregarCliente(
     IN p_id BIGINT,
-    IN p_dni INT,
-    IN p_cuil INT,
+    IN p_dni BIGINT,
+    IN p_cuil BIGINT,
     IN p_nombre NVARCHAR(255),
     IN p_apellido NVARCHAR(255),
     IN p_sexo NVARCHAR(50),
