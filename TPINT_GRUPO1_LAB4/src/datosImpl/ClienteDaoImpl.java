@@ -133,7 +133,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	    cn.Open();
 
 	    // Consulta para actualizar el estado del cliente a inactivo
-	    String query = "UPDATE clientes SET Deleted = TRUE, DeleteDate = NOW() WHERE idCliente = " + idCliente;
+	    String query = "UPDATE clientes SET Deleted = TRUE, DeleteDate = NOW() WHERE id = " + idCliente;
 
 	    System.out.println(query);
 
@@ -152,36 +152,36 @@ public class ClienteDaoImpl implements ClienteDao{
 
 	@Override
 	public boolean modificarCliente(Cliente cliente) {
-	    boolean estado = true;
+	    boolean exito = true;
 	    cn = new Conexion();
 	    cn.Open();
 
-	    // Suponiendo que tienes un procedimiento almacenado llamado "ModificarCliente"
-	    String query = "{CALL AgregarCliente(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+	    String query = "{CALL ModificarCliente(?,?,?,?,?,?)}";
 
-	    try (CallableStatement stmt = cn.connection.prepareCall(query)) {
-	        // Establecer los parámetros
-	        stmt.setLong(1, cliente.getId()); // p_id
-	        stmt.setInt(2, cliente.getDni()); // p_dni
-	        stmt.setInt(3, cliente.getCuil()); // p_cuil
-	        stmt.setString(4, cliente.getNombre()); // p_nombre
-	        stmt.setString(5, cliente.getApellido()); // p_apellido
-	        stmt.setString(6, cliente.getSexo()); // p_sexo
-	        stmt.setObject(7, (cliente.getPaisNacimiento() != null ? cliente.getPaisNacimiento().getId() : null)); // p_id_pais_nacimiento
-	        stmt.setDate(8, cliente.getFechaNacimiento() != null ? java.sql.Date.valueOf(cliente.getFechaNacimiento()) : null); // p_fecha_nacimiento
-	        stmt.setObject(9, (cliente.getUsuario() != null ? cliente.getUsuario().getId() : null)); // p_id_usuario
+	    try
+	    {
+	    	CallableStatement cst = cn.connection.prepareCall(query);
+	    	cst.setLong(1, cliente.getId());
+	    	cst.setInt(2, cliente.getDni());
+	    	cst.setInt(3, cliente.getCuil());
+	    	cst.setString(4, cliente.getNombre());
+	    	cst.setString(5, cliente.getApellido());
+	    	cst.setString(6, cliente.getSexo());
 
-	        // Ejecutar el procedimiento
-	        stmt.executeUpdate();
-	        
-	    } catch (SQLException e) {
-	        estado = false;
+	    	cst.execute();
+
+	    } 
+	    catch (Exception e) 
+	    {
+	    	exito = false;
 	        e.printStackTrace();
-	    } finally {
+	    } 
+	    finally
+	    {
 	        cn.close();
 	    }
-
-	    return estado;
+	
+	    return exito;
 	}
 
 

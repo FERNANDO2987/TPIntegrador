@@ -23,19 +23,13 @@
   <body>
   	<%@ page import="entidad.Usuario" %>
   	
-<%
-    Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if (usuario == null) {
-    	response.sendRedirect("Login.jsp");
-    }
-%>
 
 
   
   
     <div class="container mt-5">
       <h1>Menu de Gestion de Banco</h1>
-      <h4>Bienvenido, <%= usuario.getUsuario()%>.</h4>
+      <h4>Bienvenido.</h4>
 
       
       <!-- Bot�n para ir a Inicio -->
@@ -75,9 +69,9 @@
                     </li>
                     <li>
                       <a
-                        href="<%= request.getContextPath() %>/ListarClientes.jsp"
+                        href="<%= request.getContextPath() %>/AgregarCliente.jsp"
                         class="text-decoration-none"
-                        >Listar Clientes</a
+                        >Agregar Cliente</a
                       >
                     </li>
                   </ul>
