@@ -61,45 +61,45 @@ public class servletModificarCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int idCliente;
-
-        // Obtener y validar el ID del cliente
-        try {
-            idCliente = Integer.parseInt(request.getParameter("id")); // Asegúrate de que este nombre coincida con el del formulario
-        } catch (NumberFormatException e) {
-            request.setAttribute("error", "ID de cliente no válido.");
-            request.getRequestDispatcher("modificarCliente.jsp").forward(request, response);
-            return;
-        }
-
-		if(request.getParameter("btnModificarCliente") != null)
-		{
-			Cliente cliente = new Cliente();
-			cliente.setId(idCliente);
-			cliente.setDni(Integer.parseInt(request.getParameter("txtDni")));
-			cliente.setCuil(Integer.parseInt(request.getParameter("txtCuil")));
-			
-			cliente.setNombre(request.getParameter("txtNombre"));
-			cliente.setApellido(request.getParameter("txtApellido"));
-			cliente.setSexo(request.getParameter("txtSexo"));
-	        
-			ClienteDao clienteDao = new ClienteDaoImpl();
-			boolean exito;
-			if(clienteDao.modificarCliente(cliente))
-			{
-				exito = true;
-				System.out.println("Operacion exitosa");
-			}
-			else
-			{
-				exito = false;
-				System.out.println("Sin cambios en DB");
-			}
-			request.setAttribute("exito", exito );
-			
-		}
-		request.getRequestDispatcher("ModificarCliente.jsp").forward(request, response);
+//		// TODO Auto-generated method stub
+//		int idCliente;
+//
+//        // Obtener y validar el ID del cliente
+//        try {
+//            idCliente = Integer.parseInt(request.getParameter("id")); // Asegúrate de que este nombre coincida con el del formulario
+//        } catch (NumberFormatException e) {
+//            request.setAttribute("error", "ID de cliente no válido.");
+//            request.getRequestDispatcher("modificarCliente.jsp").forward(request, response);
+//            return;
+//        }
+//
+//		if(request.getParameter("btnModificarCliente") != null)
+//		{
+//			Cliente cliente = new Cliente();
+//			cliente.setId(idCliente);
+//			cliente.setDni(Integer.parseInt(request.getParameter("txtDni")));
+//			cliente.setCuil(Integer.parseInt(request.getParameter("txtCuil")));
+//			
+//			cliente.setNombre(request.getParameter("txtNombre"));
+//			cliente.setApellido(request.getParameter("txtApellido"));
+//			cliente.setSexo(request.getParameter("txtSexo"));
+//	        
+//			ClienteDao clienteDao = new ClienteDaoImpl();
+//			boolean exito;
+//			if(clienteDao.modificarCliente(cliente))
+//			{
+//				exito = true;
+//				System.out.println("Operacion exitosa");
+//			}
+//			else
+//			{
+//				exito = false;
+//				System.out.println("Sin cambios en DB");
+//			}
+//			request.setAttribute("exito", exito );
+//			
+//		}
+//		request.getRequestDispatcher("ModificarCliente.jsp").forward(request, response);
 	}
 
 	

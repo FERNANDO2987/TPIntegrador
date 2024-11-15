@@ -97,6 +97,9 @@ CREATE PROCEDURE AgregarCliente(
     IN p_password NVARCHAR(255),
     IN p_id_pais_nacimiento INT,
     IN p_fecha_nacimiento DATE,
+    IN p_correo NVARCHAR(255),
+    IN p_telefono NVARCHAR(255),
+    IN P_celular NVARCHAR(255),
     IN p_admin BOOLEAN
 )
 BEGIN
@@ -116,16 +119,19 @@ BEGIN
                 usuario = p_usuario, 
                 password = p_password, 
                 id_pais_nacimiento = p_id_pais_nacimiento, 
-                fecha_nacimiento = p_fecha_nacimiento, 
+                fecha_nacimiento = p_fecha_nacimiento,
+				correo = p_correo,
+                telefono = p_telefono,
+                celular = p_celular,
                 admin = p_admin, 
                 deleteDate = NULL, 
                 deleted = 0 
             WHERE id = p_id;
         ELSE
             -- Si el ID no existe, insertar un nuevo cliente
-            INSERT INTO Clientes (dni, cuil, nombre, apellido, sexo, usuario, password, id_pais_nacimiento, fecha_nacimiento, admin, deleteDate, deleted, createDate) 
+            INSERT INTO Clientes (dni, cuil, nombre, apellido, sexo, usuario, password, id_pais_nacimiento, fecha_nacimiento,correo,telefono,celular, admin, deleteDate, deleted, createDate) 
             VALUES 
-            (p_dni, p_cuil, p_nombre, p_apellido, p_sexo, p_usuario, p_password, p_id_pais_nacimiento, p_fecha_nacimiento, p_admin, NULL, 0, CURRENT_TIMESTAMP);
+            (p_dni, p_cuil, p_nombre, p_apellido, p_sexo, p_usuario, p_password, p_id_pais_nacimiento, p_fecha_nacimiento,p_correo,p_telefono,p_celular, p_admin, NULL, 0, CURRENT_TIMESTAMP);
             
             -- Retornar el ID del nuevo cliente insertado
             SELECT LAST_INSERT_ID() AS nuevo_id;

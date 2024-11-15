@@ -37,9 +37,18 @@
                     <option value="">Seleccionar</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
-                    <option value="Otro">Otro</option>
+                   
                 </select>
             </div>
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" class="form-control" id="contraseña" name="contraseña" required>
+            </div>
+            
             <div class="form-group">
                 <label for="pais">País:</label>
                 <select class="form-control" id="pais" name="pais" required>
@@ -69,14 +78,16 @@
                 <label for="telefono">Teléfono:</label>
                 <input type="tel" class="form-control" id="telefono" name="telefono" pattern="\d{10,15}" title="Ingrese entre 10 y 15 dígitos" required>
             </div>
-            <div class="form-group">
-                <label for="usuario">Usuario:</label>
-                <input type="text" class="form-control" id="usuario" name="usuario" required>
+             <div class="form-group">
+                <label for="telefono">Celular:</label>
+                <input type="tel" class="form-control" id="telefono" name="telefono" pattern="\d{10,15}" title="Ingrese entre 10 y 15 dígitos" required>
             </div>
-            <div class="form-group">
-                <label for="contraseña">Contraseña:</label>
-                <input type="password" class="form-control" id="contraseña" name="contraseña" required>
-            </div>
+              <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="admin" name="admin" value="true">
+                    <label class="form-check-label" for="admin">Marque si el usuario es administrador.</label>
+                </div>
+            </br>
+            </br>
             <button type="submit" class="btn btn-primary btn-block">Registrar Cliente</button>
         </form>
     </div>
