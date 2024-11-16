@@ -1,5 +1,6 @@
 <!-- @format -->
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -21,7 +22,7 @@
     </script>
   </head>
   <body>
-  	<%@ page import="entidad.Usuario" %>
+  	
   	
 
 

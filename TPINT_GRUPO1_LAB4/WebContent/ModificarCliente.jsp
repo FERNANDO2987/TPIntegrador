@@ -29,41 +29,42 @@
 
             if (cliente != null) {
         %>
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Modificar Cliente</h2>
-
-            <form action="servletModificarCliente" method="post">
-                <input type="hidden" name="id" value="<%= cliente.getId() %>"> <!-- Campo oculto para el ID -->
-
-                <div class="form-group">
-                    <label for="txtDni">DNI:</label>
-                    <input type="text" class="form-control" id="dni" name="dni" value="<%= cliente.getDni() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="txtCuil">CUIL:</label>
-                    <input type="text" class="form-control" id="cuil" name="cuil" value="<%= cliente.getCuil() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="txtNombre">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="<%= cliente.getNombre() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="txtApellido">Apellido:</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido" value="<%= cliente.getApellido() %>" required>
-                </div>
-                <div class="form-group">
-                    <label for="txtSexo">Sexo:</label>
-                    <select class="form-control" id="sexo" name="sexo" required>
-                        <option value="Masculino" <%= cliente.getSexo().equals("Masculino") ? "selected" : "" %>>Masculino</option>
-                        <option value="Femenino" <%= cliente.getSexo().equals("Femenino") ? "selected" : "" %>>Femenino</option>
-                        <option value="Otro" <%= cliente.getSexo().equals("Otro") ? "selected" : "" %>>Otro</option>
-                    </select>
-                </div>
-      			<input type="submit" class="btn btn-primary btn-block" value="Modificar Cliente" name="btnModificarCliente">
-            </form>
+		    <div class="container mt-5">
+		        <h2 class="text-center mb-4">Modificar Cliente</h2>
+		
+		            <form action="servletModificarCliente" method="post">
+		                <input type="hidden" name="id" value="<%= cliente.getId() %>"> <!-- Campo oculto para el ID -->
+		
+		                <div class="form-group">
+		                    <label for="txtDni">DNI:</label>
+		                    <input type="text" class="form-control" id="dni" name="dni" value="<%= cliente.getDni() %>" required>
+		                </div>
+		                <div class="form-group">
+		                    <label for="txtCuil">CUIL:</label>
+		                    <input type="text" class="form-control" id="cuil" name="cuil" value="<%= cliente.getCuil() %>" required>
+		                </div>
+		                <div class="form-group">
+		                    <label for="txtNombre">Nombre:</label>
+		                    <input type="text" class="form-control" id="nombre" name="nombre" value="<%= cliente.getNombre() %>" required>
+		                </div>
+		                <div class="form-group">
+		                    <label for="txtApellido">Apellido:</label>
+		                    <input type="text" class="form-control" id="apellido" name="apellido" value="<%= cliente.getApellido() %>" required>
+		                </div>
+		                <div class="form-group">
+		                    <label for="txtSexo">Sexo:</label>
+		                    <select class="form-control" id="sexo" name="sexo" required>
+		                        <option value="Masculino" <%= cliente.getSexo().equals("Masculino") ? "selected" : "" %>>Masculino</option>
+		                        <option value="Femenino" <%= cliente.getSexo().equals("Femenino") ? "selected" : "" %>>Femenino</option>
+		                        <option value="Otro" <%= cliente.getSexo().equals("Otro") ? "selected" : "" %>>Otro</option>
+		                    </select>
+		                </div>
+		      			<input type="submit" class="btn btn-primary btn-block" value="Modificar Cliente" name="btnModificarCliente">
+		            </form>
 
             <% 
-            } else { 
+            } 
+            else { 
             %>
                 <p>No se encontro el cliente.</p>
             <% 
@@ -75,19 +76,21 @@
             %>
                 <p style="color:red;"><%= error %></p>
             <% 
-            } 
+            }
+            else
             %>
     </div>
 
             <% 
-            } else { 
+            
+            { 
             %>
                 <p>No se encontro el cliente.</p>
             <% 
             } 
 
             // Mostrar mensaje de error si existe
-            String error = (String) request.getAttribute("error");
+            error = (String) request.getAttribute("error");
             if (error != null) { 
             %>
                 <p style="color:red;"><%= error %></p>
