@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,7 +55,7 @@ public class servletAgregarCliente extends HttpServlet {
         cliente.setSexo(request.getParameter("sexo"));  
         cliente.setUsuario(request.getParameter("usuario"));  
         cliente.setPassword(request.getParameter("contraseña")); // Recuerda encriptar la contraseña  
-        cliente.setFechaNacimiento(java.sql.Date.valueOf(request.getParameter("fechaNacimiento")));  
+        cliente.setFechaNacimiento(LocalDate.parse(request.getParameter("fechaNacimiento")));  
         cliente.setCorreo(request.getParameter("correoElectronico"));  
         cliente.setTelefono(request.getParameter("telefono"));  
         cliente.setCelular(request.getParameter("celular"));  

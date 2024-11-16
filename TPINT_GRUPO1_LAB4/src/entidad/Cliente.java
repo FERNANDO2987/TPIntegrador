@@ -1,6 +1,7 @@
 package entidad;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Cliente {
@@ -13,7 +14,7 @@ public class Cliente {
     private String usuario;
     private String password;
     private Pais paisNacimiento;  // Relación con la clase Pais
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String correo;
     private String telefono;
     private String celular;
@@ -23,7 +24,7 @@ public class Cliente {
   
     // Constructor
     public Cliente(Long id, Long dni, Long cuil, String nombre, String apellido, String sexo, String usuario, 
-                   String password, Pais paisNacimiento, Date fechaNacimiento,String correo,String telefono,String celular, Boolean admin) {
+                   String password, Pais paisNacimiento, LocalDate fechaNacimiento,String correo,String telefono,String celular, Boolean admin) {
         this.id = id;
         this.dni = dni;
         this.cuil = cuil;
@@ -117,11 +118,11 @@ public class Cliente {
         this.paisNacimiento = paisNacimiento;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

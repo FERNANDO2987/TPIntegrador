@@ -1,6 +1,7 @@
 package datosImpl;
 
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -31,7 +32,8 @@ public class ClienteDaoImpl implements ClienteDao{
 	    try (CallableStatement stmt = cn.connection.prepareCall(query)) {
 	        // Obtener el id del cliente (puede ser nulo en caso de inserción)
 	        Long id = cliente.getId(); // El id puede ser nulo cuando es nuevo
-
+	        
+	        Date fechaSQL = Date.valueOf(cliente.getFechaNacimiento());
 	        // Establecer los parámetros
 	        stmt.setObject(1, id, Types.BIGINT); // Usamos Types.BIGINT para manejar valores nulos
 	        stmt.setLong(2, cliente.getDni());
@@ -42,7 +44,7 @@ public class ClienteDaoImpl implements ClienteDao{
 	        stmt.setString(7, cliente.getUsuario());
 	        stmt.setString(8, cliente.getPassword());
 	        stmt.setObject(9, cliente.getPaisNacimiento() != null ? cliente.getPaisNacimiento().getId() : null, Types.INTEGER);
-	        stmt.setDate(10, cliente.getFechaNacimiento() != null ? new java.sql.Date(cliente.getFechaNacimiento().getTime()) : null);
+	        stmt.setDate(10, fechaSQL);
 	        stmt.setString(11, cliente.getCorreo());
 	        stmt.setString(12, cliente.getTelefono());
 	        stmt.setString(13, cliente.getCelular());
