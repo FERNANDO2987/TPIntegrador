@@ -70,12 +70,8 @@ BEGIN
 		VALUES (idClienteIngresado, CURDATE(), idTipoCuentaIngresada, REPLACE(REPLACE(REPLACE(DATE_FORMAT(NOW(), '%Y%m%d%H%i%s'), '-', ''), ':', ''), ' ', ''), 0, CURDATE(), NULL, 0);
 
 		SELECT LAST_INSERT_ID() INTO ultimoNroCuenta;
-		INSERT INTO movimientos(fecha, importe, tipo_movimiento, estado, createDate, deleted) 
-		VALUES (CURDATE(), 10000, 1, 1, CURDATE(), 0);
-
-		SELECT LAST_INSERT_ID() INTO ultimoIdMovimiento;
-		INSERT INTO movimientos(id, nro_cuenta, createDate, deleted) 
-		VALUES (ultimoIdMovimiento, ultimoNroCuenta, CURDATE(), 0);
+		INSERT INTO movimientos(fecha, detalle, importe, tipo_movimiento, nro_cuenta, estado, createDate, deleted) 
+		VALUES (CURDATE(), '', 10000, 1, ultimoNroCuenta, 1, CURDATE(), 0);
 
 		UPDATE cuentas SET saldo = saldo + 10000 WHERE nro_cuenta = ultimoNroCuenta;
 	ELSE
