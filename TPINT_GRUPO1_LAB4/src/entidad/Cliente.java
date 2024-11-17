@@ -2,7 +2,6 @@ package entidad;
 
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Cliente {
     private Long id;
@@ -11,8 +10,7 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private String sexo;
-    private String usuario;
-    private String password;
+    private Usuario usuario;
     private Pais paisNacimiento;  // Relación con la clase Pais
     private LocalDate fechaNacimiento;
     private String correo;
@@ -31,8 +29,8 @@ public class Cliente {
         this.nombre = nombre;
         this.apellido = apellido;
         this.sexo = sexo;
-        this.usuario = usuario;
-        this.password = password;
+        this.usuario.setNombreUsuario(usuario);
+        this.usuario.setPassword(password);
         this.paisNacimiento = paisNacimiento;
         this.fechaNacimiento = fechaNacimiento;
         this.correo = correo;
@@ -94,22 +92,6 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Pais getPaisNacimiento() {
         return paisNacimiento;
     }
@@ -157,8 +139,18 @@ public class Cliente {
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
+    
+    
 
-    @Override
+    public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	@Override
     public String toString() {
         return "Cliente{" +
                "id=" + id +
@@ -167,8 +159,6 @@ public class Cliente {
                ", nombre='" + nombre + '\'' +
                ", apellido='" + apellido + '\'' +
                ", sexo='" + sexo + '\'' +
-               ", usuario='" + usuario + '\'' +
-               ", password='" + password + '\'' +
                ", paisNacimiento=" + paisNacimiento +
                ", fechaNacimiento=" + fechaNacimiento +
                ", correo='" + correo + '\'' +
