@@ -82,10 +82,7 @@
                 <label for="celular">Celular:</label>
                 <input type="tel" class="form-control" id="celular" name="celular" pattern="\d{5}" title="Ingrese entre 10 y 15 dígitos" required>
             </div>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="admin" name="admin" value="true">
-                <label class="form-check-label" for="admin">Marque si el usuario es administrador.</label>
-            </div>
+          
             <br><br>
             <button type="submit" class="btn btn-primary btn-block">Registrar Cliente</button>
         </form>

@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import datos.ClienteDao;
+import datos.PaisDao;
+import datosImpl.ClienteDaoImpl;
+import datosImpl.PaisDaoImpl;
 import entidad.Cliente;
 import entidad.Pais;
 import negocio.ClienteNeg;
@@ -30,8 +34,11 @@ import negocioImpl.PaisNegImpl;
 public class servletAgregarCliente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private ClienteNeg  clienteNeg = new ClienteNegImpl();
-	private PaisNeg paisNeg = new PaisNegImpl();
+//	private ClienteNeg  clienteNeg = new ClienteNegImpl();
+//	private PaisNeg paisNeg = new PaisNegImpl();
+	
+	private ClienteDao clienteDao = new ClienteDaoImpl();
+	private PaisDao paisDao = new PaisDaoImpl();
 
     public servletAgregarCliente() {
         super();
@@ -45,45 +52,82 @@ public class servletAgregarCliente extends HttpServlet {
   
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
     	
-        // Crear el objeto Cliente  
-        Cliente cliente = new Cliente();  
-        cliente.setDni(Long.parseLong(request.getParameter("dni")));  
-        cliente.setCuil(Long.parseLong(request.getParameter("cuil")));  
-        cliente.setNombre(request.getParameter("nombre"));  
-        cliente.setApellido(request.getParameter("apellido"));  
-        cliente.setSexo(request.getParameter("sexo"));  
-        cliente.setUsuario(request.getParameter("usuario"));  
-        cliente.setPassword(request.getParameter("contraseña")); // Recuerda encriptar la contraseña  
-        cliente.setFechaNacimiento(java.sql.Date.valueOf(request.getParameter("fechaNacimiento")));  
-        cliente.setCorreo(request.getParameter("correoElectronico"));  
-        cliente.setTelefono(request.getParameter("telefono"));  
-        cliente.setCelular(request.getParameter("celular"));  
-        cliente.setAdmin(request.getParameter("admin") != null && request.getParameter("admin").equals("true"));  
     
-        // Obtener el ID del país, si existe  
-        String paisId = request.getParameter("paisNacimiento");  
-        if (paisId != null && !paisId.isEmpty()) {  
-            Pais pais = new Pais();  
-            pais.setId(Integer.parseInt(paisId));  
-            cliente.setPaisNacimiento(pais); // Establecer el país al cliente  
-        }  
+    	String dniStr = request.getParameter("dni");
+ 	    String cuilStr = request.getParameter("cuil");
+	    String nombre = request.getParameter("nombre");
+	    String apellido = request.getParameter("apellido");
+	    String sexo = request.getParameter("sexo");
+	    String nacionalidad = request.getParameter("pais");
+	    String fechaNacimientoStr = request.getParameter("fechaNacimiento");
+	    String correoElectronico = request.getParameter("correoElectronico");
+	    String telefono = request.getParameter("telefono");
+	    String celular = request.getParameter("celular");
+	    String usuario = request.getParameter("usuario");
+	    String contraseña = request.getParameter("contraseña");
+	  
+	  
+    
+        long dni;
+        long cuil;
+	    try {
+	    	dni = Long.parseLong(dniStr);  
+	    	cuil = Long.parseLong(cuilStr);  
+	    } catch (NumberFormatException e) {
+	        response.getWriter().write("Error: DNI o CUIL inválido.");
+	        return;
+	    }
+        
+        
+	    Date fechaNacimiento = null;
+	    try {
+	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	        fechaNacimiento = formatter.parse(fechaNacimientoStr); // Convierte la cadena a un objeto Date
+	    } catch (ParseException e) {
+	        response.getWriter().write("Error: Formato de fecha inválido.");
+	        return;
+	    }
 
-        // Crear la instancia de ClienteNegImpl  
-        ClienteNeg clienteNeg = new ClienteNegImpl();  
+      
+	   
+	    List<Pais> paises = paisDao.obtenerPaises();
+	    Pais paisNacimiento = paises.stream()
+	                                .filter(p -> p.getNombre().equalsIgnoreCase(nacionalidad))
+	                                .findFirst()
+	                                .orElse(null);
+	    
+	    
 
-        // Llamar al método insertarCliente  
-        boolean resultado = clienteNeg.insertarCliente(cliente);  
+	    if (paisNacimiento == null) {
+	        response.getWriter().write("Error: País de nacimiento no encontrado.");
+	        return;
+	    }
 
-        // Manejo de la respuesta  
-        HttpSession session = request.getSession();  
-        if (resultado) {  
-            session.setAttribute("mensaje", "Cliente agregado exitosamente.");  
-        } else {  
-            session.setAttribute("mensaje", "Error al agregar el cliente.");  
-        }  
+	    Cliente cliente = new Cliente(
+	    	    0L,              // id
+	    	    dni,             // dni
+	    	    cuil,            // cuil
+	    	    nombre,          // nombre
+	    	    apellido,        // apellido
+	    	    sexo,            // sexo
+	    	    usuario,         // usuario
+	    	    contraseña,      // password
+	    	    paisNacimiento,  // paisNacimiento
+	    	    fechaNacimiento, // fechaNacimiento
+	    	    correoElectronico, // correo
+	    	    telefono,        // telefono
+	    	    celular,         // celular
+	    	    false            // admin (o true si el cliente es admin)
+	    	);
 
-        // Redireccionar a una página (puedes cambiar "AgregarCliente.jsp" por la que estés usando)  
-        response.sendRedirect("AgregarCliente.jsp");  
+	    boolean estado = clienteDao.agregarCliente(cliente);
+
+	    if (estado) {
+	        response.getWriter().write("Cliente agregado exitosamente.");
+	    } else {
+	        response.getWriter().write("Error al agregar cliente.");
+	    }
+	    
     }
 
 }
