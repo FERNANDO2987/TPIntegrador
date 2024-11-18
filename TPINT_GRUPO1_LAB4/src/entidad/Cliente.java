@@ -18,12 +18,13 @@ public class Cliente {
     private String telefono;
     private String celular;
     private Boolean admin;
+    private Boolean estado;
 
     
   
     // Constructor
     public Cliente(Long id, Long dni, Long cuil, String nombre, String apellido, String sexo, String usuario, 
-                   String password, Pais paisNacimiento, Date fechaNacimiento,String correo,String telefono,String celular, Boolean admin) {
+                   String password, Pais paisNacimiento, Date fechaNacimiento,String correo,String telefono,String celular, Boolean admin, Boolean estado) {
         this.id = id;
         this.dni = dni;
         this.cuil = cuil;
@@ -38,11 +39,12 @@ public class Cliente {
         this.telefono = telefono;
         this.celular = celular;
         this.admin = admin;
+        this.estado = estado;
     }
 
     public Cliente()
     {
-    	
+    	this.paisNacimiento = new Pais();
     }
     // Getters y Setters
     public Long getId() {
@@ -57,8 +59,8 @@ public class Cliente {
         return dni;
     }
 
-    public void setDni(Long dni) {
-        this.dni = dni;
+    public void setDni(Long i) {
+        this.dni = i;
     }
 
     public Long getCuil() {
@@ -156,8 +158,17 @@ public class Cliente {
     public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
+    
 
-    @Override
+    public Boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
+
+	@Override
     public String toString() {
         return "Cliente{" +
                "id=" + id +

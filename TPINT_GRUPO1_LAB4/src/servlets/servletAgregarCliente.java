@@ -117,7 +117,8 @@ public class servletAgregarCliente extends HttpServlet {
 	    	    correoElectronico, // correo
 	    	    telefono,        // telefono
 	    	    celular,         // celular
-	    	    false            // admin (o true si el cliente es admin)
+	    	    false,            // admin (o true si el cliente es admin)
+	    	    false			// falso si no esta borrado
 	    	);
 
 	    boolean estado = clienteDao.agregarCliente(cliente);

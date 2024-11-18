@@ -1,6 +1,7 @@
 package datosImpl;
 
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -112,9 +113,49 @@ public class ClienteDaoImpl implements ClienteDao{
 
 	@Override
 	public Cliente obtenerClientexId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Cliente aux = new Cliente();
+		cn = new Conexion();
+		cn.Open();
+		
+		String query = "SELECT clientes.id, clientes.nombre,clientes.apellido, clientes.sexo," +
+		"clientes.usuario, clientes.password, clientes.id_pais_nacimiento," +
+		"clientes.fecha_nacimiento, clientes.correo, Clientes.dni, clientes.cuil," +
+		"clientes.Telefono, clientes.Celular, clientes.admin, clientes.deleted as borrado,  paises.nombre as nombre_pais" +
+		"from clientes left join paises on id_pais_nacimiento = paises.id" + 
+		"where clientes.id = ?";
+		
+		try
+		{
+			PreparedStatement prst = cn.connection.prepareStatement(query);	
+			prst.setLong(1, id);
+			ResultSet rs = prst.executeQuery();
+			rs.next();
+			aux.setId(rs.getLong("id"));
+			aux.setNombre(rs.getString("nombre"));
+			aux.setApellido(rs.getString("apellido"));
+			aux.setSexo(rs.getString("sexo"));
+			aux.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+			aux.setCorreo(rs.getString("correo"));
+			aux.setDni(rs.getLong("dni"));
+			aux.setCuil(rs.getLong("cuil"));
+			aux.setTelefono(rs.getString("Telefono"));
+			aux.setCelular(rs.getString("Celular"));
+			aux.setAdmin(rs.getBoolean("admin"));	
+            aux.getPaisNacimiento().setId(rs.getInt("id_pais_nacimiento"));
+            aux.getPaisNacimiento().setNombre(rs.getString("nombre_pais"));
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			cn.close();
+		}
+		return aux;
 	}
+	
 
 
 	@Override
