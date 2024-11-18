@@ -16,6 +16,10 @@ import datosImpl.CuentaDaoImpl;
 import datosImpl.TipoCuentaDaoImpl;
 import entidad.Cuenta;
 import entidad.TipoCuenta;
+import negocio.CuentaNeg;
+import negocio.TipoCuentaNeg;
+import negocioImpl.CuentaNegImpl;
+import negocioImpl.TipoCuentaNegImpl;
 
 /**
  * Servlet implementation class servletListarCuentas
@@ -36,9 +40,9 @@ public class servletListarCuentas extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CuentaDao cuentaDao = new CuentaDaoImpl();
+		CuentaNeg cuentaNeg = new CuentaNegImpl();
 		List<Cuenta> listado = new ArrayList<Cuenta>();
-		listado = cuentaDao.obtenerCuentas();
+		listado = cuentaNeg.obtenerCuentas();
 		
 		request.setAttribute("listado", listado);
 		request.getRequestDispatcher("ListarCuentas.jsp").forward(request, response);
@@ -52,13 +56,13 @@ public class servletListarCuentas extends HttpServlet {
 		if(request.getParameter("btnModificar") != null)
 		{
 			Long nroCuenta = Long.parseLong(request.getParameter("nroCuenta"));
-			TipoCuentaDao tipoCuentaDao = new TipoCuentaDaoImpl();
-			List<TipoCuenta> listaTipoCuenta = new ArrayList<TipoCuenta>();
-			listaTipoCuenta = tipoCuentaDao.obtenerCuentas();
+			
+			TipoCuentaNeg tipoCuentaNeg = new TipoCuentaNegImpl();
+			List<TipoCuenta> listaTipoCuenta = tipoCuentaNeg.obtenerCuentas();
 			request.setAttribute("listaTiposCuentas", listaTipoCuenta);
 			
-			CuentaDao cuentaDao = new CuentaDaoImpl();
-			Cuenta cuenta = cuentaDao.obtenerCuentaXNroCuenta(nroCuenta);
+			CuentaNeg cuentaNeg = new CuentaNegImpl();
+			Cuenta cuenta = cuentaNeg.obtenerCuentaXNroCuenta(nroCuenta);
 			request.setAttribute("cuenta", cuenta);
 			
 			request.getRequestDispatcher("ModificarCuenta.jsp").forward(request, response);
@@ -68,8 +72,8 @@ public class servletListarCuentas extends HttpServlet {
 			Long nroCuenta = Long.parseLong(request.getParameter("nroCuenta"));
 			Cuenta aux = new Cuenta();
 			aux.setNroCuenta(nroCuenta);
-			CuentaDao cuentaDao = new CuentaDaoImpl();
-			cuentaDao.darDeBajaCuenta(nroCuenta);
+			CuentaNeg cuentaNeg = new CuentaNegImpl();
+			cuentaNeg.darDeBajaCuenta(nroCuenta);
 			doGet(request, response);
 		}
 	}
