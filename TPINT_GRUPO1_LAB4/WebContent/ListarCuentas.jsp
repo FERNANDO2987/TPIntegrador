@@ -8,23 +8,31 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Listar Cuentas</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Icono -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+	<!-- DataTable -->
+	
+	<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#table_id').DataTable();
+		});
+	</script>
+	
+	<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap4.css">
 </head>
 <body>
 <div class="container mt-5">
         <h2 class="text-center mb-4">Listado de Cuentas</h2>
        <div class="d-flex justify-content-between align-items-center mb-4"> 
-        <!-- Formulario de b�squeda  // NO TIENE ACTION NI METHOD -->
-       <form class="form-inline mb-4" id="formBusqueda">
-            <input type="text" name="criterio" class="form-control mr-2" placeholder="Buscar cuenta..." id="criterio">
-            <button type="submit" class="btn btn-primary mr-2">Buscar</button>
-            <a href="#" class="btn btn-secondary">Limpiar</a>
-            
-        </form>
         <a href="servletAgregarCuenta" class="btn btn-primary mr-2 mb-4">Agregar Nueva Cuenta</a>
          </div>
         <!-- Tabla de cuentas -->
@@ -41,7 +49,7 @@
 					
 					
 		%>
-        <table class="table table-bordered table-hover">
+        <table border="1" id="table_id" class="table table-striped table-bordered" >
             <thead class="thead-dark">
                 <tr>
                     <th>Nro Cuenta</th>
@@ -70,15 +78,7 @@
 				                    <td><%= cuenta.getCliente().getNombre() %> <%= cuenta.getCliente().getApellido() %></td>
 				                    <td><%= cuenta.getTipoCuenta().getDescripcion() %></td>
 				                    <td>$<%= cuenta.getSaldo() %></td>
-				                    <% if(cuenta.getEstado())
-				                    	{%>
-				                    		<td>Inactivo</td>
-				                    <%  }
-				                    	else
-				                    	{%>
-				                    		<td>Activo</td>
-				                    <%	}%>				                    
-				                    
+				                    <td><%= cuenta.getEstado()? "Inactivo" : "Activo" %>  </td>		                    
 				                    <td>
 										<input type="submit" class="btn btn-primary btn-sm" name="btnModificar" value="Modificar">
 				                        <input type="submit" class="btn btn-danger btn-sm" name="btnEliminar" value="Eliminar">
@@ -112,8 +112,5 @@
         </table>
 	    
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
