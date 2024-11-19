@@ -4,15 +4,15 @@ package entidad;
 import java.util.Date;
 
 public class Cliente {
-    private Long id;
-    private Long dni;
-    private Long cuil;
+    private int id;
+    private String dni;
+    private String cuil;
     private String nombre;
     private String apellido;
     private String sexo;
     private String usuario;
     private String password;
-    private Pais paisNacimiento;  // Relación con la clase Pais
+    private String paisNacimiento;  // Relación con la clase Pais
     private Date fechaNacimiento;
     private String correo;
     private String telefono;
@@ -23,8 +23,13 @@ public class Cliente {
     
   
     // Constructor
+
     public Cliente(Long id, Long dni, Long cuil, String nombre, String apellido, String sexo, String usuario, 
                    String password, Pais paisNacimiento, Date fechaNacimiento,String correo,String telefono,String celular, Boolean admin, Boolean estado) {
+
+    public Cliente(int id, String dni, String cuil, String nombre, String apellido, String sexo, String usuario, 
+                   String password, String paisNacimiento, Date fechaNacimiento,String correo,String telefono,String celular, Boolean admin) {
+
         this.id = id;
         this.dni = dni;
         this.cuil = cuil;
@@ -47,27 +52,32 @@ public class Cliente {
     	this.paisNacimiento = new Pais();
     }
     // Getters y Setters
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getDni() {
+    public String getDni() {
         return dni;
     }
 
+
     public void setDni(Long i) {
         this.dni = i;
+
+    public void setDni(String dni) {
+        this.dni = dni;
+
     }
 
-    public Long getCuil() {
+    public String getCuil() {
         return cuil;
     }
 
-    public void setCuil(Long cuil) {
+    public void setCuil(String cuil) {
         this.cuil = cuil;
     }
 
@@ -111,11 +121,11 @@ public class Cliente {
         this.password = password;
     }
 
-    public Pais getPaisNacimiento() {
+    public String getPaisNacimiento() {
         return paisNacimiento;
     }
 
-    public void setPaisNacimiento(Pais paisNacimiento) {
+    public void setPaisNacimiento(String paisNacimiento) {
         this.paisNacimiento = paisNacimiento;
     }
 

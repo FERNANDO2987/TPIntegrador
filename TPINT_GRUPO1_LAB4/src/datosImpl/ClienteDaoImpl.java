@@ -4,7 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
+
 import java.util.List;
 
 import datos.ClienteDao;
@@ -60,42 +60,40 @@ public class ClienteDaoImpl implements ClienteDao{
 	    boolean estado = true;
 	    cn.Open();
 
-	    String query = "{CALL AgregarCliente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}"; 
+	    String query = "{CALL AgregarCliente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
 	    try (CallableStatement stmt = cn.connection.prepareCall(query)) {
-	        // Obtener el id del cliente (puede ser nulo en caso de inserción)
-	        Long id = cliente.getId(); // El id puede ser nulo cuando es nuevo
-
 	        // Establecer los parámetros
-	        stmt.setObject(1, id, Types.BIGINT); // Usamos Types.BIGINT para manejar valores nulos
-	        stmt.setLong(2, cliente.getDni());
-	        stmt.setLong(3, cliente.getCuil());
+	        stmt.setInt(1, cliente.getId());
+	        stmt.setString(2, cliente.getDni());
+	        stmt.setString(3, cliente.getCuil());
 	        stmt.setString(4, cliente.getNombre());
 	        stmt.setString(5, cliente.getApellido());
 	        stmt.setString(6, cliente.getSexo());
 	        stmt.setString(7, cliente.getUsuario());
 	        stmt.setString(8, cliente.getPassword());
-	        stmt.setObject(9, cliente.getPaisNacimiento() != null ? cliente.getPaisNacimiento().getId() : null, Types.INTEGER);
-	        stmt.setDate(10, cliente.getFechaNacimiento() != null ? new java.sql.Date(cliente.getFechaNacimiento().getTime()) : null);
+	        stmt.setString(9, cliente.getPaisNacimiento());
+	        stmt.setDate(10, cliente.getFechaNacimiento() != null 
+	            ? new java.sql.Date(cliente.getFechaNacimiento().getTime()) 
+	            : null);
 	        stmt.setString(11, cliente.getCorreo());
 	        stmt.setString(12, cliente.getTelefono());
 	        stmt.setString(13, cliente.getCelular());
 	        stmt.setBoolean(14, cliente.getAdmin());
 
-	        // Ejecutar la sentencia
-	        stmt.executeUpdate();
+	        // Ejecutar el procedimiento almacenado
+	        stmt.execute();
 
-	        // Si se está insertando un nuevo cliente, capturamos el ID generado
-	        if (id == null) {
-	            ResultSet rs = stmt.getGeneratedKeys();
-	            if (rs.next()) {
-	                long nuevoId = rs.getLong(1); // Obtener el ID generado
-	                cliente.setId(nuevoId); // Asignar el nuevo ID al objeto cliente
-	            }
+	        // Si el procedimiento devuelve un resultado (ej. nuevo ID)
+	        ResultSet rs = stmt.getResultSet();
+	        if (rs != null && rs.next()) {
+	            int nuevoId = rs.getInt("nuevo_id");
+	            System.out.println("Cliente insertado con ID: " + nuevoId);
 	        }
 
 	    } catch (SQLException e) {
 	        estado = false;
+	        System.err.println("Error al ejecutar el procedimiento AgregarCliente: " + e.getMessage());
 	        e.printStackTrace();
 	    } finally {
 	        cn.close();
@@ -103,7 +101,7 @@ public class ClienteDaoImpl implements ClienteDao{
 
 	    return estado;
 	}
-	
+
 
 	
 
