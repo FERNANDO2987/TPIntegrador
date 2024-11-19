@@ -1,6 +1,6 @@
-<!-- @format -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="entidad.Cliente" %>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -15,28 +15,24 @@
       function showAlert(option) {
         alert("Seleccionaste: " + option);
       }
-
-      function redirectToHome() {
-        window.location.href = "tu_url_de_inicio_aqui"; //url
-      }
     </script>
   </head>
   <body>
-  	
-  	
-
-
-  
-  
+    <%
+      Cliente usuario = (Cliente)session.getAttribute("usuario");
+      if (usuario == null) {
+        response.sendRedirect("Login.jsp");
+        return;
+      }
+    %>
     <div class="container mt-5">
       <h1>Menu de Gestion de Banco</h1>
-      <h4>Bienvenido.</h4>
-
-      
-      <!-- Botï¿½n para ir a Inicio -->
+      <h4>Bienvenido, <%= usuario.getUsuario() %>.</h4>
 
       <div class="accordion" id="menuAccordion">
+
         <!-- Menu Administrador -->
+        <% if (usuario.getAdmin()) { %>
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingAdmin">
             <button
@@ -70,9 +66,9 @@
                     </li>
                     <li>
                       <a
-                        href="<%= request.getContextPath() %>/AgregarCliente.jsp"
+                        href="<%= request.getContextPath() %>/ListarClientes.jsp"
                         class="text-decoration-none"
-                        >Agregar Cliente</a
+                        >Listar Clientes</a
                       >
                     </li>
                   </ul>
@@ -108,18 +104,6 @@
                   </ul>
                 </li>
                 <li class="list-group-item">
-                  Prestamos
-                  <ul>
-                    <li>
-                      <a
-                        href="ListarPrestamos.jsp"
-                        class="text-decoration-none"
-                        >Listar Prestamos</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li class="list-group-item">
                   Informes
                   <ul>
                     <li>
@@ -129,35 +113,13 @@
                         >Generar Informe de Ingresos y Egresos</a
                       >
                     </li>
-                    <li>
-                      <a
-                        href="InformeClientesActivosInactivos.jsp"
-                        class="text-decoration-none"
-                        >Generar Informe de Clientes Activos</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        onclick="showAlert('Otros Reportes Estadisticos')"
-                        class="text-decoration-none"
-                        >Otros Reportes Estadisticos</a
-                      >
-                    </li>
                   </ul>
                 </li>
-               <!--  <li class="list-group-item">
-                  <button
-                    class="btn btn-danger"
-                    onclick="showAlert('Cerrar Sesion')"
-                  >
-                    Cerrar Sesion
-                  </button>
-                </li> -->
               </ul>
             </div>
           </div>
         </div>
+        <% } %>
 
         <!-- Menu Cliente -->
         <div class="accordion-item">
@@ -206,57 +168,10 @@
                   </ul>
                 </li>
                 <li class="list-group-item">
-                  Transferencias
-                  <ul>
-                    <li>
-                      <a
-                        href="<%= request.getContextPath() %>/TransferirCuentasPropias.jsp"
-                        class="text-decoration-none"
-                        >Transferir Dinero Entre Cuentas Propias</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="<%= request.getContextPath() %>/TransferirAOtroCliente.jsp"
-                        class="text-decoration-none"
-                        >Transferir Dinero a Otro Cliente</a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="list-group-item">
-                  Prestamos
-                  <ul>
-                    <li>
-                      <a
-                        href="SolicitarPrestamos.jsp"
-                        class="text-decoration-none"
-                        >Solicitar Prestamo</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="EstadoSolicitudPrestamo.jsp"
-                        class="text-decoration-none"
-                        >Ver Estado de Solicitud de Prestamo</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="PagarCuotasPrestamo.jsp"
-                        class="text-decoration-none"
-                        >Pagar Cuotas de Prestamo</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li class="list-group-item">
-                  <button
-                    class="btn btn-danger"
-                    onclick="showAlert('Cerrar Sesion')"
-                  >
-                    Cerrar Sesion
-                  </button>
-                </li>
+				  <form action="<%= request.getContextPath() %>/LogoutServlet" method="post">
+				    <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+				  </form>
+				</li>
               </ul>
             </div>
           </div>

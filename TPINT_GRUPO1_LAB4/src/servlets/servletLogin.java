@@ -41,7 +41,7 @@ public class servletLogin extends HttpServlet {
 //
 //	        if (usuario != null && contrasenia != null) {
 //	            UsuarioNegImpl usuarioNegocio = new UsuarioNegImpl();
-//	            Usuario usuarioSesion = usuarioNegocio.iniciarSesion(usuario, contrasenia);
+//	            Cliente usuarioSesion = usuarioNegocio.iniciarSesion(usuario, contrasenia);
 //
 //	            if (usuarioSesion != null) {
 //	                HttpSession session = request.getSession();
