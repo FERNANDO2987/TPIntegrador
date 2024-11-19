@@ -118,11 +118,11 @@ public class ClienteDaoImpl implements ClienteDao{
 		cn.Open();
 		
 		String query = "SELECT clientes.id, clientes.nombre,clientes.apellido, clientes.sexo," +
-		"clientes.usuario, clientes.password, clientes.id_pais_nacimiento," +
-		"clientes.fecha_nacimiento, clientes.correo, Clientes.dni, clientes.cuil," +
-		"clientes.Telefono, clientes.Celular, clientes.admin, clientes.deleted as borrado,  paises.nombre as nombre_pais" +
-		"from clientes left join paises on id_pais_nacimiento = paises.id" + 
-		"where clientes.id = ?";
+		" clientes.usuario, clientes.password, clientes.id_pais_nacimiento," +
+		" clientes.fecha_nacimiento, clientes.correo, Clientes.dni, clientes.cuil," +
+		" clientes.Telefono, clientes.Celular, clientes.admin, clientes.deleted as borrado,  paises.nombre as nombre_pais" +
+		" from clientes left join paises on id_pais_nacimiento = paises.id" + 
+		" where clientes.id = ?";
 		
 		try
 		{
