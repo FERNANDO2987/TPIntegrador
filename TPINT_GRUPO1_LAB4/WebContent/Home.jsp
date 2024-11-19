@@ -168,7 +168,7 @@
                   </ul>
                 </li>
                 <li class="list-group-item">
-				  <form action="<%= request.getContextPath() %>/LogoutServlet" method="post">
+				  <form action="<%= request.getContextPath() %>/servletLogout" method="post">
 				    <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
 				  </form>
 				</li>

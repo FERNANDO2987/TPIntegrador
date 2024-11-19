@@ -11,5 +11,6 @@ public interface ClienteDao {
 	public List<Cliente> obtenerClientes();
 	public boolean modificarCliente(Cliente cliente);
 	public boolean darDeBajaCliente(int idCliente);
+	public Cliente loguear(Cliente usuario);
 
 }

@@ -21,7 +21,40 @@ public class ClienteDaoImpl implements ClienteDao{
 		 cn = new Conexion();
 	}
 	
-	
+	@Override
+	   public Cliente loguear(Cliente usuario) {
+	       Cliente usuarioBD = null;
+	       cn = new Conexion();
+	       ResultSet rs = null;
+	       cn.Open();
+	       String query = "{CALL ValidarUsuario(?, ?)}";
+	       try (CallableStatement stmt = cn.connection.prepareCall(query)) {
+	           stmt.setString(1, usuario.getUsuario());
+	           stmt.setString(2, usuario.getPassword()); 
+	           rs = stmt.executeQuery();
+	           if (rs != null && rs.next()) {
+	        	   usuarioBD = new Cliente();
+	        	   usuarioBD.setId(rs.getLong("id"));
+	        	   usuarioBD.setUsuario(rs.getString("usuario"));
+	        	   usuarioBD.setPassword(rs.getString("password"));
+	        	   usuarioBD.setNombre(rs.getString("nombre"));
+	        	   usuarioBD.setAdmin(rs.getBoolean("admin"));
+	           }
+	       } catch (SQLException e) {
+	           e.printStackTrace();
+	       } finally {
+	           try {
+	               if (rs != null) {
+	                   rs.close();
+	               }
+	               cn.close();
+	           } catch (SQLException e) {
+	               e.printStackTrace();
+	           }
+	       }
+	       return usuarioBD;
+	   }
+
 
 	public boolean agregarCliente(Cliente cliente) {
 	    boolean estado = true;
