@@ -22,20 +22,6 @@ private ClienteDao  clienteDao = new ClienteDaoImpl();
 		
 	}
 	
-	public Cliente iniciarSesion(String nombreUsuario, String contrasena) {
-	    Cliente usuario = new Cliente();
-	    usuario.setUsuario(nombreUsuario);
-	    usuario.setPassword(contrasena);
-	    
-	   Cliente usuarioValido = clienteDao.loguear(usuario);
-	    
-	    if (usuarioValido != null) {
-	        return usuarioValido;
-	    } else {
-	        return null;
-	    }
-	}
-	
 	@Override
 	public boolean insertarCliente(Cliente cliente) {
 		return clienteDao.agregarCliente(cliente);
