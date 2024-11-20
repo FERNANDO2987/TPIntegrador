@@ -39,32 +39,32 @@ public class servletAgregarCuenta extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		if(request.getParameter("btnAgregar") != null)
-//		{
-//			Long idCliente = Long.parseLong(request.getParameter("cliente"));
-//			int idTipoCuenta = Integer.parseInt(request.getParameter("TipoCuenta"));
-//			
-//			Cuenta aux = new Cuenta();
-//			aux.getCliente().setId(idCliente);
-//			aux.getTipoCuenta().setId(idTipoCuenta);
-//			CuentaDao cuentaDao = new CuentaDaoImpl();
-//			cuentaDao.agregarCuenta(aux);
-//			boolean exito = true;
-//			request.setAttribute("exitoAlAgregar", exito);
-//			
-//		}
-//		
-//		List<Cliente> listaClientes = new ArrayList<Cliente>();
-//		List<TipoCuenta> listaTiposCuenta = new ArrayList<TipoCuenta>();
-//		TipoCuentaDao tipoCuentaDao = new TipoCuentaDaoImpl();
-//		ClienteDao clienteDao = new ClienteDaoImpl();
-//		
-//		listaClientes = clienteDao.obtenerClientes();
-//		listaTiposCuenta = tipoCuentaDao.obtenerCuentas();
-//		
-//		request.setAttribute("listaClientes", listaClientes);
-//		request.setAttribute("listaTipoCuenta", listaTiposCuenta);
-//		request.getRequestDispatcher("AgregarCuenta.jsp").forward(request, response);
+		if(request.getParameter("btnAgregar") != null)
+		{
+			Long idCliente = Long.parseLong(request.getParameter("cliente"));
+			int idTipoCuenta = Integer.parseInt(request.getParameter("TipoCuenta"));
+			
+			Cuenta aux = new Cuenta();
+			aux.getCliente().setId(idCliente);
+			aux.getTipoCuenta().setId(idTipoCuenta);
+			CuentaDao cuentaDao = new CuentaDaoImpl();
+			cuentaDao.agregarCuenta(aux);
+			boolean exito = true;
+			request.setAttribute("exitoAlAgregar", exito);
+			
+		}
+		
+		List<Cliente> listaClientes = new ArrayList<Cliente>();
+		List<TipoCuenta> listaTiposCuenta = new ArrayList<TipoCuenta>();
+		TipoCuentaDao tipoCuentaDao = new TipoCuentaDaoImpl();
+		ClienteDao clienteDao = new ClienteDaoImpl();
+		
+		listaClientes = clienteDao.obtenerClientes();
+		listaTiposCuenta = tipoCuentaDao.obtenerCuentas();
+		
+		request.setAttribute("listaClientes", listaClientes);
+		request.setAttribute("listaTipoCuenta", listaTiposCuenta);
+		request.getRequestDispatcher("AgregarCuenta.jsp").forward(request, response);
 		
 	}
 
