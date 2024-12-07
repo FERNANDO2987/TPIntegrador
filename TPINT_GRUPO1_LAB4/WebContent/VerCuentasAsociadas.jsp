@@ -1,4 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="entidad.Cuenta" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,9 +17,25 @@
         <h3>Cuentas Asociadas</h3>
     </div>
 
-    <div class="row pt-5">
-
+    <div class="row pt-1">
+		
+		<%
+			//obtner lista de prestamos del request
+			List<Cuenta> listaCuentas = (List<Cuenta>)request.getAttribute("listado");
+			if(listaCuentas == null || listaCuentas.isEmpty()){
+		%>
+		<div class="alert alert-warning" role="alert">
+			No se encontraron préstamos para mostrar.
+		</div>
+		<%
+			} else {
+		%>
         <div class="col-md-4">
+        
+        	<%
+        		for (Cuenta c : listaCuentas)
+        		{
+        	%>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Cuenta N°1</h5>
@@ -34,8 +54,14 @@
                 		<input type="hidden" name="nrcuenta" value="<%=c.getNroCuenta()%>">
                 	</form>
                 </div>
-            </div>
+            </div>       
+            <%
+				}
+			%>
         </div>
+        <%
+			}
+		%>
 
         <div class="col-md-4">
             <div class="card" style="width: 18rem;">
