@@ -51,7 +51,7 @@
                 <div class="card-body pt-1 pb-1">
                 	<form method="get" action="servletListarMovimientosXCuenta">
                 		<input type="submit" name="btnListarMovimientosXCuenta" value="Historial de movimientos" class="btn btn-secondary">
-                		<input type="hidden" name="nrcuenta" value="<%=c.getNroCuenta()%>">
+                		<input type="hidden" name="nrocuenta" value="<%=c.getNroCuenta()%>">
                 	</form>
                 </div>
             </div>       
