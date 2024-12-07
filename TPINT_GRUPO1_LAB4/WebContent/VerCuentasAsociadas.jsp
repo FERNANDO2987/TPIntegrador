@@ -38,12 +38,12 @@
         	%>
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Cuenta N°1</h5>
+                    <h5 class="card-title">Nro de Cuenta: <%=c.getNroCuenta()%></h5>
                     <hr>
                     <p class="card-text">
-                        <strong>Cuenta corriente</strong><hr>
-                        <strong>CBU:</strong> 15648945648651 <hr>
-                        <strong>Fecha de creacion:</strong> 18/04/2022
+                        <strong><%=c.getTipoCuenta().getDescripcion()%></strong><hr>
+                        <strong>CBU:</strong> <%=c.getCbu()%> <hr>
+                        <strong>Fecha de creacion:</strong> <%=c.getFechaCreacion()%>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" style="font-size: 23px;"><strong> $423.588,58 </strong></li>
