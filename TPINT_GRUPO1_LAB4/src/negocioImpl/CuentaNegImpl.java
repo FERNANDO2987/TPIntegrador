@@ -5,6 +5,7 @@ import java.util.List;
 import datos.CuentaDao;
 import datosImpl.CuentaDaoImpl;
 import entidad.Cuenta;
+import entidad.Movimiento;
 import negocio.CuentaNeg;
 
 public class CuentaNegImpl implements CuentaNeg{
@@ -38,6 +39,30 @@ public class CuentaNegImpl implements CuentaNeg{
 	public Cuenta obtenerCuentaXNroCuenta(Long nroCuenta) {
 		CuentaDao cuentaDao = new CuentaDaoImpl();
 		return cuentaDao.obtenerCuentaXNroCuenta(nroCuenta);
+	}
+
+	@Override
+	public List<Cuenta> obtenerCuentasXIdCliente_2(int idCLiente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cuenta> obtenerCuentasXIdCliente(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cuenta obtenerCuentaXCBU(String cbu) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Movimiento> listarMovimientosXCuenta(long idCuenta) {
+		CuentaDao cuentaDao = new CuentaDaoImpl();
+		return cuentaDao.listarMovimientosXCuenta(idCuenta);
 	}
 
 }

@@ -5,7 +5,8 @@ import java.time.LocalDate;
 
 public class Movimiento {
 	
-	 private long id;
+		private long nroCuenta; 	
+		private int id;
 	    private LocalDate fecha;
 	    private String detalle;
 	    private BigDecimal importe;
@@ -16,8 +17,9 @@ public class Movimiento {
 	    public Movimiento() {}
 
 	    // Constructor con parámetros
-	    public Movimiento(long id, LocalDate fecha, String detalle, BigDecimal importe, TipoMovimiento tipoMovimiento, boolean estado) {
-	        this.id = id;
+	    public Movimiento(long nroCuenta, int id, LocalDate fecha, String detalle, BigDecimal importe, TipoMovimiento tipoMovimiento, boolean estado) {
+	        this.nroCuenta = nroCuenta;
+	    	this.id = id;
 	        this.fecha = fecha;
 	        this.detalle = detalle;
 	        this.importe = importe;
@@ -27,11 +29,19 @@ public class Movimiento {
 	    
 	    
 	    // Getters y Setters
-	    public long getId() {
+	    public long getNroCuenta() {
+	        return nroCuenta;
+	    }
+	    
+	    public void setNroCuenta(long nroCuenta) {
+	        this.nroCuenta = nroCuenta;
+	    }
+	    
+	    public int getId() {
 	        return id;
 	    }
-
-	    public void setId(long id) {
+	    
+	    public void setId(int id) {
 	        this.id = id;
 	    }
 
@@ -77,7 +87,7 @@ public class Movimiento {
 
 		@Override
 		public String toString() {
-			return "Movimiento [id=" + id + ", fecha=" + fecha + ", detalle=" + detalle + ", importe=" + importe
+			return "Movimiento [nroCuenta=" + nroCuenta + ", id=" + id + ", fecha=" + fecha + ", detalle=" + detalle + ", importe=" + importe
 					+ ", tipoMovimiento=" + tipoMovimiento + ", estado=" + estado + "]";
 		}
 	    

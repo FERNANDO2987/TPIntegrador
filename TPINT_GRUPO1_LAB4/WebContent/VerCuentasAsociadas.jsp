@@ -29,7 +29,10 @@
                     <li class="list-group-item" style="font-size: 23px;"><strong> $423.588,58 </strong></li>
                 </ul>
                 <div class="card-body pt-1 pb-1">
-                    <a href="<%= request.getContextPath() %>/HistorialDeMovimientos.jsp" style="font-size:13px;">Historial de movimientos</a>
+                	<form method="get" action="servletListarMovimientosXCuenta">
+                		<input type="submit" name="btnListarMovimientosXCuenta" value="Historial de movimientos" class="btn btn-secondary">
+                		<input type="hidden" name="nrcuenta" value="<%=c.getNroCuenta()%>">
+                	</form>
                 </div>
             </div>
         </div>
