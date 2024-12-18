@@ -17,11 +17,20 @@
         <h2 class="text-center mb-4">Listado de Clientes</h2>
         
         <!-- Formulario de b�squeda -->
-       <form action="servletListarCliente" method="get" class="form-inline mb-4" id="formBusqueda">
-            <input type="text" name="criterio" class="form-control mr-2" placeholder="Buscar cliente..." id="criterio">
-            <button type="submit" class="btn btn-primary mr-2">Buscar</button>
-            <a href="servletListarCliente" class="btn btn-secondary">Limpiar</a>
-        </form>
+        
+        <div class= "row">
+        	<div class="col-6">
+				<a class= "col btn btn-danger" href="Home.jsp" style="display: inline;">Volver</a>
+			</div>	
+        	<div class="col-6 d-flex justify-content-end" > 
+        		<form action="servletListarCliente" method="get" class="form-inline mb-4" id="formBusqueda">
+            		<input type="text" name="criterio" class="form-control mr-2" placeholder="Buscar cliente..." id="criterio">
+            		<button type="submit" class="btn btn-primary mr-2">Buscar</button>
+            		<a href="servletListarCliente" class="btn btn-secondary">Limpiar</a>
+        		</form>
+        	</div>
+        </div>
+       
         
         <!-- Tabla de clientes -->
         <table class="table table-bordered table-hover">

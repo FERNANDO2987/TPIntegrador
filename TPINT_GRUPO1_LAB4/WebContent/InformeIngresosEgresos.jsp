@@ -13,12 +13,12 @@
 </head>
 <body>
 	<div class="container mt-5">
+	<h2 class="text-center mb-4">Informe de Ingresos y Egresos</h2>
 		<div class="row" style="padding: 10px">
 			<div class="col-4">
-				<a class= "col btn btn-danger" href="#" style="display: inline;">Volver</a>
+				<a class= "col btn btn-danger" href="Home.jsp" style="display: inline;">Volver</a>
 			</div>	
-			<div class="col-8">
-				<h2 class="text-center mb-4">Informe de Ingresos y Egresos</h2>
+			<div class="col-8">	
 			</div>					
 		</div>
 		<div class="row" style="padding: 10px">

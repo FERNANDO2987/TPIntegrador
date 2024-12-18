@@ -32,9 +32,14 @@
 <body>
 <div class="container mt-5">
         <h2 class="text-center mb-4">Listado de Cuentas</h2>
-       <div class="d-flex justify-content-between align-items-center mb-4"> 
-        <a href="servletAgregarCuenta" class="btn btn-primary mr-2 mb-4">Agregar Nueva Cuenta</a>
-         </div>
+        <div class= "row">
+        	<div class="col-6">
+				<a class= "col btn btn-danger" href="Home.jsp" style="display: inline;">Volver</a>
+			</div>	
+        	<div class="col-6 d-flex justify-content-end" > 
+        		<a href="servletAgregarCuenta" style="display: inline;" class="btn btn-primary">Agregar Nueva Cuenta</a>
+        	</div>
+        </div>
         <!-- Tabla de cuentas -->
         <%
             		List<Cuenta> listaCuenta;

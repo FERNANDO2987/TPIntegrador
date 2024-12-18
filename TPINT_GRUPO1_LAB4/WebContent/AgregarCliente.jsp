@@ -85,6 +85,7 @@
           
             <br><br>
             <button type="submit" class="btn btn-primary btn-block">Registrar Cliente</button>
+            <a class= "btn btn-secondary btn-block" href="Home.jsp">Volver</a>
         </form>
     </div>
 

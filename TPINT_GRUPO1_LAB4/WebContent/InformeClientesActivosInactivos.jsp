@@ -15,7 +15,7 @@
 	<div class="container mt-5">
 		<div class="row" style="padding: 10px">
 			<div class="col-4">
-				<a class= "col btn btn-danger" href="#" style="display: inline;">Volver</a>
+				<a class= "col btn btn-danger" href="Home.jsp" style="display: inline;">Volver</a>
 			</div>	
 			<div class="col-8">
 				<h2 class="text-center mb-4">Informe de Clientes Activos e Inactivos</h2>   
